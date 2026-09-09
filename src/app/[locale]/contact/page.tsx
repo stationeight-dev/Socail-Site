@@ -48,7 +48,9 @@ export default async function Page({
           </a>
         ) : null}
       </FadeIn>
-      <FadeIn delay={0.06}>
+      {/* Same white card as the landing-page CTA, so the flat fields sit on
+          `paper-elevated` in both themes rather than directly on the canvas. */}
+      <FadeIn delay={0.06} className="card-flat md:p-8">
         <EnquiryForm
           locale={locale}
           source="/contact"

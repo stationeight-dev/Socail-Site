@@ -9,7 +9,7 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { cx } from "@/lib/utils";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import {
   useId,
   useRef,
@@ -32,6 +32,7 @@ export type HeaderCopy = {
   solutions: string;
   technologies: string;
   products: string;
+  company: string;
   work: string;
   about: string;
   blog: string;
@@ -45,46 +46,58 @@ export type HeaderCopy = {
   themeLabel: string;
 };
 
-const megaKeys = ["services", "industries", "solutions", "technologies"] as const;
-type MegaKey = (typeof megaKeys)[number];
-type OpenState = MegaKey | "mobile" | null;
+const hubKeys = ["services", "industries", "solutions", "technologies"] as const;
+type HubKey = (typeof hubKeys)[number];
+type MenuKey = HubKey | "company";
+type OpenState = MenuKey | "mobile" | null;
 
 type Props = {
   copy: HeaderCopy;
-  mega: Record<MegaKey, MegaItem[]>;
+  /** Catalogue hubs — each opens a panel and also has a landing page. */
+  mega: Record<HubKey, MegaItem[]>;
+  /** Work / About / Blog / Contact, grouped so the pill stays short. */
+  company: MegaItem[];
 };
 
-const isMega = (state: OpenState): state is MegaKey =>
+const isMenu = (state: OpenState): state is MenuKey =>
   state !== null && state !== "mobile";
 
 /**
- * Nav link inside the pill. 14px/500 slate, ink on hover — the spec's nav
- * treatment scaled one step down because we carry seven destinations, not
- * four. Grows to 15px once the viewport has room (2xl).
+ * Pill link: 13px at `lg` where the pill shares the bar with a compact
+ * locale toggle, 14px from `xl`. Slate at rest, ink on hover / open.
+ * Display is left out so `hidden xl:inline-flex` variants can win.
  */
 const pillLink =
-  "inline-flex items-center gap-1 whitespace-nowrap rounded-[48px] px-2 py-2 text-body-sm font-medium text-ink-muted transition-colors hover:text-ink xl:px-2.5 2xl:text-[15px]";
+  "items-center gap-1 whitespace-nowrap rounded-[48px] px-2 py-2 text-[13px] font-medium leading-[1.3] tracking-[-0.011em] text-ink-muted transition-colors hover:text-ink xl:text-body-sm";
 
 /**
  * Site header.
  *
  * Desktop (lg+) is a three-column grid — logo | pill | controls — so the pill
  * is centred in the 8rem bar regardless of how wide the logo or the CTA are,
- * and nothing can overlap. Which links live in the pill depends on the room:
- *   lg  : the four hubs + Products (no chevrons)
- *   xl  : + Work, About, chevrons, both locale segments
- * Below lg the pill collapses into the hamburger menu.
+ * and nothing can overlap. The pill carries six destinations: the four hubs,
+ * Products, and a Company group (Work, About, Blog, Contact). Below `lg`
+ * everything collapses into the hamburger sheet.
  */
-export function HeaderBar({ copy, mega }: Props) {
+export function HeaderBar({ copy, mega, company }: Props) {
   const [open, setOpen] = useState<OpenState>(null);
-  const reduce = useReducedMotion();
   const panelRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
   const mobileId = useId();
-  const activeMega = isMega(open) ? open : null;
+  const active = isMenu(open) ? open : null;
   const close = () => setOpen(null);
 
-  // Escape closes whatever is open — mega panel or mobile sheet.
+  const menus: Record<MenuKey, { label: string; items: MegaItem[]; href?: string }> = {
+    services: { label: copy.services, items: mega.services, href: "/services" },
+    industries: { label: copy.industries, items: mega.industries, href: "/industries" },
+    solutions: { label: copy.solutions, items: mega.solutions, href: "/solutions" },
+    technologies: { label: copy.technologies, items: mega.technologies, href: "/technologies" },
+    company: { label: copy.company, items: company },
+  };
+  const panel = active ? menus[active] : null;
+  const wide = (panel?.items.length ?? 0) > 8;
+
+  // Escape closes whatever is open — panel or mobile sheet.
   const onHeaderKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === "Escape") close();
   };
@@ -94,8 +107,8 @@ export function HeaderBar({ copy, mega }: Props) {
     if (!event.currentTarget.contains(event.relatedTarget as Node | null)) close();
   };
 
-  // ArrowDown on a hub trigger drops focus into its panel.
-  const onTriggerKeyDown = (key: MegaKey) => (event: KeyboardEvent<HTMLAnchorElement>) => {
+  // ArrowDown on a trigger drops focus into its panel.
+  const onTriggerKeyDown = (key: MenuKey) => (event: KeyboardEvent<HTMLElement>) => {
     if (event.key !== "ArrowDown") return;
     event.preventDefault();
     setOpen(key);
@@ -104,15 +117,36 @@ export function HeaderBar({ copy, mega }: Props) {
     });
   };
 
+  const triggerProps = (key: MenuKey) => ({
+    className: cx("inline-flex", pillLink, active === key && "text-ink"),
+    "aria-expanded": active === key,
+    "aria-controls": active === key ? panelId : undefined,
+    onMouseEnter: () => setOpen(key),
+    onFocus: () => setOpen(key),
+    onKeyDown: onTriggerKeyDown(key),
+  });
+
+  const chevron = (key: MenuKey) => (
+    <ChevronDown
+      className={cx(
+        "hidden h-3 w-3 transition-transform duration-200 xl:block",
+        active === key && "rotate-180",
+      )}
+      aria-hidden
+    />
+  );
+
   return (
     <header
       className="sticky top-0 z-50 bg-paper/85 backdrop-blur-md"
       onKeyDown={onHeaderKeyDown}
     >
-      <div className="page grid h-20 grid-cols-[1fr_auto] items-center gap-4 lg:h-32 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
+      <div className="page grid h-20 grid-cols-[1fr_auto] items-center gap-4 lg:h-32 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">
+        {/* `[&_img]:shrink-0` guarantees the wordmark is never squeezed by the
+            grid — if space ever runs out it overflows rather than distorts. */}
         <Link
           href="/"
-          className="inline-flex shrink-0 items-center justify-self-start rounded-md"
+          className="inline-flex shrink-0 items-center justify-self-start rounded-md [&_img]:shrink-0"
           onClick={close}
           data-brand-logo
         >
@@ -125,60 +159,53 @@ export function HeaderBar({ copy, mega }: Props) {
           onMouseLeave={close}
           onBlur={onNavBlur}
         >
-          {megaKeys.map((key) => {
-            const expanded = activeMega === key;
-            return (
-              <Link
-                key={key}
-                href={`/${key}` as never}
-                className={cx(pillLink, expanded && "text-ink")}
-                aria-expanded={expanded}
-                aria-controls={expanded ? panelId : undefined}
-                onMouseEnter={() => setOpen(key)}
-                onFocus={() => setOpen(key)}
-                onKeyDown={onTriggerKeyDown(key)}
-                onClick={close}
-              >
-                {copy[key]}
-                <ChevronDown
-                  className={cx(
-                    "hidden h-3 w-3 transition-transform duration-200 xl:block",
-                    expanded && "rotate-180",
-                  )}
-                  aria-hidden
-                />
-              </Link>
-            );
-          })}
+          {hubKeys.map((key) => (
+            <Link key={key} href={`/${key}` as never} {...triggerProps(key)} onClick={close}>
+              {copy[key]}
+              {chevron(key)}
+            </Link>
+          ))}
 
-          {/* Panel sits in DOM order right after the hub triggers so Tab from
-              the last trigger lands inside it. Anchored to the pill, not the
-              trigger, so it never leaves the viewport. */}
+          <Link
+            href="/products"
+            className={cx("inline-flex", pillLink)}
+            onMouseEnter={close}
+            onFocus={close}
+          >
+            {copy.products}
+          </Link>
+
+          {/* Company has no landing page of its own, so the trigger is a button. */}
+          <button
+            type="button"
+            {...triggerProps("company")}
+            onClick={() => setOpen((current) => (current === "company" ? null : "company"))}
+          >
+            {copy.company}
+            {chevron("company")}
+          </button>
+
+          {/* Anchored to the pill (not the trigger) so it never leaves the
+              viewport. Kept mounted while switching between menus so the
+              content swaps without re-animating. */}
           <AnimatePresence>
-            {activeMega ? (
+            {panel ? (
               <motion.div
                 key="mega-panel"
                 ref={panelRef}
                 id={panelId}
                 className={cx(
                   "absolute left-1/2 top-full z-20 -translate-x-1/2 pt-2",
-                  mega[activeMega].length > 8
-                    ? "w-[min(48rem,calc(100vw-3rem))]"
-                    : "w-[min(36rem,calc(100vw-3rem))]",
+                  wide ? "w-[min(48rem,calc(100vw-3rem))]" : "w-[min(36rem,calc(100vw-3rem))]",
                 )}
-                initial={reduce ? false : { opacity: 0, y: -8 }}
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -8 }}
+                exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="card-flat p-3">
-                  <div
-                    className={cx(
-                      "grid gap-1",
-                      mega[activeMega].length > 8 ? "grid-cols-3" : "grid-cols-2",
-                    )}
-                  >
-                    {mega[activeMega].map((item) => (
+                  <div className={cx("grid gap-1", wide ? "grid-cols-3" : "grid-cols-2")}>
+                    {panel.items.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href as never}
@@ -200,50 +227,27 @@ export function HeaderBar({ copy, mega }: Props) {
                       </Link>
                     ))}
                   </div>
-                  <div className="mt-2 px-2.5 pb-1">
-                    <Link
-                      href={`/${activeMega}` as never}
-                      className="tag transition-colors hover:bg-accent-hover"
-                      onClick={close}
-                    >
-                      {copy.viewAll} · {copy[activeMega]}
-                    </Link>
-                  </div>
+                  {panel.href ? (
+                    <div className="mt-2 px-2.5 pb-1">
+                      <Link
+                        href={panel.href as never}
+                        className="tag transition-colors hover:bg-accent-hover"
+                        onClick={close}
+                      >
+                        {copy.viewAll} · {panel.label}
+                      </Link>
+                    </div>
+                  ) : null}
                 </div>
               </motion.div>
             ) : null}
           </AnimatePresence>
-
-          <Link
-            href="/products"
-            className={pillLink}
-            onMouseEnter={close}
-            onFocus={close}
-          >
-            {copy.products}
-          </Link>
-          <Link
-            href="/work"
-            className={cx(pillLink, "hidden xl:inline-flex")}
-            onMouseEnter={close}
-            onFocus={close}
-          >
-            {copy.work}
-          </Link>
-          <Link
-            href="/about"
-            className={cx(pillLink, "hidden xl:inline-flex")}
-            onMouseEnter={close}
-            onFocus={close}
-          >
-            {copy.about}
-          </Link>
         </nav>
 
         <div className="hidden items-center justify-self-end gap-2 lg:flex">
           <LocaleSwitcher label={copy.localeLabel} switchTo={copy.localeSwitchTo} />
           <ThemeToggle label={copy.themeLabel} />
-          <BookLink className="btn-fill whitespace-nowrap px-4 py-2.5 text-body-sm font-medium transition-opacity hover:opacity-90 xl:px-5 xl:py-3 xl:text-[15px]">
+          <BookLink className="btn-fill whitespace-nowrap px-4 py-2.5 text-body-sm font-medium transition-opacity hover:opacity-90 xl:py-3 xl:text-[15px]">
             {copy.bookCall}
           </BookLink>
         </div>
@@ -272,7 +276,7 @@ export function HeaderBar({ copy, mega }: Props) {
           className="max-h-[calc(100dvh-5rem)] overflow-y-auto bg-paper-elevated lg:hidden"
         >
           <div className="page py-2">
-            {megaKeys.map((key) => (
+            {hubKeys.map((key) => (
               <details key={key} className="group border-b border-line/40">
                 <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-body font-medium text-ink [&::-webkit-details-marker]:hidden">
                   {copy[key]}
@@ -305,22 +309,21 @@ export function HeaderBar({ copy, mega }: Props) {
             ))}
 
             <nav className="grid py-2" aria-label="Secondary">
-              {(
-                [
-                  ["/products", copy.products],
-                  ["/work", copy.work],
-                  ["/about", copy.about],
-                  ["/blog", copy.blog],
-                  ["/contact", copy.contact],
-                ] as const
-              ).map(([href, label]) => (
+              <Link
+                href="/products"
+                className="rounded-xl px-2 py-3 text-body font-medium text-ink transition-colors hover:bg-mist"
+                onClick={close}
+              >
+                {copy.products}
+              </Link>
+              {company.map((item) => (
                 <Link
-                  key={href}
-                  href={href}
+                  key={item.href}
+                  href={item.href as never}
                   className="rounded-xl px-2 py-3 text-body font-medium text-ink transition-colors hover:bg-mist"
                   onClick={close}
                 >
-                  {label}
+                  {item.title}
                 </Link>
               ))}
             </nav>

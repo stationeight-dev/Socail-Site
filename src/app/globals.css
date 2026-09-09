@@ -15,6 +15,7 @@
   --ink-muted: #444444; /* slate */
   --smoke: #979797; /* smoke */
   --line: #c6c6c6; /* ash — hairlines only, never card borders */
+  --field: #f3f3f3; /* form control surface (mist) */
   --graphite: #2f2f2f;
   --accent: #d1ffca; /* mint chip */
   --accent-hover: #c0f5b8;
@@ -33,6 +34,8 @@
   --ink-muted: #c6c6c6;
   --smoke: #979797;
   --line: #2f2f2f;
+  /* Lifted well above the card (#1c1c1c) so borderless fields stay visible. */
+  --field: #2a2a2a;
   --graphite: #444444;
   --accent: #d1ffca;
   --accent-hover: #c0f5b8;
@@ -51,6 +54,7 @@
   --color-ink-muted: var(--ink-muted);
   --color-smoke: var(--smoke);
   --color-line: var(--line);
+  --color-field: var(--field);
   --color-graphite: var(--graphite);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
@@ -250,7 +254,7 @@ p {
 .field {
   width: 100%;
   border-radius: 8px;
-  background: var(--mist);
+  background: var(--field);
   color: var(--ink);
   padding: 10px 12px;
   font-size: 16px;

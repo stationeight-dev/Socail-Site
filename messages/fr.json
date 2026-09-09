@@ -18,7 +18,14 @@
     "closeMenu": "Fermer le menu",
     "explore": "Explorer",
     "viewAll": "Tout voir",
-    "skip": "Aller au contenu"
+    "skip": "Aller au contenu",
+    "company": "Société",
+    "companyMenu": {
+      "work": "Motifs choisis et résultats",
+      "about": "Qui nous sommes, comment la salle tourne",
+      "blog": "Notes de la station",
+      "contact": "Réserver un appel ou nous écrire"
+    }
   },
   "Footer": {
     "blurb": "Nous construisons des systèmes numériques comme une station le devrait : calmement, complètement, huit bits à la fois.",

@@ -1,8 +1,17 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { ReactNode } from "react";
 
+/**
+ * Quiet decode-in on scroll: opacity + a short rise.
+ *
+ * Always renders the same `motion.div` on server and client. Reduced-motion
+ * handling comes from `<MotionConfig reducedMotion="user">` in Providers,
+ * which keeps the opacity fade and drops the rise — branching to a plain
+ * `<div>` here would leave the server-rendered `opacity:0` in place after
+ * hydration for reduced-motion users.
+ */
 export function FadeIn({
   children,
   className,
@@ -12,12 +21,6 @@ export function FadeIn({
   className?: string;
   delay?: number;
 }) {
-  const reduce = useReducedMotion();
-
-  if (reduce) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div
       className={className}

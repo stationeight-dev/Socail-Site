@@ -51,7 +51,7 @@ export async function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       {/* Mono meta strip. */}
-      <section className="page grid gap-6 py-8 sm:grid-cols-2 md:grid-cols-4">
+      <section className="page grid gap-3 py-8 sm:grid-cols-2 sm:gap-6 md:grid-cols-4">
         {[stats("stations"), stats("locales"), stats("model"), stats("theatre")].map(
           (label) => (
             <p key={label} className="font-mono text-caption uppercase text-smoke">

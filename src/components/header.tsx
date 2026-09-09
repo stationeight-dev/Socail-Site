@@ -20,6 +20,7 @@ export async function Header({ locale }: { locale: Locale }) {
           solutions: t("solutions"),
           technologies: t("technologies"),
           products: t("products"),
+          company: t("company"),
           work: t("work"),
           about: t("about"),
           blog: t("blog"),
@@ -61,6 +62,12 @@ export async function Header({ locale }: { locale: Locale }) {
             icon: item.icon,
           })),
         }}
+        company={[
+          { href: "/work", title: t("work"), tagline: t("companyMenu.work"), icon: "briefcase" },
+          { href: "/about", title: t("about"), tagline: t("companyMenu.about"), icon: "radio" },
+          { href: "/blog", title: t("blog"), tagline: t("companyMenu.blog"), icon: "notebook-pen" },
+          { href: "/contact", title: t("contact"), tagline: t("companyMenu.contact"), icon: "mail" },
+        ]}
       />
     </>
   );

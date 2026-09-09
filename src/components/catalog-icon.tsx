@@ -1,6 +1,7 @@
 import {
   Atom,
   Binary,
+  Briefcase,
   Building2,
   Cloud,
   ConciergeBell,
@@ -15,10 +16,12 @@ import {
   Landmark,
   Layers,
   LayoutDashboard,
+  Mail,
   MapPinned,
   NotebookPen,
   Orbit,
   PanelsTopLeft,
+  Radio,
   Rocket,
   School,
   Scissors,
@@ -73,6 +76,9 @@ const icons: Record<string, LucideIcon> = {
   cloud: Cloud,
   workflow: Workflow,
   "notebook-pen": NotebookPen,
+  briefcase: Briefcase,
+  radio: Radio,
+  mail: Mail,
 };
 
 export function CatalogIcon({

@@ -11,9 +11,11 @@ const variants = {
   braces: {
     light: wordmarkBraces,
     dark: wordmarkBracesDark,
-    size: "h-8",
-    // Rendered width at h-8 (32px) given the 1167×155 source; keeps srcset small.
-    sizes: "241px",
+    // 28px below `sm` so the header (logo + 44px menu button + 24px gutters)
+    // still fits a 320px viewport without horizontal scroll; 32px from `sm`.
+    size: "h-7 sm:h-8",
+    // Rendered widths at 28px / 32px given the 1167×155 source; keeps srcset small.
+    sizes: "(min-width: 640px) 241px, 211px",
   },
   /** Plain wide wordmark without braces. Used in the footer. */
   wordmark: {

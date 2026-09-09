@@ -18,7 +18,14 @@
     "closeMenu": "Close menu",
     "explore": "Explore",
     "viewAll": "View all",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "company": "Company",
+    "companyMenu": {
+      "work": "Selected patterns and outcomes",
+      "about": "Who we are and how the room runs",
+      "blog": "Notes from the station",
+      "contact": "Book a call or write to us"
+    }
   },
   "Footer": {
     "blurb": "We build digital systems the way a station should: quietly, completely, eight bits at a time.",
