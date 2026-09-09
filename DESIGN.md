@@ -8,7 +8,8 @@ Light (default):
 
 - Canvas `--paper` `#E5E5E5` — never pure white behind content
 - Cards `--paper-elevated` `#FFFFFF`
-- Mist `--mist` `#F3F3F3` — nav pill, form fields, hover surfaces
+- Mist `--mist` `#F3F3F3` — nav pill, hover surfaces
+- Field `--field` `#F3F3F3` (dark `#2A2A2A`) — form controls; always placed on a card, never on the canvas
 - Text `--ink` `#000000`
 - Secondary `--ink-muted` `#444444` — body copy, nav labels
 - Meta `--smoke` `#979797`
