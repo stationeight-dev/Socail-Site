@@ -1,0 +1,183 @@
+{
+  "Meta": {
+    "homeTitle": "Station Eight Labs — logiciels, produits, une station concentrée",
+    "homeDescription": "Station Eight Labs conçoit et livre des logiciels web, mobile, IA et métier pour des entreprises partout dans le monde. Anglais et français. Services et produits depuis un laboratoire moderne."
+  },
+  "Nav": {
+    "services": "Services",
+    "industries": "Secteurs",
+    "solutions": "Solutions",
+    "technologies": "Technologies",
+    "products": "Produits",
+    "work": "Projets",
+    "about": "À propos",
+    "blog": "Journal",
+    "contact": "Contact",
+    "bookCall": "Parlons-en",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "explore": "Explorer",
+    "viewAll": "Tout voir",
+    "skip": "Aller au contenu"
+  },
+  "Footer": {
+    "blurb": "Nous construisons des systèmes numériques comme une station le devrait : calmement, complètement, huit bits à la fois.",
+    "navigate": "Navigation",
+    "services": "Services",
+    "company": "Société",
+    "legal": "Légal",
+    "getInTouch": "Contact",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "cookies": "Cookies",
+    "rights": "Station Eight Labs. Tous droits réservés.",
+    "placeholderNote": "Le logo et les couleurs sont un système de travail jusqu’à l’arrivée de la charte officielle."
+  },
+  "Theme": {
+    "toggle": "Changer de thème",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "Locale": {
+    "label": "Langue",
+    "en": "EN",
+    "fr": "FR",
+    "switchTo": "Passer en {name}",
+    "names": {
+      "en": "anglais",
+      "fr": "français"
+    }
+  },
+  "Home": {
+    "eyebrow": "Ouverts aux nouveaux projets",
+    "title": "Un laboratoire pour les logiciels qui tiennent.",
+    "lead": "Des plateformes web et applications mobiles jusqu’aux systèmes d’IA et aux produits que vous pourrez acheter — nous concevons et livrons pour l’Europe et le reste du monde.",
+    "ctaPrimary": "Réserver un appel",
+    "ctaSecondary": "Voir les réalisations",
+    "bitsLabel": "Station · Huit bits · Un octet",
+    "marquee": "Des logiciels qui tiennent.",
+    "figBits": "bits → octet",
+    "figLocales": "EN / FR",
+    "figSteps": "étapes",
+    "figScope": "clients visés",
+    "trusted": "Pour les opérateurs, les fondateurs et les entreprises locales",
+    "whatWeDo": "Ce que nous faisons",
+    "whatWeDoLead": "Le spectre entier : de la première ligne de code au dernier écran d’exploitation.",
+    "exploreServices": "Tous les services",
+    "solutionsTitle": "Solutions pour entreprises locales",
+    "solutionsLead": "L’idée d’une console métier — cliniques, écoles, salles, salons, et le reste de la rue.",
+    "exploreSolutions": "Voir les solutions",
+    "workTitle": "Des projets qui parlent",
+    "workLead": "Quelques motifs déjà rencontrés. Les noms restent confidentiels quand il le faut.",
+    "viewWork": "Voir les réalisations",
+    "productsTitle": "Des produits, quand un motif se répète",
+    "productsLead": "Le sur-mesure d’abord. Puis une liste d’attente pour des logiciels à acheter. Pas encore de paiement — dites-nous que vous voulez y être.",
+    "viewProducts": "Voir les produits",
+    "aboutTitle": "Née comme une station. Tenue comme un labo.",
+    "aboutLead": "Hut 8 était une salle qui décodait Enigma navale. Nous en gardons la posture : des gens concentrés, des problèmes durs, des systèmes qui se composent. Une station est un espace de travail. Huit, ce sont les bits qui deviennent un octet.",
+    "ourStory": "Notre histoire",
+    "ctaTitle": "Traçons le prochain mouvement.",
+    "ctaLead": "Un appel court. Pas de théâtre. Dites-nous la contrainte ; nous dirons si nous sommes la bonne station.",
+    "ctaMessage": "Envoyer un message"
+  },
+  "Stats": {
+    "stations": "Un laboratoire concentré",
+    "locales": "Anglais et français",
+    "model": "Services + produits",
+    "theatre": "Zéro costume 1940"
+  },
+  "Hub": {
+    "servicesTitle": "Services",
+    "servicesLead": "Logiciels sur mesure : web, mobile, IA, cloud, et les systèmes sans gloire qui font tourner une entreprise.",
+    "industriesTitle": "Secteurs",
+    "industriesLead": "Nous ne collectionnons pas les secteurs pour la navigation. Voici les endroits où le flux de travail est assez spécifique pour mériter sa page.",
+    "solutionsTitle": "Solutions pour entreprises locales",
+    "solutionsLead": "Des logiciels en forme de produit pour cliniques, écoles, salles, salons, restaurants, commerces, immobilier et interventions.",
+    "technologiesTitle": "Technologies",
+    "technologiesLead": "Les outils avec lesquels nous livrons vraiment — pas un mur de logos.",
+    "cta": "Parler à la station"
+  },
+  "Landing": {
+    "problem": "La contrainte",
+    "whatWeBuild": "Ce que nous construisons",
+    "whoFor": "Pour qui",
+    "stack": "Stack",
+    "process": "Comment nous travaillons",
+    "faq": "Questions",
+    "ctaTitle": "Ouvrir la conversation",
+    "ctaLead": "Dites-nous le métier. Nous répondrons par un périmètre, pas par un slogan.",
+    "relatedTech": "Aussi utilisé ici"
+  },
+  "Products": {
+    "title": "Produits",
+    "lead": "Des logiciels que vous pourrez acheter. Aujourd’hui : demande et liste d’attente. Le paiement viendra quand le produit sera assez honnête pour se vendre.",
+    "enquire": "Rejoindre la liste",
+    "status": "Statut"
+  },
+  "Work": {
+    "title": "Réalisations",
+    "lead": "Quelques motifs choisis. Certains clients restent sans nom. La méthode, non.",
+    "challenge": "Défi",
+    "outcome": "Résultat",
+    "client": "Client",
+    "sector": "Secteur",
+    "cta": "Démarrer un projet"
+  },
+  "About": {
+    "eyebrow": "Qui nous sommes",
+    "title": "Une station moderne, une vieille idée du travail.",
+    "p1": "Station Eight Labs part d’une conviction simple : les entreprises ambitieuses méritent un partenaire technique capable de rester avec un problème difficile.",
+    "p2": "Le nom regarde Hut 8 — la section de Bletchley Park qui travaillait Enigma navale, un temps sous Alan Turing. Des intercepts en entrée, des décisions en sortie. Papier, probabilités, machines. Nous prenons la discipline, pas l’uniforme.",
+    "p3": "La lecture contemporaine est plus simple. Station : un espace de travail puissant. Huit : les bits qui deviennent un octet. Nous concevons, construisons et tenons des systèmes pour des clients partout, avec l’anglais et le français comme langues de premier rang.",
+    "valuesTitle": "Comment la salle fonctionne",
+    "v1t": "Décoder d’abord",
+    "v1": "Nous ne décorerons pas une confusion. La découverte fait partie du prix parce qu’elle fait partie du travail.",
+    "v2t": "Composer en octets",
+    "v2": "Livrer des unités complètes. Une suite à moitié intégrée n’est pas un cadeau.",
+    "v3t": "Vous avez les clés",
+    "v3": "Dépôts, clouds, stores — à votre nom. Nous sommes faciles à congédier, exprès.",
+    "v4t": "Deux langues",
+    "v4": "L’Europe n’est pas un hors-sujet. Le site, plus tard les contrats, les textes produit — EN et FR."
+  },
+  "Blog": {
+    "title": "Journal",
+    "lead": "Notes de la station — nommage, méthode, et parfois un essai technique.",
+    "read": "Lire"
+  },
+  "Contact": {
+    "title": "Réserver un appel ou écrire",
+    "lead": "Dites-nous ce que vous essayez de faire tenir. Nous répondons en anglais ou en français, en général sous un jour ouvré.",
+    "name": "Nom",
+    "email": "E-mail",
+    "company": "Société",
+    "interest": "Sujet",
+    "interestPlaceholder": "Choisir…",
+    "interestService": "Un service sur mesure",
+    "interestProduct": "Une liste d’attente produit",
+    "interestOther": "Autre chose",
+    "message": "Message",
+    "submit": "Envoyer",
+    "sending": "Envoi…",
+    "success": "Reçu. Nous écrirons depuis la station.",
+    "error": "Quelque chose n’a pas tenu. Réessayez, ou écrivez-nous directement.",
+    "direct": "Ou écrivez directement"
+  },
+  "Form": {
+    "required": "Obligatoire"
+  },
+  "Legal": {
+    "privacyTitle": "Politique de confidentialité",
+    "termsTitle": "Conditions d’utilisation",
+    "cookiesTitle": "Politique cookies",
+    "updated": "Brouillon de travail — à faire relire par un conseil avant mise en ligne."
+  },
+  "NotFound": {
+    "title": "Cette fréquence est vide.",
+    "lead": "La page n’est pas dans la station. Revenez au tableau d’accueil.",
+    "home": "Retour à l’accueil"
+  },
+  "Common": {
+    "learnMore": "En savoir plus",
+    "viewProject": "Voir le projet"
+  }
+}

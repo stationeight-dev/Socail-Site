@@ -1,0 +1,400 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+ * Palette — DESIGN.md "brutalist editorial showroom on warm gray".
+ * Light is the reference theme; dark keeps the same accents on a near-black
+ * canvas so the mint / voltage marks read identically in both.
+ * ------------------------------------------------------------------------- */
+:root {
+  --paper: #e5e5e5; /* warm canvas */
+  --paper-elevated: #ffffff; /* card */
+  --mist: #f3f3f3; /* secondary surface */
+  --ink: #000000; /* carbon black */
+  --ink-muted: #444444; /* slate */
+  --smoke: #979797; /* smoke */
+  --line: #c6c6c6; /* ash — hairlines only, never card borders */
+  --graphite: #2f2f2f;
+  --accent: #d1ffca; /* mint chip */
+  --accent-hover: #c0f5b8;
+  --accent-soft: #d1ffca;
+  --voltage: #fff100; /* voltage yellow */
+  --signal: #d1ffca;
+  --signal-soft: #d1ffca;
+  --danger: #9b2c2c;
+}
+
+.dark {
+  --paper: #111111;
+  --paper-elevated: #1c1c1c;
+  --mist: #161616;
+  --ink: #ffffff;
+  --ink-muted: #c6c6c6;
+  --smoke: #979797;
+  --line: #2f2f2f;
+  --graphite: #444444;
+  --accent: #d1ffca;
+  --accent-hover: #c0f5b8;
+  --accent-soft: #1a2a18;
+  --voltage: #fff100;
+  --signal: #d1ffca;
+  --signal-soft: #1a2a18;
+  --danger: #f0a0a0;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-elevated: var(--paper-elevated);
+  --color-mist: var(--mist);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-smoke: var(--smoke);
+  --color-line: var(--line);
+  --color-graphite: var(--graphite);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-voltage: var(--voltage);
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-barlow);
+  --font-mono: var(--font-geist-mono);
+
+  /* Weight 450 ("book") is the spec's mid-emphasis for secondary headings. */
+  --font-weight-book: 450;
+
+  /* Type scale — DESIGN.md. Utilities: text-caption … text-display-xl. */
+  --text-caption: 12px;
+  --text-caption--line-height: 1.6;
+  --text-caption--letter-spacing: -0.03em;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.3;
+  --text-body-sm--letter-spacing: -0.011em;
+  --text-body: 16px;
+  --text-body--line-height: 1.25;
+  --text-subheading: 18px;
+  --text-subheading--line-height: 1.33;
+  --text-subheading-lg: 20px;
+  --text-subheading-lg--line-height: 1.2;
+  --text-heading-sm: 28px;
+  --text-heading-sm--line-height: 1.3;
+  --text-heading-sm--letter-spacing: -0.03em;
+  --text-heading: 40px;
+  --text-heading--line-height: 1.1;
+  --text-heading--letter-spacing: -0.02em;
+  --text-heading-lg: 48px;
+  --text-heading-lg--line-height: 0.9;
+  --text-heading-lg--letter-spacing: -0.03em;
+  --text-display: 80px;
+  --text-display--line-height: 0.9;
+  --text-display--letter-spacing: -0.03em;
+  --text-display-xl: 130px;
+  --text-display-xl--line-height: 0.9;
+  --text-display-xl--letter-spacing: -0.03em;
+
+  /* Shapes — cards 32, large cards 64, nav pill 48, tags 64, buttons 8 / 4. */
+  --radius-card: 32px;
+  --radius-card-lg: 64px;
+  --radius-nav: 48px;
+  --radius-tag: 64px;
+  --radius-btn: 8px;
+  --radius-btn-sm: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Base
+ * ------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: #000000;
+}
+
+/* One visible focus treatment everywhere; pointer focus stays quiet. */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track,
+  .byte-float,
+  .byte-scene {
+    animation: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Layout primitives
+ * ------------------------------------------------------------------------- */
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* Keyboard-only "skip to content" link; slides in on focus. */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 24px;
+  z-index: 100;
+  transform: translateY(-200%);
+  transition: transform 150ms ease-out;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------------
+ * Type
+ * ------------------------------------------------------------------------- */
+
+/* Display: Barlow Condensed 700, uppercase, 0.9 leading. Never below 48px. */
+.display {
+  font-family: var(--font-barlow), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+/* Secondary heading: Inter 450, uppercase, 1.1 leading. */
+.heading {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 450;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* ---------------------------------------------------------------------------
+ * Components
+ * ------------------------------------------------------------------------- */
+
+/* Mint tag — the one chromatic accent, for taxonomy only. */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 64px;
+  background: var(--accent);
+  color: #000000;
+  padding: 8px 16px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.card-flat {
+  background: var(--paper-elevated);
+  border-radius: 32px;
+  padding: 24px;
+}
+
+.card-invert {
+  background: var(--ink);
+  color: var(--paper-elevated);
+  border-radius: 32px;
+}
+
+/* Filled dark button — the primary CTA. Inverts in dark mode. */
+.btn-fill {
+  background: #000000;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.dark .btn-fill {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Flat form controls: mist surface, no border, ink focus ring. */
+.field {
+  width: 100%;
+  border-radius: 8px;
+  background: var(--mist);
+  color: var(--ink);
+  padding: 10px 12px;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.field::placeholder {
+  color: var(--smoke);
+}
+
+/* ---------------------------------------------------------------------------
+ * Motion
+ * ------------------------------------------------------------------------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+/* ---------------------------------------------------------------------------
+ * Hero object — eight isometric cubes (one byte) in flat-shaded CSS 3D.
+ * Faces are pure fills from the palette; the "3D" comes from the three-tone
+ * top / front / right treatment, not from gradients or shadows.
+ * ------------------------------------------------------------------------- */
+.byte-float {
+  animation: byte-float 7s ease-in-out infinite;
+}
+
+@keyframes byte-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.byte-scene {
+  --cube: 72px;
+  --gap: 10px;
+  --step: calc(var(--cube) + var(--gap));
+  position: relative;
+  width: var(--cube);
+  height: var(--cube);
+  transform-style: preserve-3d;
+  transform: rotateX(-35.264deg) rotateY(-45deg);
+  animation: byte-turn 14s ease-in-out infinite;
+}
+
+@media (min-width: 640px) {
+  .byte-scene {
+    --cube: 88px;
+    --gap: 12px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .byte-scene {
+    --cube: 96px;
+    --gap: 14px;
+  }
+}
+
+@keyframes byte-turn {
+  0%,
+  100% {
+    transform: rotateX(-35.264deg) rotateY(-40deg);
+  }
+  50% {
+    transform: rotateX(-35.264deg) rotateY(-50deg);
+  }
+}
+
+.cube {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: translate3d(
+    calc((var(--x) - 0.5) * var(--step)),
+    calc((0.5 - var(--y)) * var(--step)),
+    calc((var(--z) - 0.5) * var(--step))
+  );
+}
+
+/* Bit = 0: light "concrete". */
+.cube-zero {
+  --face-top: #ffffff;
+  --face-front: #c6c6c6;
+  --face-right: #979797;
+}
+
+/* Bit = 1: carbon block. */
+.cube-one {
+  --face-top: #2f2f2f;
+  --face-front: #000000;
+  --face-right: #161616;
+}
+
+/* The single mint mark on the object. */
+.cube-mint {
+  --face-top: #d1ffca;
+  --face-front: color-mix(in oklab, #d1ffca, #000000 14%);
+  --face-right: color-mix(in oklab, #d1ffca, #000000 28%);
+}
+
+.dark .cube-zero {
+  --face-top: #444444;
+  --face-front: #2f2f2f;
+  --face-right: #1c1c1c;
+}
+
+.dark .cube-one {
+  --face-top: #ffffff;
+  --face-front: #e5e5e5;
+  --face-right: #c6c6c6;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.face-top {
+  background: var(--face-top);
+  transform: rotateX(90deg) translateZ(calc(var(--cube) / 2));
+}
+
+.face-front {
+  background: var(--face-front);
+  transform: translateZ(calc(var(--cube) / 2));
+}
+
+.face-right {
+  background: var(--face-right);
+  transform: rotateY(90deg) translateZ(calc(var(--cube) / 2));
+}

@@ -1,0 +1,183 @@
+{
+  "Meta": {
+    "homeTitle": "Station Eight Labs — software, products, a focused station",
+    "homeDescription": "Station Eight Labs designs and ships web, mobile, AI, and operational software for companies worldwide. English and French. Services and products from a modern lab."
+  },
+  "Nav": {
+    "services": "Services",
+    "industries": "Industries",
+    "solutions": "Solutions",
+    "technologies": "Technologies",
+    "products": "Products",
+    "work": "Work",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "bookCall": "Book a call",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "explore": "Explore",
+    "viewAll": "View all",
+    "skip": "Skip to content"
+  },
+  "Footer": {
+    "blurb": "We build digital systems the way a station should: quietly, completely, eight bits at a time.",
+    "navigate": "Navigate",
+    "services": "Services",
+    "company": "Company",
+    "legal": "Legal",
+    "getInTouch": "Get in touch",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookies": "Cookies",
+    "rights": "Station Eight Labs. All rights reserved.",
+    "placeholderNote": "Logo and colours are a working system until the official brand files arrive."
+  },
+  "Theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "Locale": {
+    "label": "Language",
+    "en": "EN",
+    "fr": "FR",
+    "switchTo": "Switch to {name}",
+    "names": {
+      "en": "English",
+      "fr": "French"
+    }
+  },
+  "Home": {
+    "eyebrow": "Available for new projects",
+    "title": "A station for software that has to hold.",
+    "lead": "From web platforms and mobile apps to AI systems and products you can buy later — we architect and ship work for Europe and the rest of the world.",
+    "ctaPrimary": "Book a free call",
+    "ctaSecondary": "View our work",
+    "bitsLabel": "Station · Eight bits · One byte",
+    "marquee": "Software that holds.",
+    "figBits": "bits → byte",
+    "figLocales": "EN / FR",
+    "figSteps": "steps",
+    "figScope": "world in scope",
+    "trusted": "Built for operators, founders, and local businesses",
+    "whatWeDo": "What we do",
+    "whatWeDoLead": "End-to-end digital work: first line of code to the last operational screen.",
+    "exploreServices": "Explore all services",
+    "solutionsTitle": "Local business solutions",
+    "solutionsLead": "The same idea as a trade-specific console — clinics, schools, gyms, salons, and the rest of the street.",
+    "exploreSolutions": "See solutions",
+    "workTitle": "Work that can speak",
+    "workLead": "A few patterns we have already sat with. Names withheld where they should be.",
+    "viewWork": "View work",
+    "productsTitle": "Products, when a pattern repeats",
+    "productsLead": "Custom first. Then a waitlist for software you can buy. No checkout yet — tell us you want in.",
+    "viewProducts": "View products",
+    "aboutTitle": "Born as a station. Built as a lab.",
+    "aboutLead": "Hut 8 was a room that decoded naval Enigma. We keep the posture: focused people, hard problems, systems that compose. A station is a workspace. Eight is the bits that become a byte.",
+    "ourStory": "Our story",
+    "ctaTitle": "Let’s map the next move.",
+    "ctaLead": "A short call. No theatre. Tell us the constraint; we will tell you if we are the right station.",
+    "ctaMessage": "Send a message"
+  },
+  "Stats": {
+    "stations": "One focused lab",
+    "locales": "English & French",
+    "model": "Services + products",
+    "theatre": "Zero costume WWII"
+  },
+  "Hub": {
+    "servicesTitle": "Services",
+    "servicesLead": "Custom software across web, mobile, AI, cloud, and the unglamorous systems that keep a company running.",
+    "industriesTitle": "Industries",
+    "industriesLead": "We do not collect sectors for the nav. These are places where the workflow is specific enough to deserve its own page.",
+    "solutionsTitle": "Solutions for local businesses",
+    "solutionsLead": "Product-shaped software for clinics, schools, gyms, salons, restaurants, shops, property, and field crews.",
+    "technologiesTitle": "Technologies",
+    "technologiesLead": "The tools we actually ship with — not a logo wall of everything on earth.",
+    "cta": "Talk to the station"
+  },
+  "Landing": {
+    "problem": "The constraint",
+    "whatWeBuild": "What we build",
+    "whoFor": "Who it is for",
+    "stack": "Stack",
+    "process": "How we work",
+    "faq": "Questions",
+    "ctaTitle": "Start a conversation",
+    "ctaLead": "Tell us the job. We will answer with a scope, not a slogan.",
+    "relatedTech": "Also used here"
+  },
+  "Products": {
+    "title": "Products",
+    "lead": "Software you will be able to buy. Today: enquiry and waitlist. Checkout comes when the product is honest enough to sell.",
+    "enquire": "Join waitlist",
+    "status": "Status"
+  },
+  "Work": {
+    "title": "Work",
+    "lead": "Selected patterns. Some clients stay unnamed. The method does not.",
+    "challenge": "Challenge",
+    "outcome": "Outcome",
+    "client": "Client",
+    "sector": "Sector",
+    "cta": "Start a project"
+  },
+  "About": {
+    "eyebrow": "Who we are",
+    "title": "A modern station with an old idea of work.",
+    "p1": "Station Eight Labs started from a simple conviction: ambitious companies deserve a technical partner that can sit still with a hard problem.",
+    "p2": "The name looks back at Hut 8 — the Bletchley Park section that worked German naval Enigma, for a time under Alan Turing. Intercepts in, decisions out. Paper, probability, machines. We take the discipline, not the uniform.",
+    "p3": "The contemporary reading is plainer. Station: a powerful workspace. Eight: the bits that become a byte. We design, build, and hold systems for clients worldwide, with English and French as first-class languages.",
+    "valuesTitle": "How the room runs",
+    "v1t": "Decode first",
+    "v1": "We will not decorate a confusion. Discovery is part of the fee because it is part of the work.",
+    "v2t": "Compose in bytes",
+    "v2": "Ship complete units. A half-integrated suite is not a gift.",
+    "v3t": "You own the keys",
+    "v3": "Repos, clouds, stores — in your name. We are easy to fire, on purpose.",
+    "v4t": "Two languages",
+    "v4": "Europe is not an afterthought. The site, the contracts later, the product copy — EN and FR."
+  },
+  "Blog": {
+    "title": "Log",
+    "lead": "Notes from the station — naming, method, and the occasional technical essay.",
+    "read": "Read"
+  },
+  "Contact": {
+    "title": "Book a call or send a message",
+    "lead": "Tell us what you are trying to hold together. We reply in English or French, usually within one working day.",
+    "name": "Name",
+    "email": "Email",
+    "company": "Company",
+    "interest": "Interest",
+    "interestPlaceholder": "Select…",
+    "interestService": "A custom service",
+    "interestProduct": "A product waitlist",
+    "interestOther": "Something else",
+    "message": "Message",
+    "submit": "Send",
+    "sending": "Sending…",
+    "success": "Received. We will write back from the station.",
+    "error": "Something did not hold. Try again, or email us directly.",
+    "direct": "Or write directly"
+  },
+  "Form": {
+    "required": "Required"
+  },
+  "Legal": {
+    "privacyTitle": "Privacy policy",
+    "termsTitle": "Terms of service",
+    "cookiesTitle": "Cookie policy",
+    "updated": "Working draft — replace with counsel before launch."
+  },
+  "NotFound": {
+    "title": "This frequency is empty.",
+    "lead": "The page is not in the station. Try the home board.",
+    "home": "Back home"
+  },
+  "Common": {
+    "learnMore": "Learn more",
+    "viewProject": "View project"
+  }
+}
