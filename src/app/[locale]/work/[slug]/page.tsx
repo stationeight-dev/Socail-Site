@@ -60,6 +60,7 @@ export default async function Page({
                 {t("teamExperienceBadge")}
               </p>
             ) : null}
+            {item.status ? <p className="tag bg-accent text-ink">{item.status[loc]}</p> : null}
           </div>
           <h1 className="display mt-4 text-[clamp(3rem,6vw,5rem)]">{item.title[loc]}</h1>
           <p className="mt-6 text-body leading-[1.4] text-ink-muted">{item.summary[loc]}</p>
@@ -70,6 +71,9 @@ export default async function Page({
             <div>
               <dt className="font-mono text-caption uppercase text-smoke">{t("client")}</dt>
               <dd className="mt-1">{item.client[loc]}</dd>
+              {item.engagementContext ? (
+                <dd className="mt-0.5 text-caption text-smoke">{item.engagementContext[loc]}</dd>
+              ) : null}
             </div>
             {item.role ? (
               <div>

@@ -44,6 +44,11 @@ export type WorkItem = {
    * Station Eight Labs (e.g. at a previous employer or as a freelancer) —
    * real experience, but not a Station Eight Labs client relationship. */
   isTeamExperience?: boolean;
+  /** e.g. "Completed" — shown as a small badge alongside sector. */
+  status?: Localized<string>;
+  /** How the engagement came about, e.g. "Direct engagement with Gavazo"
+   * or "Delivered via Konect.ai" — shown under the company/client line. */
+  engagementContext?: Localized<string>;
 };
 
 export type BlogPost = {

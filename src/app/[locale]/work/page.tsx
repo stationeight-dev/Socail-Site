@@ -51,6 +51,7 @@ export default async function Page({
                   {t("teamExperienceBadge")}
                 </p>
               ) : null}
+              {item.status ? <p className="tag bg-accent text-ink">{item.status[loc]}</p> : null}
             </div>
             <h2 className="heading mt-4 text-heading-sm">{item.title[loc]}</h2>
             <p className="mt-3 text-body-sm leading-relaxed text-ink-muted">{item.summary[loc]}</p>
