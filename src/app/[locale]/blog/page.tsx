@@ -29,6 +29,7 @@ export default async function Page({
   const { locale } = await params;
   const loc = locale as Locale;
   const t = await getTranslations("Blog");
+  const sortedPosts = [...posts].sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return (
     <section className="mx-auto w-full max-w-3xl px-6 py-20">
@@ -37,7 +38,7 @@ export default async function Page({
         <p className="mt-6 text-body leading-[1.4] text-ink-muted">{t("lead")}</p>
       </FadeIn>
       <ul className="mt-12 divide-y divide-line/40">
-        {posts.map((post) => (
+        {sortedPosts.map((post) => (
           <li key={post.slug} className="py-6 first:pt-0">
             <p className="font-mono text-caption text-smoke">{post.date}</p>
             <h2 className="heading mt-2 text-heading-sm">

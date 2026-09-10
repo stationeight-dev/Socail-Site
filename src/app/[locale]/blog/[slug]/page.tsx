@@ -1,7 +1,11 @@
 import { FadeIn } from "@/components/fade-in";
+import { JsonLd } from "@/components/json-ld";
 import { getPost, posts } from "@/content";
+import { siteConfig } from "@/config/site";
 import type { Locale } from "@/i18n/routing";
-import { buildMetadata } from "@/lib/metadata";
+import { buildMetadata, localizedUrl } from "@/lib/metadata";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
@@ -34,9 +38,26 @@ export default async function Page({
   const loc = locale as Locale;
   const post = getPost(slug);
   if (!post) notFound();
+  const nav = await getTranslations("Nav");
+  const url = localizedUrl(`/blog/${slug}`, loc);
 
   return (
     <article className="mx-auto w-full max-w-3xl px-6 py-20">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: siteConfig.name, url: localizedUrl("/", loc) },
+          { name: nav("blog"), url: localizedUrl("/blog", loc) },
+          { name: post.title[loc], url },
+        ])}
+      />
+      <JsonLd
+        data={articleSchema({
+          headline: post.title[loc],
+          description: post.excerpt[loc],
+          url,
+          datePublished: post.date,
+        })}
+      />
       <FadeIn>
         <p className="font-mono text-caption text-smoke">{post.date}</p>
         <h1 className="display mt-3 text-[clamp(3rem,6vw,5rem)]">{post.title[loc]}</h1>

@@ -13,7 +13,19 @@ import { getTranslations } from "next-intl/server";
 export async function HomePage({ locale }: { locale: Locale }) {
   const t = await getTranslations("Home");
   const stats = await getTranslations("Stats");
-  const featuredServices = services.slice(0, 6);
+  // Curated, not just declaration order: lead with the flagship overview
+  // page and the highest-intent commercial keywords from the SEO strategy.
+  const featuredSlugs = [
+    "software-development",
+    "web-development",
+    "mobile-app-development",
+    "custom-software-development",
+    "ai-development",
+    "saas-development",
+  ];
+  const featuredServices = featuredSlugs
+    .map((slug) => services.find((item) => item.slug === slug))
+    .filter((item): item is (typeof services)[number] => Boolean(item));
   const featuredSolutions = solutions.slice(0, 4);
   const marquee = `${t("marquee")} `;
   const figures = [

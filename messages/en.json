@@ -1,7 +1,7 @@
 {
   "Meta": {
-    "homeTitle": "Station Eight Labs — software, products, a focused station",
-    "homeDescription": "Station Eight Labs designs and ships web, mobile, AI, and operational software for companies worldwide. English and French. Services and products from a modern lab."
+    "homeTitle": "Station Eight Labs — Software Development Company | Web, Mobile, AI & Custom Software",
+    "homeDescription": "Station Eight Labs is a software development company specializing in custom software, web applications, mobile apps, SaaS platforms, and AI solutions for companies across Europe and worldwide. English and French, services and products from one focused lab."
   },
   "Nav": {
     "services": "Services",
@@ -58,7 +58,7 @@
   "Home": {
     "eyebrow": "Available for new projects",
     "title": "A station for software that has to hold.",
-    "lead": "From web platforms and mobile apps to AI systems and products you can buy later — we architect and ship work for Europe and the rest of the world.",
+    "lead": "Station Eight Labs is a software development company: from web platforms and mobile apps to custom software, SaaS, and AI systems — we architect and ship work for Europe and the rest of the world.",
     "ctaPrimary": "Book a free call",
     "ctaSecondary": "View our work",
     "bitsLabel": "Station · Eight bits · One byte",
@@ -95,7 +95,7 @@
   },
   "Hub": {
     "servicesTitle": "Services",
-    "servicesLead": "Custom software across web, mobile, AI, cloud, and the unglamorous systems that keep a company running.",
+    "servicesLead": "Software development services across web, mobile, AI, cloud, and the unglamorous systems that keep a company running.",
     "industriesTitle": "Industries",
     "industriesLead": "We do not collect sectors for the nav. These are places where the workflow is specific enough to deserve its own page.",
     "solutionsTitle": "Solutions for local businesses",
@@ -133,7 +133,7 @@
   "About": {
     "eyebrow": "Who we are",
     "title": "A modern station with an old idea of work.",
-    "p1": "Station Eight Labs started from a simple conviction: ambitious companies deserve a technical partner that can sit still with a hard problem.",
+    "p1": "Station Eight Labs — also written Station Eight or Station 8 — started from a simple conviction: ambitious companies deserve a technical partner that can sit still with a hard problem.",
     "p2": "The name looks back at Hut 8 — the Bletchley Park section that worked German naval Enigma, for a time under Alan Turing. Intercepts in, decisions out. Paper, probability, machines. We take the discipline, not the uniform.",
     "p3": "The contemporary reading is plainer. Station: a powerful workspace. Eight: the bits that become a byte. We design, build, and hold systems for clients worldwide, with English and French as first-class languages.",
     "valuesTitle": "How the room runs",

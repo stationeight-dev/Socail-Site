@@ -80,7 +80,7 @@ export const services: CatalogItem[] = [
     },
   },
   {
-    slug: "mobile-apps",
+    slug: "mobile-app-development",
     icon: "smartphone",
     title: { en: "Mobile apps", fr: "Applications mobiles" },
     tagline: {
@@ -115,7 +115,7 @@ export const services: CatalogItem[] = [
     },
   },
   {
-    slug: "custom-software",
+    slug: "custom-software-development",
     icon: "cpu",
     title: { en: "Custom software, ERP & CRM", fr: "Logiciels sur mesure, ERP et CRM" },
     tagline: {
@@ -141,8 +141,8 @@ export const services: CatalogItem[] = [
     stack: ["Next.js", "Node.js", "PostgreSQL", "Python"],
     faqs: defaultFaqs,
     seoTitle: {
-      en: "Custom ERP, CRM and business software",
-      fr: "ERP, CRM et logiciels métier sur mesure",
+      en: "Custom software development company | ERP & CRM",
+      fr: "Entreprise de développement de logiciels sur mesure | ERP et CRM",
     },
     seoDescription: {
       en: "Custom ERP, CRM, and operational software designed around your process — not the other way around.",
@@ -150,7 +150,7 @@ export const services: CatalogItem[] = [
     },
   },
   {
-    slug: "ai-integration",
+    slug: "ai-development",
     icon: "sparkles",
     title: { en: "AI integration", fr: "Intégration IA" },
     tagline: {
@@ -176,8 +176,8 @@ export const services: CatalogItem[] = [
     stack: ["Python", "Node.js", "PostgreSQL", "AWS"],
     faqs: defaultFaqs,
     seoTitle: {
-      en: "AI integration and automation for products",
-      fr: "Intégration IA et automatisation produit",
+      en: "AI development company | AI integration & automation",
+      fr: "Entreprise de développement IA | Intégration et automatisation",
     },
     seoDescription: {
       en: "Production AI: copilots, RAG, and automation designed into your software — with control, not hype.",
@@ -185,7 +185,7 @@ export const services: CatalogItem[] = [
     },
   },
   {
-    slug: "backend-cloud",
+    slug: "cloud-development",
     icon: "server",
     title: { en: "Backend & cloud", fr: "Backend et cloud" },
     tagline: {
@@ -211,8 +211,8 @@ export const services: CatalogItem[] = [
     stack: ["Node.js", "Python", "PostgreSQL", "AWS"],
     faqs: defaultFaqs,
     seoTitle: {
-      en: "Backend and cloud engineering | Node.js, AWS",
-      fr: "Ingénierie backend et cloud | Node.js, AWS",
+      en: "Cloud development company | Backend engineering, Node.js, AWS",
+      fr: "Entreprise de développement cloud | Ingénierie backend, Node.js, AWS",
     },
     seoDescription: {
       en: "Secure, scalable backends and AWS infrastructure for mobile, web, and SaaS products.",
@@ -357,6 +357,428 @@ export const services: CatalogItem[] = [
     seoDescription: {
       en: "Ongoing maintenance for web, mobile, and cloud products — updates, performance, and small features.",
       fr: "Maintenance continue pour le web, le mobile et le cloud — mises à jour, performance et petites évolutions.",
+    },
+  },
+  {
+    slug: "software-development",
+    icon: "binary",
+    title: { en: "Software development", fr: "Développement logiciel" },
+    tagline: {
+      en: "One station, the full stack: web, mobile, AI, and the systems behind them.",
+      fr: "Une seule station, toute la chaîne : web, mobile, IA et les systèmes qui les soutiennent.",
+    },
+    description: {
+      en: "Station Eight Labs is a software development company: we design, build, and operate custom software, web and mobile products, SaaS platforms, and AI systems for clients across Europe and worldwide.",
+      fr: "Station Eight Labs est une entreprise de développement logiciel : nous concevons, construisons et exploitons des logiciels sur mesure, des produits web et mobiles, des plateformes SaaS et des systèmes d’IA pour des clients en Europe et dans le monde.",
+    },
+    problem: {
+      en: "Most software problems are not technology problems first. They are scoping problems wearing a technology costume. We start by naming the actual constraint, then pick the smallest stack that can hold it — not the largest one we know how to sell.",
+      fr: "La plupart des problèmes logiciels ne sont pas d’abord des problèmes technologiques. Ce sont des problèmes de périmètre déguisés en problème technique. Nous commençons par nommer la vraie contrainte, puis choisissons la plus petite stack capable de la tenir — pas la plus grande que nous savons vendre.",
+    },
+    whatWeBuild: {
+      en: [
+        "Custom software, ERP, and CRM",
+        "Web platforms and marketing sites",
+        "iOS and Android apps",
+        "SaaS products and internal tools",
+        "AI copilots and automation",
+        "Backend, API, and cloud infrastructure",
+      ],
+      fr: [
+        "Logiciels sur mesure, ERP et CRM",
+        "Plateformes web et sites marketing",
+        "Applications iOS et Android",
+        "Produits SaaS et outils internes",
+        "Copilotes IA et automatisation",
+        "Backend, API et infrastructure cloud",
+      ],
+    },
+    whoFor: {
+      en: [
+        "Founders who need one technical partner, not five vendors",
+        "Operators replacing spreadsheets and second-hand SaaS",
+        "Teams that inherited a codebase and need it held properly",
+      ],
+      fr: [
+        "Fondateurs qui ont besoin d’un seul partenaire technique, pas de cinq prestataires",
+        "Opérateurs qui remplacent des tableurs et du SaaS de circonstance",
+        "Équipes qui héritent d’un code et doivent le tenir correctement",
+      ],
+    },
+    stack: ["Next.js", "React", "React Native", "Node.js", "Python", "PostgreSQL", "AWS"],
+    faqs: {
+      en: [
+        {
+          q: "What kind of software development does Station Eight Labs do?",
+          a: "Custom software end to end: web applications, mobile apps, SaaS products, AI integrations, and the backend and cloud infrastructure underneath them. See the individual service pages for depth on each.",
+        },
+        {
+          q: "Do you work with startups and established companies?",
+          a: "Both. Startups usually need an MVP and a technical co-pilot; established companies usually need a system replaced or extended without breaking what already works. The engagement shape differs; the discipline does not.",
+        },
+        {
+          q: "Where is Station Eight Labs based, and who do you serve?",
+          a: "We work with clients across Europe and worldwide, in English and French. Get in touch and we will tell you plainly whether we are the right station for the work.",
+        },
+      ],
+      fr: [
+        {
+          q: "Quel type de développement logiciel fait Station Eight Labs ?",
+          a: "Du logiciel sur mesure de bout en bout : applications web, apps mobiles, produits SaaS, intégrations IA, ainsi que le backend et l’infrastructure cloud qui les soutiennent. Voir les pages de services individuelles pour le détail.",
+        },
+        {
+          q: "Travaillez-vous avec des startups et des entreprises établies ?",
+          a: "Les deux. Les startups ont généralement besoin d’un MVP et d’un copilote technique ; les entreprises établies ont besoin qu’un système soit remplacé ou étendu sans casser ce qui fonctionne déjà. La forme de la mission change ; la rigueur, non.",
+        },
+        {
+          q: "Où est basée Station Eight Labs, et qui servez-vous ?",
+          a: "Nous travaillons avec des clients en Europe et dans le monde entier, en anglais et en français. Contactez-nous et nous vous dirons franchement si nous sommes la bonne station pour le travail.",
+        },
+      ],
+    },
+    seoTitle: {
+      en: "Software development company | Station Eight Labs",
+      fr: "Entreprise de développement logiciel | Station Eight Labs",
+    },
+    seoDescription: {
+      en: "Station Eight Labs is a software development company building custom software, web apps, mobile apps, SaaS platforms, and AI systems for clients worldwide.",
+      fr: "Station Eight Labs est une entreprise de développement logiciel : logiciels sur mesure, apps web et mobiles, plateformes SaaS et systèmes d’IA, pour des clients dans le monde entier.",
+    },
+  },
+  {
+    slug: "saas-development",
+    icon: "layers",
+    title: { en: "SaaS development", fr: "Développement SaaS" },
+    tagline: {
+      en: "From first tenant to the architecture that survives the hundredth.",
+      fr: "Du premier client à l’architecture qui tient au centième.",
+    },
+    description: {
+      en: "Multi-tenant SaaS platforms — subscriptions, roles, and the operational screens behind them — built to grow without a rewrite.",
+      fr: "Plateformes SaaS multi-tenant — abonnements, rôles et écrans opérationnels — conçues pour grandir sans réécriture.",
+    },
+    problem: {
+      en: "Most SaaS MVPs are single-tenant apps wearing a pricing page. That works until customer two asks for something customer one already has configured differently. We design the tenant model before we design the UI.",
+      fr: "La plupart des MVP SaaS sont des apps mono-tenant déguisées en page de tarifs. Cela tient jusqu’à ce que le deuxième client demande une configuration différente du premier. Nous concevons le modèle multi-tenant avant l’interface.",
+    },
+    whatWeBuild: {
+      en: [
+        "Multi-tenant architecture and data isolation",
+        "Subscription billing and plan logic",
+        "Role-based access and team accounts",
+        "Onboarding flows and usage analytics",
+        "Admin consoles for support and ops",
+      ],
+      fr: [
+        "Architecture multi-tenant et isolation des données",
+        "Facturation par abonnement et logique de plans",
+        "Accès par rôles et comptes d’équipe",
+        "Parcours d’onboarding et analytics d’usage",
+        "Consoles d’administration pour le support et les ops",
+      ],
+    },
+    whoFor: {
+      en: [
+        "Founders turning a service into a product",
+        "SaaS teams past the prototype, before the platform rewrite",
+        "Companies adding a self-serve tier to an existing tool",
+      ],
+      fr: [
+        "Fondateurs qui transforment un service en produit",
+        "Équipes SaaS après le prototype, avant la refonte plateforme",
+        "Entreprises qui ajoutent un palier self-service à un outil existant",
+      ],
+    },
+    stack: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "AWS"],
+    faqs: {
+      en: [
+        {
+          q: "What makes SaaS development different from a normal web app?",
+          a: "Multi-tenancy, billing, and role-based permissions from day one. Retrofitting them later usually means a rewrite; we design for them up front even in a small first release.",
+        },
+        {
+          q: "Can you add a self-serve tier to our existing product?",
+          a: "Often, yes — it depends on how the current data model handles, or does not handle, tenants. We audit before we promise.",
+        },
+        {
+          q: "Do you build the billing and subscription logic too?",
+          a: "Yes, typically with Stripe or a comparable provider — plans, metering, upgrades, downgrades, and the dunning flow customers actually see.",
+        },
+      ],
+      fr: [
+        {
+          q: "En quoi le développement SaaS diffère-t-il d’une application web classique ?",
+          a: "Multi-tenant, facturation et permissions par rôles dès le premier jour. Les ajouter plus tard revient souvent à tout réécrire ; nous les concevons en amont, même pour une petite première version.",
+        },
+        {
+          q: "Pouvez-vous ajouter un palier self-service à notre produit existant ?",
+          a: "Souvent, oui — cela dépend de la façon dont le modèle de données actuel gère, ou non, les tenants. Nous auditons avant de promettre.",
+        },
+        {
+          q: "Développez-vous aussi la facturation et les abonnements ?",
+          a: "Oui, généralement avec Stripe ou un prestataire équivalent — plans, mesure d’usage, montées et descentes de gamme, et le parcours de relance que voient réellement les clients.",
+        },
+      ],
+    },
+    seoTitle: {
+      en: "SaaS development company | Multi-tenant platforms",
+      fr: "Entreprise de développement SaaS | Plateformes multi-tenant",
+    },
+    seoDescription: {
+      en: "Station Eight Labs builds multi-tenant SaaS platforms — subscriptions, roles, and admin tooling — designed to scale without a rewrite.",
+      fr: "Station Eight Labs conçoit des plateformes SaaS multi-tenant — abonnements, rôles et outils d’administration — pensées pour grandir sans réécriture.",
+    },
+  },
+  {
+    slug: "ecommerce-development",
+    icon: "shopping-bag",
+    title: { en: "E-commerce development", fr: "Développement e-commerce" },
+    tagline: {
+      en: "Storefronts that load fast and checkouts that finish.",
+      fr: "Des boutiques rapides et des paiements qui aboutissent.",
+    },
+    description: {
+      en: "Custom storefronts, catalogs, and checkout systems — headless or platform-based — built around conversion and Core Web Vitals, not a theme.",
+      fr: "Boutiques, catalogues et systèmes de paiement sur mesure — headless ou sur plateforme — pensés pour la conversion et les Core Web Vitals, pas pour un thème.",
+    },
+    problem: {
+      en: "Template storefronts are fast to launch and slow to leave. When the catalog, promotions, or checkout logic outgrows the theme, most stores get patched instead of rebuilt — until the patches are the product. We build the catalog and checkout as software from the start.",
+      fr: "Les boutiques sur templates se lancent vite et se quittent lentement. Quand le catalogue, les promotions ou le paiement dépassent le thème, la boutique est rapiécée au lieu d’être reconstruite — jusqu’à ce que les rapiéçages deviennent le produit. Nous construisons catalogue et paiement comme un vrai logiciel, dès le départ.",
+    },
+    whatWeBuild: {
+      en: [
+        "Headless storefronts and custom catalogs",
+        "Cart, checkout, and payment integration",
+        "Inventory, pricing, and promotion logic",
+        "CMS-backed product and content pages",
+        "Performance and Core Web Vitals tuning",
+      ],
+      fr: [
+        "Boutiques headless et catalogues sur mesure",
+        "Panier, paiement et intégrations",
+        "Logique de stocks, tarifs et promotions",
+        "Pages produits et contenus pilotées par CMS",
+        "Optimisation performance et Core Web Vitals",
+      ],
+    },
+    whoFor: {
+      en: [
+        "Brands outgrowing a templated storefront",
+        "Operators with catalog or pricing rules no platform handles cleanly",
+        "Companies merging a store with an existing product or app",
+      ],
+      fr: [
+        "Marques qui dépassent une boutique sur template",
+        "Opérateurs avec des règles de catalogue ou de tarifs qu’aucune plateforme ne gère proprement",
+        "Entreprises qui fusionnent une boutique avec un produit ou une app existants",
+      ],
+    },
+    stack: ["Next.js", "React", "Node.js", "PostgreSQL", "Stripe"],
+    faqs: {
+      en: [
+        {
+          q: "Do you build on Shopify or fully custom?",
+          a: "Both, depending on the constraint. Shopify or a headless commerce platform when it genuinely fits; fully custom when the catalog or checkout logic is the product, not a bolt-on.",
+        },
+        {
+          q: "Can you migrate an existing store without losing SEO?",
+          a: "Yes — redirects, structured data, and URL structure are part of the migration plan, not an afterthought.",
+        },
+        {
+          q: "Do you handle payments and tax or shipping logic?",
+          a: "We integrate the providers, Stripe and others, and build the rules layer around them: pricing, promotions, shipping, and regional tax where it applies.",
+        },
+      ],
+      fr: [
+        {
+          q: "Construisez-vous sur Shopify ou en full custom ?",
+          a: "Les deux, selon la contrainte. Shopify ou une plateforme e-commerce headless quand cela convient réellement ; du sur-mesure complet quand le catalogue ou le paiement est le produit, pas un module ajouté.",
+        },
+        {
+          q: "Pouvez-vous migrer une boutique existante sans perdre le SEO ?",
+          a: "Oui — redirections, données structurées et structure d’URL font partie du plan de migration, pas un ajout de dernière minute.",
+        },
+        {
+          q: "Gérez-vous les paiements et la logique de taxes ou de livraison ?",
+          a: "Nous intégrons les prestataires, Stripe et d’autres, et construisons la couche de règles autour : tarifs, promotions, livraison et taxes régionales le cas échéant.",
+        },
+      ],
+    },
+    seoTitle: {
+      en: "E-commerce development company | Storefronts & checkout",
+      fr: "Entreprise de développement e-commerce | Boutiques et paiement",
+    },
+    seoDescription: {
+      en: "Custom e-commerce development from Station Eight Labs — fast storefronts, custom checkout, and catalogs built to convert.",
+      fr: "Développement e-commerce sur mesure par Station Eight Labs — boutiques rapides, paiement sur mesure et catalogues pensés pour convertir.",
+    },
+  },
+  {
+    slug: "ui-ux-design",
+    icon: "panels-top-left",
+    title: { en: "UI/UX design", fr: "Design UI/UX" },
+    tagline: {
+      en: "Interfaces designed for the work, not the portfolio.",
+      fr: "Des interfaces pensées pour le travail, pas pour le portfolio.",
+    },
+    description: {
+      en: "Product design and interface systems — research, flows, and design systems — built alongside the engineering, not handed off to it.",
+      fr: "Design produit et systèmes d’interface — recherche, parcours et design systems — conçus avec l’ingénierie, pas transmis après coup.",
+    },
+    problem: {
+      en: "Design handed off as static files loses half its meaning by the time it is built. We design inside the same team that ships, so the interface answers real states — empty, loading, error, edge case — not just the happy path in a mockup.",
+      fr: "Un design transmis en fichiers statiques perd la moitié de son sens au moment de la construction. Nous concevons dans la même équipe qui livre, pour que l’interface réponde aux vrais états — vide, chargement, erreur, cas limite — pas seulement le chemin heureux de la maquette.",
+    },
+    whatWeBuild: {
+      en: [
+        "Product research and user flows",
+        "Wireframes and high-fidelity UI",
+        "Design systems and component libraries",
+        "Accessibility and responsive design",
+        "Prototype testing before the build",
+      ],
+      fr: [
+        "Recherche produit et parcours utilisateurs",
+        "Wireframes et UI haute-fidélité",
+        "Design systems et bibliothèques de composants",
+        "Accessibilité et design responsive",
+        "Tests de prototypes avant construction",
+      ],
+    },
+    whoFor: {
+      en: [
+        "Founders who need a credible first design, not a placeholder",
+        "Products where the interface is the differentiator",
+        "Teams retiring an interface nobody trusts anymore",
+      ],
+      fr: [
+        "Fondateurs qui ont besoin d’un premier design crédible, pas d’un gabarit",
+        "Produits où l’interface fait la différence",
+        "Équipes qui retirent une interface en laquelle plus personne ne croit",
+      ],
+    },
+    stack: ["Figma", "Next.js", "React", "Tailwind CSS"],
+    faqs: {
+      en: [
+        {
+          q: "Do you do design-only projects, or only design plus build?",
+          a: "Both. Design-only engagements are common for teams with their own engineers; we design with the same rigor we would use if we were shipping it ourselves.",
+        },
+        {
+          q: "Do you build a design system, or just screens?",
+          a: "For anything beyond a single landing page, a small design system — tokens, components, states — pays for itself within a few screens.",
+        },
+        {
+          q: "How do you handle accessibility?",
+          a: "As a design requirement, not a QA afterthought: contrast, focus order, and keyboard paths are part of the review before anything ships.",
+        },
+      ],
+      fr: [
+        {
+          q: "Faites-vous des projets de design seul, ou uniquement design plus développement ?",
+          a: "Les deux. Les missions design seul sont courantes pour des équipes qui ont leurs propres développeurs ; nous concevons avec la même rigueur que si nous livrions nous-mêmes.",
+        },
+        {
+          q: "Construisez-vous un design system, ou seulement des écrans ?",
+          a: "Au-delà d’une simple landing page, un petit design system — tokens, composants, états — se rentabilise dès quelques écrans.",
+        },
+        {
+          q: "Comment traitez-vous l’accessibilité ?",
+          a: "Comme une exigence de design, pas un contrôle qualité après coup : contraste, ordre de focus et parcours clavier font partie de la revue avant toute livraison.",
+        },
+      ],
+    },
+    seoTitle: {
+      en: "UI/UX design services | Product design",
+      fr: "Services de design UI/UX | Design produit",
+    },
+    seoDescription: {
+      en: "Product design and UI/UX from Station Eight Labs — research, flows, and design systems built alongside engineering.",
+      fr: "Design produit et UI/UX par Station Eight Labs — recherche, parcours et design systems conçus avec l’ingénierie.",
+    },
+  },
+  {
+    slug: "api-development",
+    icon: "workflow",
+    title: { en: "API development", fr: "Développement d’API" },
+    tagline: {
+      en: "APIs treated as the product, not the plumbing.",
+      fr: "Des API traitées comme le produit, pas comme la plomberie.",
+    },
+    description: {
+      en: "REST and GraphQL APIs, integrations, and webhooks — documented, versioned, and built to be someone else's dependency.",
+      fr: "API REST et GraphQL, intégrations et webhooks — documentés, versionnés, conçus pour devenir la dépendance de quelqu’un d’autre.",
+    },
+    problem: {
+      en: "An API built as an afterthought behind a frontend eventually becomes the frontend's ceiling. We design the contract first — resources, auth, versioning — so the mobile app, the partner integration, and the dashboard you have not built yet can all stand on it.",
+      fr: "Une API pensée après coup, derrière un frontend, finit par devenir son plafond. Nous concevons le contrat en premier — ressources, authentification, versionnage — pour que l’app mobile, l’intégration partenaire et le tableau de bord que vous n’avez pas encore construit puissent tous s’appuyer dessus.",
+    },
+    whatWeBuild: {
+      en: [
+        "REST and GraphQL API design",
+        "Authentication and rate limiting",
+        "Webhooks and third-party integrations",
+        "API documentation and versioning",
+        "Monitoring and uptime alerting",
+      ],
+      fr: [
+        "Conception d’API REST et GraphQL",
+        "Authentification et limitation de débit",
+        "Webhooks et intégrations tierces",
+        "Documentation et versionnage d’API",
+        "Supervision et alertes de disponibilité",
+      ],
+    },
+    whoFor: {
+      en: [
+        "Mobile teams that need a real API, not a shared database",
+        "SaaS products opening a public or partner API",
+        "Companies integrating multiple internal systems",
+      ],
+      fr: [
+        "Équipes mobile qui ont besoin d’une vraie API, pas d’une base partagée",
+        "Produits SaaS qui ouvrent une API publique ou partenaire",
+        "Entreprises qui intègrent plusieurs systèmes internes",
+      ],
+    },
+    stack: ["Node.js", "Python", "PostgreSQL", "GraphQL", "AWS"],
+    faqs: {
+      en: [
+        {
+          q: "REST or GraphQL — which do you recommend?",
+          a: "It depends on the consumers. One mobile app and a dashboard usually favor REST for simplicity; many varied clients with different data needs often favor GraphQL. We size it to your actual consumers, not a trend.",
+        },
+        {
+          q: "Can you build an API on top of our existing system?",
+          a: "Usually yes — we design an API layer that fronts the existing data and logic, so you get a clean contract without a full backend rewrite.",
+        },
+        {
+          q: "Do you handle API documentation and versioning?",
+          a: "Yes — documented endpoints, a versioning strategy, and a deprecation path, so the API stays a stable dependency for whoever builds on it next.",
+        },
+      ],
+      fr: [
+        {
+          q: "REST ou GraphQL — que recommandez-vous ?",
+          a: "Cela dépend des consommateurs. Une app mobile et un tableau de bord favorisent souvent REST pour sa simplicité ; de nombreux clients variés aux besoins de données différents favorisent souvent GraphQL. Nous dimensionnons selon vos consommateurs réels, pas une tendance.",
+        },
+        {
+          q: "Pouvez-vous construire une API au-dessus de notre système existant ?",
+          a: "Généralement oui — nous concevons une couche API qui expose les données et la logique existantes, pour obtenir un contrat propre sans réécrire tout le backend.",
+        },
+        {
+          q: "Gérez-vous la documentation et le versionnage de l’API ?",
+          a: "Oui — endpoints documentés, stratégie de versionnage et parcours de dépréciation, pour que l’API reste une dépendance stable pour qui construira dessus ensuite.",
+        },
+      ],
+    },
+    seoTitle: {
+      en: "API development services | REST & GraphQL",
+      fr: "Services de développement d’API | REST et GraphQL",
+    },
+    seoDescription: {
+      en: "Station Eight Labs designs and builds REST and GraphQL APIs, integrations, and webhooks built to be a stable dependency.",
+      fr: "Station Eight Labs conçoit et développe des API REST et GraphQL, intégrations et webhooks, pensés comme une dépendance stable.",
     },
   },
 ];

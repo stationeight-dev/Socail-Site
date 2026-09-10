@@ -65,12 +65,20 @@ export async function generateMetadata({
     },
     authors: [{ name: siteConfig.name }],
     keywords: [
+      "Station Eight Labs",
+      "Station Eight",
+      "Station 8",
+      "Station8",
+      "software development company",
       "software development",
+      "custom software development",
+      "web development company",
+      "mobile app development",
+      "SaaS development",
+      "AI development company",
       "Next.js",
-      "mobile apps",
       "ERP",
       "AI",
-      "Station Eight Labs",
     ],
   };
 }
