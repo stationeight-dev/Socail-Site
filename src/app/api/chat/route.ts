@@ -45,15 +45,23 @@ async function callOpenRouter(payload: unknown, apiKey: string) {
   throw lastError;
 }
 
-function systemPrompt(locale: Locale) {
+function systemPrompt(locale: Locale, visitorName?: string, hasContact?: boolean) {
   const knowledge = buildSiteKnowledge(locale);
   const language = locale === "fr" ? "French" : "English";
 
+  const personalization = visitorName
+    ? `\nThe visitor's name is ${visitorName}. Use their name naturally now and then (an occasional greeting or aside, not every sentence) to keep the conversation warm and personal.\n`
+    : "";
+
+  const contactGuidance = hasContact
+    ? `The visitor has already shared their name and contact details, so never ask for their name, email, or phone again — just help them directly. If a question genuinely needs a human (a live quote, contract terms, something you can't responsibly answer from the info below), say the team will follow up using the details already provided.`
+    : `If you don't have enough to answer properly (a real quote, a firm timeline, anything not covered below), say so honestly rather than guessing. It's fine to mention that once they share their name and email the team can follow up with specifics — but don't invent or describe a specific button, box, or form; just say it naturally (e.g. "feel free to share your name and email here" or point to /contact). Don't make things up.`;
+
   return `You are the friendly assistant on the Station Eight Labs website, a software development company. You talk like a knowledgeable, warm colleague — never like a script, never overly formal, never robotic. Keep replies short and conversational (2-4 sentences unless the question genuinely needs a list).
+${personalization}
+Answer questions about Station Eight Labs using ONLY the information below. ${contactGuidance}
 
-Answer questions about Station Eight Labs using ONLY the information below. If you don't know something (pricing specifics, timelines for a particular project, anything not covered below), say so honestly and suggest the visitor leave their name and email using the "get in touch" box in this chat so the team can follow up personally — don't make things up.
-
-If someone describes a problem or project, help them figure out which service or page fits, and mention that they can leave their contact details in this chat for a human follow-up, or visit /contact.
+If someone describes a problem or project, help them figure out which service or page fits, and mention relevant pages by their path (e.g. /services/custom-software-development or /contact) so links can be shown — don't reference UI elements you can't see or that don't exist.
 
 Always reply in ${language}, matching the visitor.
 
@@ -71,7 +79,7 @@ export async function POST(req: Request) {
     );
   }
 
-  let body: { locale?: string; messages?: ChatMessage[] };
+  let body: { locale?: string; messages?: ChatMessage[]; name?: string };
   try {
     body = await req.json();
   } catch {
@@ -80,6 +88,7 @@ export async function POST(req: Request) {
 
   const locale: Locale = body.locale === "fr" ? "fr" : "en";
   const messages = Array.isArray(body.messages) ? body.messages.slice(-16) : [];
+  const visitorName = typeof body.name === "string" ? body.name.trim().slice(0, 80) : "";
 
   if (messages.length === 0) {
     return NextResponse.json({ error: "invalid_request" }, { status: 400 });
@@ -92,7 +101,10 @@ export async function POST(req: Request) {
         temperature: 0.6,
         max_tokens: 500,
         messages: [
-          { role: "system", content: systemPrompt(locale) },
+          {
+            role: "system",
+            content: systemPrompt(locale, visitorName || undefined, Boolean(visitorName)),
+          },
           ...messages.map((m) => ({ role: m.role, content: m.content })),
         ],
       },

@@ -1,3 +1,4 @@
+import { getDb } from "@/lib/mongodb";
 import { sendMail } from "@/lib/mailer";
 import { NextResponse } from "next/server";
 
@@ -38,6 +39,32 @@ export async function POST(req: Request) {
   const transcriptText = transcript
     .map((m) => `${m.role === "user" ? "Visitor" : "Assistant"}: ${m.content}`)
     .join("\n");
+
+  const locale = (body.locale ?? "en").trim();
+  const enquiry = {
+    name,
+    email,
+    phone: phone || null,
+    note: note || null,
+    transcript,
+    locale,
+    source: "chatbot",
+    createdAt: new Date(),
+  };
+
+  // Persist first so the enquiry isn't lost even if the email send is slow
+  // or fails; a missing/unreachable database degrades to "just log it"
+  // rather than breaking the lead flow.
+  const db = await getDb();
+  if (db) {
+    try {
+      await db.collection("enquiries").insertOne(enquiry);
+    } catch (error) {
+      console.error("[station-eight] failed to save chatbot lead to MongoDB", error);
+    }
+  } else {
+    console.info("[station-eight] enquiry not saved (MongoDB not configured) —", enquiry);
+  }
 
   const result = await sendMail({
     subject: `New chatbot lead — ${name}`,

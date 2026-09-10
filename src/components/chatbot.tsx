@@ -1,9 +1,57 @@
 "use client";
 
+import { Link } from "@/i18n/navigation";
 import { cx } from "@/lib/utils";
-import { useEffect, useId, useRef, useState } from "react";
+import { Fragment, useEffect, useId, useRef, useState } from "react";
 
 type Message = { role: "user" | "assistant"; content: string };
+
+// Matches, in order of priority: markdown links `[label](/path or https://...)`,
+// bare URLs, and bare site-relative paths (e.g. "/services/foo") so the model
+// can mention a page inline and have it render as a clickable link either way.
+const LINK_PATTERN =
+  /\[([^\]]+)\]\((\/[^\s)]+|https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s)]+)|(?<![\w./])(\/[a-zA-Z][a-zA-Z0-9-]*(?:\/[a-zA-Z0-9-]+)*)/g;
+
+function renderMessageContent(content: string) {
+  const nodes: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let key = 0;
+  let match: RegExpExecArray | null;
+
+  LINK_PATTERN.lastIndex = 0;
+  while ((match = LINK_PATTERN.exec(content))) {
+    const [full, mdLabel, mdHref, bareUrl, barePath] = match;
+    if (match.index > lastIndex) {
+      nodes.push(content.slice(lastIndex, match.index));
+    }
+    const href = mdHref ?? bareUrl ?? barePath;
+    const label = mdLabel ?? bareUrl ?? barePath ?? "";
+    if (href) {
+      nodes.push(renderChatLink(label, href, key++));
+    }
+    lastIndex = match.index + full.length;
+  }
+  if (lastIndex < content.length) {
+    nodes.push(content.slice(lastIndex));
+  }
+  return nodes;
+}
+
+function renderChatLink(label: string, href: string, key: number) {
+  const className = "underline underline-offset-2 decoration-1 hover:opacity-80";
+  if (/^https?:\/\//i.test(href)) {
+    return (
+      <a key={key} href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {label}
+      </a>
+    );
+  }
+  return (
+    <Link key={key} href={href} className={className}>
+      {label}
+    </Link>
+  );
+}
 
 type Copy = {
   openLabel: string;
@@ -132,7 +180,11 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
                     : "bg-mist text-ink",
                 )}
               >
-                {m.content}
+                {m.role === "assistant" ? (
+                  <Fragment>{renderMessageContent(m.content)}</Fragment>
+                ) : (
+                  m.content
+                )}
               </div>
             ))}
             {pending ? (
