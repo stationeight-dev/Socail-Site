@@ -2,6 +2,7 @@ import { sendMail } from "@/lib/mailer";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
+export const maxDuration = 30;
 
 function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -10,6 +11,7 @@ function isEmail(value: string) {
 type LeadBody = {
   name?: string;
   email?: string;
+  phone?: string;
   note?: string;
   transcript?: { role: "user" | "assistant"; content: string }[];
   locale?: string;
@@ -25,6 +27,7 @@ export async function POST(req: Request) {
 
   const name = (body.name ?? "").trim();
   const email = (body.email ?? "").trim();
+  const phone = (body.phone ?? "").trim();
   const note = (body.note ?? "").trim();
   const transcript = Array.isArray(body.transcript) ? body.transcript : [];
 
@@ -42,6 +45,7 @@ export async function POST(req: Request) {
     text: [
       `Name: ${name}`,
       `Email: ${email}`,
+      phone ? `Phone: ${phone}` : null,
       note ? `Note: ${note}` : null,
       "",
       "Conversation:",
@@ -51,7 +55,7 @@ export async function POST(req: Request) {
       .join("\n"),
   });
 
-  console.info("[station-eight] chatbot lead", { name, email, note, sent: result.sent });
+  console.info("[station-eight] chatbot lead", { name, email, phone, note, sent: result.sent });
 
   return NextResponse.json({ ok: true });
 }

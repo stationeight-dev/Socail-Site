@@ -130,6 +130,7 @@ export default async function LocaleLayout({
                 leadIntro: chatT("leadIntro"),
                 leadName: chatT("leadName"),
                 leadEmail: chatT("leadEmail"),
+                leadPhone: chatT("leadPhone"),
                 leadNote: chatT("leadNote"),
                 leadSubmit: chatT("leadSubmit"),
                 leadSending: chatT("leadSending"),

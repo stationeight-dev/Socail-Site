@@ -19,6 +19,7 @@ type Copy = {
   leadIntro: string;
   leadName: string;
   leadEmail: string;
+  leadPhone: string;
   leadNote: string;
   leadSubmit: string;
   leadSending: string;
@@ -34,6 +35,7 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
   const [leadOpen, setLeadOpen] = useState(false);
   const [leadName, setLeadName] = useState("");
   const [leadEmail, setLeadEmail] = useState("");
+  const [leadPhone, setLeadPhone] = useState("");
   const [leadNote, setLeadNote] = useState("");
   const [leadState, setLeadState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -81,6 +83,7 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
         body: JSON.stringify({
           name: leadName.trim(),
           email: leadEmail.trim(),
+          phone: leadPhone.trim(),
           note: leadNote.trim(),
           transcript: messages,
           locale,
@@ -169,6 +172,14 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
                         className="field px-3 py-2 text-body-sm"
                         autoComplete="email"
                       />
+                      <input
+                        value={leadPhone}
+                        onChange={(e) => setLeadPhone(e.target.value)}
+                        placeholder={copy.leadPhone}
+                        type="tel"
+                        className="field px-3 py-2 text-body-sm"
+                        autoComplete="tel"
+                      />
                       <textarea
                         value={leadNote}
                         onChange={(e) => setLeadNote(e.target.value)}
@@ -217,7 +228,7 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label={open ? copy.closeLabel : copy.openLabel}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-ink text-paper-elevated transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-voltage text-black shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-black/10 transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
       >
         {open ? (
           <span aria-hidden className="text-body-sm">

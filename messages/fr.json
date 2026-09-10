@@ -202,6 +202,7 @@
     "leadIntro": "Laissez votre nom et votre e-mail, quelqu'un de l'équipe vous recontactera — avec cette conversation jointe, pour ne pas vous répéter.",
     "leadName": "Nom",
     "leadEmail": "E-mail",
+    "leadPhone": "Téléphone (facultatif)",
     "leadNote": "Autre chose ? (facultatif)",
     "leadSubmit": "Envoyer à l'équipe",
     "leadSending": "Envoi…",

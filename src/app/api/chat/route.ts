@@ -3,8 +3,47 @@ import type { Locale } from "@/i18n/routing";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
+// Give slower model responses room to finish instead of being cut off by the
+// platform's default function timeout (which reads as a generic client error).
+export const maxDuration = 45;
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
+
+/**
+ * Calls OpenRouter with a timeout and a single retry. Node's fetch can fail
+ * with a transient DNS/network error (e.g. "fetch failed" / EAI_AGAIN) even
+ * when the upstream is healthy — without a retry, that one hiccup surfaces
+ * to the visitor as "something went wrong" for no real reason.
+ */
+async function callOpenRouter(payload: unknown, apiKey: string) {
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30_000);
+    try {
+      return await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        signal: controller.signal,
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://www.stationeight.org",
+          "X-Title": "Station Eight Labs",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      lastError = error;
+      if (attempt === 0) {
+        console.warn("[station-eight] OpenRouter call failed, retrying once", error);
+        continue;
+      }
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+  throw lastError;
+}
 
 function systemPrompt(locale: Locale) {
   const knowledge = buildSiteKnowledge(locale);
@@ -47,15 +86,8 @@ export async function POST(req: Request) {
   }
 
   try {
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        "HTTP-Referer": "https://www.stationeight.org",
-        "X-Title": "Station Eight Labs",
-      },
-      body: JSON.stringify({
+    const response = await callOpenRouter(
+      {
         model: process.env.OPENROUTER_MODEL ?? "openai/gpt-4o",
         temperature: 0.6,
         max_tokens: 500,
@@ -63,8 +95,9 @@ export async function POST(req: Request) {
           { role: "system", content: systemPrompt(locale) },
           ...messages.map((m) => ({ role: m.role, content: m.content })),
         ],
-      }),
-    });
+      },
+      apiKey,
+    );
 
     if (!response.ok) {
       const errText = await response.text();
