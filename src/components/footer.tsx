@@ -15,7 +15,7 @@ export async function Footer({ locale }: { locale: Locale }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-white">
+      <footer className="bg-black pb-[env(safe-area-inset-bottom)] text-white">
       <div className="page grid gap-10 py-14 md:grid-cols-5 md:py-16">
         <div className="md:col-span-2">
           {/* The band is always black, so force the brand's own dark-canvas

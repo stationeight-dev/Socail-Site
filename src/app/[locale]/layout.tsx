@@ -8,7 +8,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { Barlow_Condensed, Geist_Mono, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 // Variable axis so the spec's 450 "book" weight for secondary headings exists.
 const inter = Inter({
@@ -28,6 +28,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin", "latin-ext"],
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#e5e5e5" },
+    { media: "(prefers-color-scheme: dark)", color: "#111111" },
+  ],
+  viewportFit: "cover",
+};
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -46,7 +54,15 @@ export async function generateMetadata({
       template: `%s · ${siteConfig.name}`,
     },
     description: t("homeDescription"),
-    applicationName: siteConfig.name,
+    applicationName: siteConfig.appName,
+    appleWebApp: {
+      capable: true,
+      title: siteConfig.appName,
+      statusBarStyle: "black",
+    },
+    other: {
+      "apple-mobile-web-app-capable": "yes",
+    },
     authors: [{ name: siteConfig.name }],
     keywords: [
       "software development",

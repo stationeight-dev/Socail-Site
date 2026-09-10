@@ -3,7 +3,7 @@ export function cx(...classes: Array<string | false | null | undefined>) {
 }
 
 export function absoluteUrl(path = "/") {
-  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://stationeightlabs.com").replace(
+  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.stationeight.org").replace(
     /\/$/,
     "",
   );

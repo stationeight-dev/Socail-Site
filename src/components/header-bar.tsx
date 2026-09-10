@@ -138,7 +138,7 @@ export function HeaderBar({ copy, mega, company }: Props) {
 
   return (
     <header
-      className="sticky top-0 z-50 bg-paper/85 backdrop-blur-md"
+        className="sticky top-0 z-50 bg-paper/85 pt-[env(safe-area-inset-top)] backdrop-blur-md"
       onKeyDown={onHeaderKeyDown}
     >
       <div className="page grid h-20 grid-cols-[1fr_auto] items-center gap-4 lg:h-32 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">

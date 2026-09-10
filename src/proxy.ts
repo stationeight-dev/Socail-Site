@@ -9,5 +9,7 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+  // Skip i18n on Next internals, dotted files, and PWA/icon endpoints
+  // (`/icon`, `/apple-icon`, `/icons/192`) so locale detection cannot redirect them.
+  matcher: "/((?!api|trpc|_next|_vercel|(?:icon|icons|apple-icon)(?:/|$)|.*\\..*).*)",
 };
