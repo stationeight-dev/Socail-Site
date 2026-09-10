@@ -127,6 +127,7 @@ export default async function LocaleLayout({
                 thinking: chatT("thinking"),
                 errorMessage: chatT("errorMessage"),
                 leadToggle: chatT("leadToggle"),
+                leadPrompt: chatT("leadPrompt"),
                 leadIntro: chatT("leadIntro"),
                 leadName: chatT("leadName"),
                 leadEmail: chatT("leadEmail"),

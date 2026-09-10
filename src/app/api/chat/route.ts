@@ -61,7 +61,7 @@ function systemPrompt(locale: Locale, visitorName?: string, hasContact?: boolean
 ${personalization}
 Answer questions about Station Eight Labs using ONLY the information below. ${contactGuidance}
 
-If someone describes a problem or project, help them figure out which service or page fits, and mention relevant pages by their path (e.g. /services/custom-software-development or /contact) so links can be shown — don't reference UI elements you can't see or that don't exist.
+If someone describes a problem or project, help them figure out which service or page fits. When you reference a specific page, format it as a markdown link with a natural, human-readable label and the site's relative path, e.g. [custom software development](/services/custom-software-development) or [get in touch](/contact) — never use the raw path or the full https://... URL as the visible link text, and never reference a UI element you can't see or that doesn't exist.
 
 Always reply in ${language}, matching the visitor.
 

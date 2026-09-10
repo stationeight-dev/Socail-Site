@@ -199,6 +199,7 @@
     "thinking": "En train d'écrire…",
     "errorMessage": "Quelque chose s'est mal passé de mon côté — voulez-vous réessayer, ou laisser votre e-mail ci-dessous pour qu'une vraie personne vous recontacte ?",
     "leadToggle": "Vous préférez qu'un humain vous recontacte ?",
+    "leadPrompt": "Cela vous dérange-t-il de partager votre nom et votre e-mail ? Je garderai cela personnel, et l'équipe pourra intervenir directement si vous le souhaitez.",
     "leadIntro": "Laissez votre nom et votre e-mail, quelqu'un de l'équipe vous recontactera — avec cette conversation jointe, pour ne pas vous répéter.",
     "leadName": "Nom",
     "leadEmail": "E-mail",

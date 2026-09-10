@@ -1,5 +1,6 @@
 "use client";
 
+import { siteConfig } from "@/config/site";
 import { Link } from "@/i18n/navigation";
 import { cx } from "@/lib/utils";
 import { Fragment, useEffect, useId, useRef, useState } from "react";
@@ -11,6 +12,38 @@ type Message = { role: "user" | "assistant"; content: string };
 // can mention a page inline and have it render as a clickable link either way.
 const LINK_PATTERN =
   /\[([^\]]+)\]\((\/[^\s)]+|https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s)]+)|(?<![\w./])(\/[a-zA-Z][a-zA-Z0-9-]*(?:\/[a-zA-Z0-9-]+)*)/g;
+
+const CHAT_LINK_CLASSNAME =
+  "text-blue-600 underline underline-offset-2 decoration-1 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300";
+
+/** "/services/custom-software-development" -> "Custom Software Development" */
+function prettifyPathLabel(path: string) {
+  const segment = path.split("/").filter(Boolean).pop() ?? path;
+  return segment
+    .replace(/[-_]+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/**
+ * If href points at this same site (whether the model wrote a relative path
+ * or, as it sometimes does, the full https://www.stationeight.org/... URL),
+ * strip it down to a relative path so it opens via client-side navigation
+ * instead of a full page reload in a new tab.
+ */
+function resolveHref(href: string): { href: string; external: boolean } {
+  if (href.startsWith("/")) return { href, external: false };
+  try {
+    const url = new URL(href);
+    const siteHost = new URL(siteConfig.url).hostname.replace(/^www\./, "");
+    if (url.hostname.replace(/^www\./, "") === siteHost) {
+      return { href: `${url.pathname}${url.search}${url.hash}` || "/", external: false };
+    }
+  } catch {
+    // Not a parseable absolute URL — fall through and treat as external/plain.
+  }
+  return { href, external: true };
+}
 
 function renderMessageContent(content: string) {
   const nodes: React.ReactNode[] = [];
@@ -24,10 +57,12 @@ function renderMessageContent(content: string) {
     if (match.index > lastIndex) {
       nodes.push(content.slice(lastIndex, match.index));
     }
-    const href = mdHref ?? bareUrl ?? barePath;
-    const label = mdLabel ?? bareUrl ?? barePath ?? "";
-    if (href) {
-      nodes.push(renderChatLink(label, href, key++));
+    const rawHref = mdHref ?? bareUrl ?? barePath;
+    // Only markdown links carry an author-chosen label; bare URLs/paths just
+    // display the text as written.
+    const rawLabel = mdHref ? mdLabel : (bareUrl ?? barePath ?? "");
+    if (rawHref) {
+      nodes.push(renderChatLink(rawLabel ?? "", rawHref, key++, Boolean(mdHref)));
     }
     lastIndex = match.index + full.length;
   }
@@ -37,17 +72,24 @@ function renderMessageContent(content: string) {
   return nodes;
 }
 
-function renderChatLink(label: string, href: string, key: number) {
-  const className = "underline underline-offset-2 decoration-1 hover:opacity-80";
-  if (/^https?:\/\//i.test(href)) {
+function renderChatLink(rawLabel: string, rawHref: string, key: number, isExplicitLabel: boolean) {
+  const { href, external } = resolveHref(rawHref);
+
+  // A markdown link whose "label" is really just the path/URL again (the
+  // model occasionally does this) reads badly as link text — swap in a
+  // human-readable label instead of showing the raw slug.
+  const looksLikeRawPath = /^\/?[\w-]+(?:\/[\w-]+)*\/?$/.test(rawLabel) || rawLabel === rawHref;
+  const label = isExplicitLabel && looksLikeRawPath ? prettifyPathLabel(href) : rawLabel;
+
+  if (external) {
     return (
-      <a key={key} href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      <a key={key} href={rawHref} target="_blank" rel="noopener noreferrer" className={CHAT_LINK_CLASSNAME}>
         {label}
       </a>
     );
   }
   return (
-    <Link key={key} href={href} className={className}>
+    <Link key={key} href={href} className={CHAT_LINK_CLASSNAME}>
       {label}
     </Link>
   );
@@ -64,6 +106,7 @@ type Copy = {
   thinking: string;
   errorMessage: string;
   leadToggle: string;
+  leadPrompt: string;
   leadIntro: string;
   leadName: string;
   leadEmail: string;
@@ -86,6 +129,9 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
   const [leadPhone, setLeadPhone] = useState("");
   const [leadNote, setLeadNote] = useState("");
   const [leadState, setLeadState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [assistantReplyCount, setAssistantReplyCount] = useState(0);
+  const [hasPromptedLead, setHasPromptedLead] = useState(false);
+  const [userName, setUserName] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
 
@@ -105,11 +151,21 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ locale, messages: next }),
+        body: JSON.stringify({ locale, messages: next, name: userName }),
       });
       if (!res.ok) throw new Error("chat_failed");
       const data = await res.json();
       setMessages((prev) => [...prev, { role: "assistant", content: data.reply as string }]);
+
+      // After a couple of real replies, invite the visitor to leave their
+      // details — once, and only if we don't already have them.
+      const replyCount = assistantReplyCount + 1;
+      setAssistantReplyCount(replyCount);
+      if (replyCount === 2 && !hasPromptedLead && !userName && leadState !== "sent") {
+        setHasPromptedLead(true);
+        setLeadOpen(true);
+        setMessages((prev) => [...prev, { role: "assistant", content: copy.leadPrompt }]);
+      }
     } catch {
       setMessages((prev) => [...prev, { role: "assistant", content: copy.errorMessage }]);
     } finally {
@@ -139,6 +195,7 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
       });
       if (!res.ok) throw new Error("lead_failed");
       setLeadState("sent");
+      setUserName(leadName.trim());
     } catch {
       setLeadState("error");
     }
