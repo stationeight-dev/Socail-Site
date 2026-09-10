@@ -149,7 +149,8 @@
   "Blog": {
     "title": "Journal",
     "lead": "Notes de la station — nommage, méthode, et parfois un essai technique.",
-    "read": "Lire"
+    "read": "Lire",
+    "keyTakeaways": "À retenir"
   },
   "Contact": {
     "title": "Réserver un appel ou écrire",

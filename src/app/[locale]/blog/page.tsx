@@ -1,3 +1,4 @@
+import { BlogHeroArt } from "@/components/blog-hero-art";
 import { posts } from "@/content/blog";
 import { getAuthor } from "@/content/authors";
 import { Link } from "@/i18n/navigation";
@@ -37,7 +38,11 @@ export default async function Page({
         {sortedPosts.map((post) => {
           const author = getAuthor(post.authorSlug);
           return (
-            <li key={post.slug} className="py-6 first:pt-0">
+            <li key={post.slug} className="py-6 first:pt-0 sm:flex sm:gap-6">
+              <div className="sm:w-40 sm:shrink-0">
+                <BlogHeroArt slug={post.slug} />
+              </div>
+              <div className="mt-4 sm:mt-0">
               <p className="font-mono text-caption text-smoke">{post.date}</p>
               <h2 className="heading mt-2 text-heading-sm">
                 <Link href={`/blog/${post.slug}`} className="underline-offset-4 hover:underline">
@@ -60,6 +65,7 @@ export default async function Page({
               >
                 {t("read")} →
               </Link>
+              </div>
             </li>
           );
         })}

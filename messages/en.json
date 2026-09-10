@@ -149,7 +149,8 @@
   "Blog": {
     "title": "Log",
     "lead": "Notes from the station — naming, method, and the occasional technical essay.",
-    "read": "Read"
+    "read": "Read",
+    "keyTakeaways": "Key takeaways"
   },
   "Contact": {
     "title": "Book a call or send a message",

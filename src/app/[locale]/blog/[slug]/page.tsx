@@ -1,3 +1,4 @@
+import { BlogHeroArt } from "@/components/blog-hero-art";
 import { FadeIn } from "@/components/fade-in";
 import { JsonLd } from "@/components/json-ld";
 import { getAuthor, getPost, posts } from "@/content";
@@ -40,6 +41,7 @@ export default async function Page({
   if (!post) notFound();
   const author = getAuthor(post.authorSlug);
   const nav = await getTranslations("Nav");
+  const blogT = await getTranslations("Blog");
   const url = localizedUrl(`/blog/${slug}`, loc);
   const maxStat = post.stats ? Math.max(...post.stats.items.map((item) => item.value)) : 0;
 
@@ -73,10 +75,13 @@ export default async function Page({
           </span>
           <div className="leading-tight">
             <p className="text-body-sm font-medium text-ink">{author.name}</p>
-            <p className="text-caption text-smoke">{author.role[loc]}</p>
           </div>
         </div>
       </FadeIn>
+      <FadeIn className="mt-10">
+        <BlogHeroArt slug={post.slug} />
+      </FadeIn>
+
       <div className="mt-10 space-y-5 text-body leading-[1.5] text-ink-muted">
         {post.body[loc].map((paragraph) => (
           <p key={paragraph.slice(0, 24)}>{paragraph}</p>
@@ -132,6 +137,19 @@ export default async function Page({
                     style={{ width: `${maxStat ? (item.value / maxStat) * 100 : 0}%` }}
                   />
                 </div>
+              </li>
+            ))}
+          </ul>
+        </FadeIn>
+      ) : null}
+
+      {post.keyTakeaways ? (
+        <FadeIn className="mt-12">
+          <h2 className="heading text-heading-sm">{blogT("keyTakeaways")}</h2>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {post.keyTakeaways[loc].map((line) => (
+              <li key={line.slice(0, 24)} className="card-flat text-body-sm leading-relaxed">
+                {line}
               </li>
             ))}
           </ul>

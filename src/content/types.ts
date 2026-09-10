@@ -70,6 +70,8 @@ export type BlogPost = {
     unit?: string;
     items: { label: Localized<string>; value: number }[];
   };
+  /** Short bulleted summary rendered near the end of the post. */
+  keyTakeaways?: Localized<string[]>;
   seoTitle: Localized<string>;
   seoDescription: Localized<string>;
 };
