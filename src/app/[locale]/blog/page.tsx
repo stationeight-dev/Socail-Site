@@ -1,5 +1,5 @@
-import { FadeIn } from "@/components/fade-in";
 import { posts } from "@/content/blog";
+import { getAuthor } from "@/content/authors";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { asLocale } from "@/lib/locale";
@@ -33,28 +33,36 @@ export default async function Page({
 
   return (
     <section className="mx-auto w-full max-w-3xl px-6 py-20">
-      <FadeIn>
-        <h1 className="display text-[clamp(3rem,6vw,5rem)]">{t("title")}</h1>
-        <p className="mt-6 text-body leading-[1.4] text-ink-muted">{t("lead")}</p>
-      </FadeIn>
-      <ul className="mt-12 divide-y divide-line/40">
-        {sortedPosts.map((post) => (
-          <li key={post.slug} className="py-6 first:pt-0">
-            <p className="font-mono text-caption text-smoke">{post.date}</p>
-            <h2 className="heading mt-2 text-heading-sm">
-              <Link href={`/blog/${post.slug}`} className="underline-offset-4 hover:underline">
-                {post.title[loc]}
+      <ul className="divide-y divide-line/40">
+        {sortedPosts.map((post) => {
+          const author = getAuthor(post.authorSlug);
+          return (
+            <li key={post.slug} className="py-6 first:pt-0">
+              <p className="font-mono text-caption text-smoke">{post.date}</p>
+              <h2 className="heading mt-2 text-heading-sm">
+                <Link href={`/blog/${post.slug}`} className="underline-offset-4 hover:underline">
+                  {post.title[loc]}
+                </Link>
+              </h2>
+              <p className="mt-3 text-body-sm leading-relaxed text-ink-muted">{post.excerpt[loc]}</p>
+              <div className="mt-4 flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-mist font-mono text-[10px] font-medium text-ink"
+                >
+                  {author.initials}
+                </span>
+                <span className="text-body-sm text-ink-muted">{author.name}</span>
+              </div>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="mt-3 inline-block text-body-sm font-medium underline-offset-4 hover:underline"
+              >
+                {t("read")} →
               </Link>
-            </h2>
-            <p className="mt-3 text-body-sm leading-relaxed text-ink-muted">{post.excerpt[loc]}</p>
-            <Link
-              href={`/blog/${post.slug}`}
-              className="mt-3 inline-block text-body-sm font-medium underline-offset-4 hover:underline"
-            >
-              {t("read")} →
-            </Link>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

@@ -1,19 +1,18 @@
+import { authors, getAuthor } from "./authors";
 import { industries } from "./industries";
 import { products } from "./products";
 import { services } from "./services";
 import { solutions } from "./solutions";
-import { technologies } from "./technologies";
 import type { CatalogItem, HubKey } from "./types";
 import { work } from "./work";
 import { posts } from "./blog";
 
-export { industries, products, services, solutions, technologies, work, posts };
+export { industries, products, services, solutions, work, posts, authors, getAuthor };
 
 export const hubs: Record<HubKey, CatalogItem[]> = {
   services,
   industries,
   solutions,
-  technologies,
 };
 
 export function getHubItems(hub: HubKey): CatalogItem[] {
@@ -40,5 +39,4 @@ export const hubPaths: Record<HubKey, string> = {
   services: "/services",
   industries: "/industries",
   solutions: "/solutions",
-  technologies: "/technologies",
 };

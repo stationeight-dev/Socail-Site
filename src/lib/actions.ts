@@ -1,5 +1,7 @@
 "use server";
 
+import { sendMail } from "@/lib/mailer";
+
 export type EnquiryState = { ok: boolean; error?: string };
 
 function isEmail(value: string) {
@@ -36,8 +38,23 @@ export async function submitEnquiry(
     at: new Date().toISOString(),
   };
 
-  // Wire Resend / SMTP via CONTACT_TO_EMAIL later. For now, persist to server logs.
   console.info("[station-eight] enquiry", payload);
+
+  await sendMail({
+    subject: `New enquiry — ${name}${company ? ` (${company})` : ""}`,
+    replyTo: email,
+    text: [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      company ? `Company: ${company}` : null,
+      interest ? `Interest: ${interest}` : null,
+      `Source: ${source}`,
+      "",
+      message,
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  });
 
   return { ok: true };
 }

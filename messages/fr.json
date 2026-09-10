@@ -7,7 +7,6 @@
     "services": "Services",
     "industries": "Secteurs",
     "solutions": "Solutions",
-    "technologies": "Technologies",
     "products": "Produits",
     "work": "Projets",
     "about": "À propos",
@@ -100,8 +99,6 @@
     "industriesLead": "Nous ne collectionnons pas les secteurs pour la navigation. Voici les endroits où le flux de travail est assez spécifique pour mériter sa page.",
     "solutionsTitle": "Solutions pour entreprises locales",
     "solutionsLead": "Des logiciels en forme de produit pour cliniques, écoles, salles, salons, restaurants, commerces, immobilier et interventions.",
-    "technologiesTitle": "Technologies",
-    "technologiesLead": "Les outils avec lesquels nous livrons vraiment — pas un mur de logos.",
     "cta": "Parler à la station"
   },
   "Landing": {
@@ -128,7 +125,10 @@
     "outcome": "Résultat",
     "client": "Client",
     "sector": "Secteur",
-    "cta": "Démarrer un projet"
+    "cta": "Démarrer un projet",
+    "role": "Rôle",
+    "teamExperienceBadge": "Expérience de l'équipe",
+    "teamExperienceIntro": "Certaines réalisations ci-dessous sont des missions clients de Station Eight Labs. D'autres — marquées « Expérience de l'équipe » — sont des projets livrés par nos ingénieurs fondateurs chez de précédents employeurs ou en tant qu'indépendants : un vrai parcours, pas des missions clients de Station Eight Labs."
   },
   "About": {
     "eyebrow": "Qui nous sommes",
@@ -186,5 +186,25 @@
   "Common": {
     "learnMore": "En savoir plus",
     "viewProject": "Voir le projet"
+  },
+  "Chat": {
+    "openLabel": "Discuter avec nous",
+    "closeLabel": "Fermer le chat",
+    "title": "Station Eight",
+    "subtitle": "Réponse généralement en une minute",
+    "greeting": "Bonjour — je suis là pour répondre à vos questions sur Station Eight Labs : services, réalisations passées, ordre de grandeur des prix, ce que vous cherchez à savoir. Que puis-je faire pour vous ?",
+    "placeholder": "Écrivez un message…",
+    "send": "Envoyer",
+    "thinking": "En train d'écrire…",
+    "errorMessage": "Quelque chose s'est mal passé de mon côté — voulez-vous réessayer, ou laisser votre e-mail ci-dessous pour qu'une vraie personne vous recontacte ?",
+    "leadToggle": "Vous préférez qu'un humain vous recontacte ?",
+    "leadIntro": "Laissez votre nom et votre e-mail, quelqu'un de l'équipe vous recontactera — avec cette conversation jointe, pour ne pas vous répéter.",
+    "leadName": "Nom",
+    "leadEmail": "E-mail",
+    "leadNote": "Autre chose ? (facultatif)",
+    "leadSubmit": "Envoyer à l'équipe",
+    "leadSending": "Envoi…",
+    "leadSuccess": "C'est noté — quelqu'un de l'équipe vous répondra par e-mail sous peu.",
+    "leadError": "Merci de saisir un nom et un e-mail valides."
   }
 }

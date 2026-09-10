@@ -18,7 +18,6 @@ export async function Header({ locale }: { locale: Locale }) {
           services: t("services"),
           industries: t("industries"),
           solutions: t("solutions"),
-          technologies: t("technologies"),
           products: t("products"),
           company: t("company"),
           work: t("work"),
@@ -51,12 +50,6 @@ export async function Header({ locale }: { locale: Locale }) {
           })),
           solutions: hubs.solutions.map((item) => ({
             href: `/solutions/${item.slug}`,
-            title: item.title[locale],
-            tagline: item.tagline[locale],
-            icon: item.icon,
-          })),
-          technologies: hubs.technologies.map((item) => ({
-            href: `/technologies/${item.slug}`,
             title: item.title[locale],
             tagline: item.tagline[locale],
             icon: item.icon,

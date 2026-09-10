@@ -4,6 +4,7 @@ export const posts: BlogPost[] = [
   {
     slug: "why-station-eight",
     date: "2026-09-01",
+    authorSlug: "neeraj-singh",
     title: {
       en: "Why Station Eight: a room, eight bits, one byte",
       fr: "Pourquoi Station Eight : une salle, huit bits, un octet",
@@ -26,6 +27,16 @@ export const posts: BlogPost[] = [
         "C’est ainsi que nous essayons de travailler. Décoder la contrainte. Encoder un produit. Tenir la ligne après le lancement. Si vous voulez du théâtre, il existe des agences plus bruyantes. Si vous voulez un laboratoire, voici la porte.",
       ],
     },
+    table: {
+      caption: { en: "The name, decoded", fr: "Le nom, décodé" },
+      headers: { en: ["Term", "What it names"], fr: ["Terme", "Ce qu'il désigne"] },
+      rows: [
+        { en: ["Station", "A room with a job — a workspace, not a stage."], fr: ["Station", "Une salle avec un métier — un espace de travail, pas une scène."] },
+        { en: ["Eight", "The bits that compose one byte — small, complete units."], fr: ["Huit", "Les bits qui composent un octet — des unités petites et complètes."] },
+        { en: ["Hut 8", "Bletchley Park's naval Enigma hut — the posture we keep, not the costume."], fr: ["Hut 8", "La hutte Enigma navale de Bletchley Park — la posture que nous gardons, pas le costume."] },
+        { en: ["Byte", "What eight bits become when they hold together under load."], fr: ["Octet", "Ce que huit bits deviennent quand ils tiennent ensemble sous la charge."] },
+      ],
+    },
     seoTitle: {
       en: "Why Station Eight Labs is named after Hut 8",
       fr: "Pourquoi Station Eight Labs s’inspire de Hut 8",
@@ -38,6 +49,7 @@ export const posts: BlogPost[] = [
   {
     slug: "custom-software-development-cost",
     date: "2026-05-04",
+    authorSlug: "sahil-dangi",
     title: {
       en: "How Much Does Custom Software Development Cost?",
       fr: "Combien coûte un développement logiciel sur mesure ?",
@@ -62,6 +74,26 @@ export const posts: BlogPost[] = [
         "Le logiciel le moins cher est celui qui est utilisé. Un coût de construction légèrement plus élevé qui produit un outil réellement adopté par votre équipe vaut mieux qu’une construction low-cost remplacée par un tableur au bout de six mois. Budgétez pour le périmètre réel, pas pour le chiffre le plus facile à accepter.",
       ],
     },
+    table: {
+      caption: { en: "Typical cost by project shape", fr: "Coût typique selon la forme du projet" },
+      headers: { en: ["Project type", "Typical range", "Typical timeline"], fr: ["Type de projet", "Fourchette typique", "Délai typique"] },
+      rows: [
+        { en: ["Small internal tool", "€15k – €35k", "6–10 weeks"], fr: ["Petit outil interne", "15k – 35k €", "6 à 10 semaines"] },
+        { en: ["Customer-facing platform", "€60k – €150k", "3–6 months"], fr: ["Plateforme destinée aux clients", "60k – 150k €", "3 à 6 mois"] },
+        { en: ["Multi-integration enterprise system", "€150k+", "6–12+ months"], fr: ["Système d'entreprise multi-intégrations", "150k € et plus", "6 à 12 mois et plus"] },
+      ],
+    },
+    stats: {
+      caption: { en: "Where the budget actually goes (relative effort)", fr: "Où va réellement le budget (effort relatif)" },
+      unit: "%",
+      items: [
+        { label: { en: "Customer-facing UI", fr: "Interface visible par le client" }, value: 25 },
+        { label: { en: "Auth & permissions", fr: "Auth et permissions" }, value: 20 },
+        { label: { en: "Integrations (payments, calendars, accounting)", fr: "Intégrations (paiement, calendrier, comptabilité)" }, value: 25 },
+        { label: { en: "Data migration", fr: "Migration de données" }, value: 15 },
+        { label: { en: "Admin & internal tooling", fr: "Admin et outillage interne" }, value: 15 },
+      ],
+    },
     seoTitle: {
       en: "How much does custom software development cost?",
       fr: "Combien coûte un développement logiciel sur mesure ?",
@@ -74,6 +106,7 @@ export const posts: BlogPost[] = [
   {
     slug: "custom-software-vs-off-the-shelf",
     date: "2026-05-18",
+    authorSlug: "avinash-singh",
     title: {
       en: "Custom Software Development vs Off-the-Shelf Software",
       fr: "Logiciel sur mesure ou logiciel sur étagère",
@@ -98,6 +131,17 @@ export const posts: BlogPost[] = [
         "En pratique, la plupart des entreprises finissent par avoir les deux : des outils sur étagère pour ce qui est réellement générique, et une couche sur mesure — parfois petite — pour le process qui fait réellement gagner de l’argent. L’erreur n’est pas de choisir un camp définitivement ; c’est de ne pas revisiter la décision quand l’entreprise change de forme.",
       ],
     },
+    table: {
+      caption: { en: "Off-the-shelf vs custom, by dimension", fr: "Sur étagère contre sur mesure, par critère" },
+      headers: { en: ["Dimension", "Off-the-shelf", "Custom"], fr: ["Critère", "Sur étagère", "Sur mesure"] },
+      rows: [
+        { en: ["Speed to launch", "Fast — days to weeks", "Slower — weeks to months"], fr: ["Vitesse de lancement", "Rapide — jours à semaines", "Plus lent — semaines à mois"] },
+        { en: ["Upfront cost", "Low, subscription-based", "Higher, one-time build"], fr: ["Coût initial", "Faible, par abonnement", "Plus élevé, construction unique"] },
+        { en: ["Fit to your process", "You adapt to it", "It adapts to you"], fr: ["Adéquation au process", "Vous vous adaptez à lui", "Il s'adapte à vous"] },
+        { en: ["Ownership", "Vendor owns the roadmap", "You own the code and roadmap"], fr: ["Propriété", "Le prestataire possède la feuille de route", "Vous possédez le code et la feuille de route"] },
+        { en: ["Cost over 3+ years", "Compounding subscription + workaround cost", "One build, then maintenance only"], fr: ["Coût sur 3 ans et plus", "Abonnement cumulé + coût des contournements", "Une construction, puis seulement la maintenance"] },
+      ],
+    },
     seoTitle: {
       en: "Custom software development vs off-the-shelf software",
       fr: "Logiciel sur mesure ou logiciel sur étagère",
@@ -110,6 +154,7 @@ export const posts: BlogPost[] = [
   {
     slug: "how-to-choose-a-software-development-company",
     date: "2026-06-01",
+    authorSlug: "neeraj-singh",
     title: {
       en: "How to Choose a Software Development Company",
       fr: "Comment choisir une entreprise de développement logiciel",
@@ -134,6 +179,15 @@ export const posts: BlogPost[] = [
         "Enfin, faites confiance à la conversation elle-même. Une équipe qui s’oppose à une mauvaise idée, s’intéresse à votre vraie contrainte plutôt qu’à sa technologie préférée, et vous donne une réponse franche sur les risques de délai, tiendra plus probablement sous pression qu’une équipe qui approuve tout pendant l’appel commercial.",
       ],
     },
+    table: {
+      caption: { en: "Questions worth asking, and what the answer tells you", fr: "Questions à poser, et ce que la réponse révèle" },
+      headers: { en: ["Question", "Good answer", "Red flag"], fr: ["Question", "Bonne réponse", "Signal d'alarme"] },
+      rows: [
+        { en: ["Who owns the code and accounts after launch?", "\u201cYou do, from day one.\u201d", "Vague, or \u201cwe manage that for you.\u201d"], fr: ["Qui possède le code et les comptes après le lancement ?", "« Vous, dès le premier jour. »", "Vague, ou « nous gérons ça pour vous »."] },
+        { en: ["How do you scope work?", "A short, paid discovery phase first", "A fixed price with no discovery call"], fr: ["Comment cadrez-vous le travail ?", "Une courte phase de découverte payante d'abord", "Un prix fixe sans appel de cadrage"] },
+        { en: ["What happens after launch?", "A clear retainer or support agreement", "No answer, or \u201cwe'll figure it out.\u201d"], fr: ["Que se passe-t-il après le lancement ?", "Un contrat de suivi ou de support clair", "Pas de réponse, ou « on verra »."] },
+      ],
+    },
     seoTitle: {
       en: "How to choose a software development company",
       fr: "Comment choisir une entreprise de développement logiciel",
@@ -146,6 +200,7 @@ export const posts: BlogPost[] = [
   {
     slug: "saas-product-development-cost",
     date: "2026-06-15",
+    authorSlug: "sahil-dangi",
     title: {
       en: "How Much Does It Cost to Build a SaaS Product?",
       fr: "Combien coûte la construction d’un produit SaaS ?",
@@ -170,6 +225,26 @@ export const posts: BlogPost[] = [
         "La version qui garde le coût raisonnable est celle qui résiste à l’envie de construire pour une échelle qu’on n’a pas encore. Concevez le modèle multi-tenant pour qu’il n’ait pas besoin d’être réécrit, puis construisez le plus petit produit réel par-dessus. L’architecture mérite d’être posée tôt ; la liste de fonctionnalités, non.",
       ],
     },
+    table: {
+      caption: { en: "The four budget categories", fr: "Les quatre catégories de budget" },
+      headers: { en: ["Category", "Often quoted?", "Typical share of budget"], fr: ["Catégorie", "Souvent chiffrée ?", "Part typique du budget"] },
+      rows: [
+        { en: ["Customer-facing product", "Yes", "35%"], fr: ["Produit visible par le client", "Oui", "35 %"] },
+        { en: ["Billing & subscription logic", "Rarely, in full", "20%"], fr: ["Facturation et abonnements", "Rarement, en totalité", "20 %"] },
+        { en: ["Admin console", "Rarely", "20%"], fr: ["Console d'administration", "Rarement", "20 %"] },
+        { en: ["Infrastructure & multi-tenancy", "Rarely", "25%"], fr: ["Infrastructure et multi-tenant", "Rarement", "25 %"] },
+      ],
+    },
+    stats: {
+      caption: { en: "Budget split on a lean first release", fr: "Répartition du budget sur une première version sobre" },
+      unit: "%",
+      items: [
+        { label: { en: "Customer-facing product", fr: "Produit visible par le client" }, value: 35 },
+        { label: { en: "Infrastructure & multi-tenancy", fr: "Infrastructure et multi-tenant" }, value: 25 },
+        { label: { en: "Billing & subscriptions", fr: "Facturation et abonnements" }, value: 20 },
+        { label: { en: "Admin console", fr: "Console d'administration" }, value: 20 },
+      ],
+    },
     seoTitle: {
       en: "How much does it cost to build a SaaS product?",
       fr: "Combien coûte la construction d’un produit SaaS ?",
@@ -182,6 +257,7 @@ export const posts: BlogPost[] = [
   {
     slug: "web-application-development-guide",
     date: "2026-06-29",
+    authorSlug: "avinash-singh",
     title: {
       en: "Web Application Development: A Complete Guide",
       fr: "Développement d’applications web : le guide complet",
@@ -206,6 +282,16 @@ export const posts: BlogPost[] = [
         "Le test pour savoir si une application web est vraiment terminée n’est pas de vérifier si le chemin heureux fonctionne en démo. C’est de vérifier si quelqu’un avec une connexion lente, un bloqueur de publicités et une tâche qui l’agace peut quand même terminer ce pour quoi il est venu. C’est une barre plus basse à décrire, et bien plus haute à atteindre que ce que la plupart des lancements admettent.",
       ],
     },
+    table: {
+      caption: { en: "Marketing site vs web application", fr: "Site marketing contre application web" },
+      headers: { en: ["Dimension", "Marketing site", "Web application"], fr: ["Critère", "Site marketing", "Application web"] },
+      rows: [
+        { en: ["Primary goal", "Get found, convert a visit", "Get used, repeatedly"], fr: ["Objectif principal", "Être trouvé, convertir une visite", "Être utilisé, de façon répétée"] },
+        { en: ["Rendering priority", "Static / server-rendered", "Client state & interactivity"], fr: ["Priorité de rendu", "Statique / rendu serveur", "État client et interactivité"] },
+        { en: ["SEO importance", "Critical", "Usually low, except public pages"], fr: ["Importance du SEO", "Critique", "Généralement faible, sauf pages publiques"] },
+        { en: ["Core concern", "Core Web Vitals, content", "Auth, data consistency, state"], fr: ["Enjeu central", "Core Web Vitals, contenu", "Auth, cohérence des données, état"] },
+      ],
+    },
     seoTitle: {
       en: "Web application development: a complete guide",
       fr: "Développement d’applications web : le guide complet",
@@ -218,6 +304,7 @@ export const posts: BlogPost[] = [
   {
     slug: "ai-powered-saas-application-guide",
     date: "2026-07-13",
+    authorSlug: "neeraj-singh",
     title: {
       en: "How to Build an AI-Powered SaaS Application",
       fr: "Comment construire une application SaaS propulsée par l’IA",
@@ -242,6 +329,15 @@ export const posts: BlogPost[] = [
         "Les fonctionnalités d’IA qui survivent au contact des vrais utilisateurs sont celles qui semblent ennuyeuses : moins de clics pour terminer une tâche connue, un premier jet plutôt qu’une page blanche, une alerte plutôt qu’une file de relecture manuelle. La démo de chatbot capte l’attention dans le pitch ; l’automatisation discrète est généralement ce pour quoi les clients continuent réellement de payer.",
       ],
     },
+    table: {
+      caption: { en: "Strong vs weak AI feature candidates", fr: "Bons et mauvais candidats pour une fonctionnalité IA" },
+      headers: { en: ["Signal", "Strong candidate", "Weak candidate"], fr: ["Signal", "Bon candidat", "Mauvais candidat"] },
+      rows: [
+        { en: ["Task shape", "Repetitive judgment work with a human check", "Replace the whole workflow with chat"], fr: ["Forme de la tâche", "Travail de jugement répétitif, vérifié par un humain", "Remplacer tout le flux par un chat"] },
+        { en: ["Data grounding", "Retrieval over your own corpus (RAG)", "Model's training data alone"], fr: ["Ancrage des données", "Récupération sur votre propre corpus (RAG)", "Seules les données d'entraînement du modèle"] },
+        { en: ["Failure handling", "Visible fallback, correction path, logs", "No fallback if the model is wrong"], fr: ["Gestion des échecs", "Repli visible, correction possible, journaux", "Aucun repli si le modèle se trompe"] },
+      ],
+    },
     seoTitle: {
       en: "How to build an AI-powered SaaS application",
       fr: "Comment construire une application SaaS propulsée par l’IA",
@@ -254,6 +350,7 @@ export const posts: BlogPost[] = [
   {
     slug: "react-vs-nextjs",
     date: "2026-07-27",
+    authorSlug: "sahil-dangi",
     title: {
       en: "React vs Next.js for Modern Web Applications",
       fr: "React ou Next.js pour les applications web modernes",
@@ -278,6 +375,16 @@ export const posts: BlogPost[] = [
         "La réponse pratique pour la plupart des équipes qui démarrent un projet devant être trouvé, se charger vite, et avoir un jour à la fois une vitrine marketing et un produit authentifié : commencez avec Next.js. Ne passez à React seul que si vous avez une raison précise pour laquelle les choix du framework ne conviennent pas — et si vous n’êtes pas sûr d’avoir cette raison, c’est probablement que vous ne l’avez pas.",
       ],
     },
+    table: {
+      caption: { en: "Plain React vs Next.js", fr: "React seul contre Next.js" },
+      headers: { en: ["Dimension", "Plain React", "Next.js"], fr: ["Critère", "React seul", "Next.js"] },
+      rows: [
+        { en: ["SEO / first load", "Needs manual setup", "Built in (SSR / static)"], fr: ["SEO / premier chargement", "Configuration manuelle nécessaire", "Intégré (SSR / statique)"] },
+        { en: ["Routing & data fetching", "You choose and wire it", "Framework decides by default"], fr: ["Routage et récupération de données", "Vous choisissez et câblez", "Le framework décide par défaut"] },
+        { en: ["Setup effort", "Higher", "Lower"], fr: ["Effort de configuration", "Plus élevé", "Plus faible"] },
+        { en: ["Best fit", "Embedded widget, tightly scoped tool", "Public site + authenticated app in one codebase"], fr: ["Meilleur usage", "Widget intégré, outil au périmètre restreint", "Site public + app authentifiée dans une seule base"] },
+      ],
+    },
     seoTitle: {
       en: "React vs Next.js for modern web applications",
       fr: "React ou Next.js pour les applications web modernes",
@@ -290,6 +397,7 @@ export const posts: BlogPost[] = [
   {
     slug: "mobile-app-development-cost",
     date: "2026-08-10",
+    authorSlug: "avinash-singh",
     title: {
       en: "How Much Does It Cost to Build a Mobile App?",
       fr: "Combien coûte la construction d’une application mobile ?",
@@ -312,6 +420,25 @@ export const posts: BlogPost[] = [
         "La soumission aux stores n’est pas un détail. Le processus de revue d’Apple en particulier peut rejeter une app pour des raisons sans rapport avec des bugs — captures d’écran, métadonnées, déclarations de confidentialité, ou un parcours de connexion que le relecteur n’a pas pu franchir. Budgétez du temps, pas seulement du coût de développement, pour au moins un cycle de revue, et concevez les parcours de compte et de paiement en tenant compte des règles des stores dès le départ, pas comme un exercice de dernière minute avant lancement.",
         "Une app simple, sans backend, sur une seule plateforme, peut être une petite construction. Un vrai produit — comptes, API backend, notifications push, gestion hors-ligne et les deux stores — se rapproche d’une fourchette comparable à un bon projet de logiciel sur mesure, car c’est fonctionnellement ce que c’est : un client mobile au-dessus d’un vrai système. Traitez l’estimation « de l’app » et celle « du produit complet » comme deux chiffres différents.",
         "Les apps qui restent peu coûteuses à faire vivre après le lancement sont celles conçues avec un plan de maintenance dès le premier jour : un panneau d’administration qui ne nécessite pas un développeur pour répondre aux tickets de support, des analytics branchés avant le premier utilisateur, et un backend construit pour survivre à une mise à jour d’OS sans panique. Le coût de construction est le début de la facture, pas la totalité.",
+      ],
+    },
+    table: {
+      caption: { en: "Typical cost by app shape", fr: "Coût typique selon la forme de l'app" },
+      headers: { en: ["App type", "Typical range", "Backend needed?"], fr: ["Type d'app", "Fourchette typique", "Backend nécessaire ?"] },
+      rows: [
+        { en: ["Simple, single-platform, no backend", "€8k – €20k", "No"], fr: ["Simple, une plateforme, sans backend", "8k – 20k €", "Non"] },
+        { en: ["Cross-platform with accounts & push", "€40k – €90k", "Yes"], fr: ["Multi-plateforme avec comptes et push", "40k – 90k €", "Oui"] },
+        { en: ["Full product: both stores, payments, offline", "€90k+", "Yes, real API"], fr: ["Produit complet : deux stores, paiements, hors-ligne", "90k € et plus", "Oui, vraie API"] },
+      ],
+    },
+    stats: {
+      caption: { en: "Where the budget actually goes", fr: "Où va réellement le budget" },
+      unit: "%",
+      items: [
+        { label: { en: "Frontend screens", fr: "Écrans frontend" }, value: 30 },
+        { label: { en: "Backend & API", fr: "Backend et API" }, value: 35 },
+        { label: { en: "Push, offline, sync", fr: "Push, hors-ligne, synchro" }, value: 20 },
+        { label: { en: "Store review & polish", fr: "Revue des stores et finitions" }, value: 15 },
       ],
     },
     seoTitle: {
