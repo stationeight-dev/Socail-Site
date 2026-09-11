@@ -1,3 +1,4 @@
+import { Chatbot } from "@/components/chatbot";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Providers } from "@/components/providers";
@@ -65,12 +66,20 @@ export async function generateMetadata({
     },
     authors: [{ name: siteConfig.name }],
     keywords: [
+      "Station Eight Labs",
+      "Station Eight",
+      "Station 8",
+      "Station8",
+      "software development company",
       "software development",
+      "custom software development",
+      "web development company",
+      "mobile app development",
+      "SaaS development",
+      "AI development company",
       "Next.js",
-      "mobile apps",
       "ERP",
       "AI",
-      "Station Eight Labs",
     ],
   };
 }
@@ -89,6 +98,7 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const chatT = await getTranslations({ locale: asLocale(locale), namespace: "Chat" });
 
   return (
     <html
@@ -104,6 +114,31 @@ export default async function LocaleLayout({
               {children}
             </main>
             <Footer locale={locale as Locale} />
+            <Chatbot
+              locale={locale}
+              copy={{
+                openLabel: chatT("openLabel"),
+                closeLabel: chatT("closeLabel"),
+                title: chatT("title"),
+                subtitle: chatT("subtitle"),
+                greeting: chatT("greeting"),
+                placeholder: chatT("placeholder"),
+                send: chatT("send"),
+                thinking: chatT("thinking"),
+                errorMessage: chatT("errorMessage"),
+                leadToggle: chatT("leadToggle"),
+                leadPrompt: chatT("leadPrompt"),
+                leadIntro: chatT("leadIntro"),
+                leadName: chatT("leadName"),
+                leadEmail: chatT("leadEmail"),
+                leadPhone: chatT("leadPhone"),
+                leadNote: chatT("leadNote"),
+                leadSubmit: chatT("leadSubmit"),
+                leadSending: chatT("leadSending"),
+                leadSuccess: chatT("leadSuccess"),
+                leadError: chatT("leadError"),
+              }}
+            />
           </Providers>
         </NextIntlClientProvider>
       </body>

@@ -2,22 +2,39 @@ import { siteConfig } from "@/config/site";
 import type { Locale } from "@/i18n/routing";
 import { localizedUrl } from "@/lib/metadata";
 
+// Brand/entity variants people actually type into Google. Keeping these on
+// the Organization node (rather than only in body copy) is what lets Google
+// resolve "Station 8", "Station8", etc. to this same entity.
+const brandAlternateNames = ["Station Eight", "Station 8", "Station8", "Station Eight Labs India"];
+
 export function organizationSchema(locale: Locale) {
+  const hasAddress = Boolean(siteConfig.hq.city && siteConfig.hq.country);
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: siteConfig.name,
+    legalName: siteConfig.legalName,
+    alternateName: brandAlternateNames,
     url: siteConfig.url,
     email: siteConfig.email,
     ...(siteConfig.phone ? { telephone: siteConfig.phone } : {}),
+    ...(hasAddress
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: siteConfig.hq.city,
+            addressCountry: siteConfig.hq.country,
+          },
+        }
+      : {}),
     logo: `${siteConfig.url}/icon`,
     sameAs: Object.values(siteConfig.social).filter(Boolean),
     areaServed: "Worldwide",
     knowsLanguage: ["en", "fr"],
     description:
       locale === "fr"
-        ? "Laboratoire logiciel : services sur mesure et produits pour clients dans le monde entier."
-        : "Software lab: custom services and products for clients worldwide.",
+        ? "Station Eight Labs est une entreprise de développement logiciel : services sur mesure et produits pour clients dans le monde entier."
+        : "Station Eight Labs is a software development company: custom services and products for clients worldwide.",
   };
 }
 
@@ -101,5 +118,29 @@ export function faqSchema(faqs: Array<{ q: string; a: string }>) {
       name: faq.q,
       acceptedAnswer: { "@type": "Answer", text: faq.a },
     })),
+  };
+}
+
+export function articleSchema({
+  headline,
+  description,
+  url,
+  datePublished,
+}: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    description,
+    url,
+    datePublished,
+    author: { "@type": "Organization", name: siteConfig.name },
+    publisher: { "@type": "Organization", name: siteConfig.name, logo: `${siteConfig.url}/icon` },
+    mainEntityOfPage: url,
   };
 }

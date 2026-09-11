@@ -53,14 +53,34 @@ export default async function Page({
       />
       <article className="mx-auto w-full max-w-3xl px-6 py-20">
         <FadeIn>
-          <p className="tag">{item.sector[loc]}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="tag">{item.sector[loc]}</p>
+            {item.isTeamExperience ? (
+              <p className="tag bg-transparent text-smoke ring-1 ring-inset ring-line/60">
+                {t("teamExperienceBadge")}
+              </p>
+            ) : null}
+            {item.status ? <p className="tag bg-accent text-ink">{item.status[loc]}</p> : null}
+          </div>
           <h1 className="display mt-4 text-[clamp(3rem,6vw,5rem)]">{item.title[loc]}</h1>
           <p className="mt-6 text-body leading-[1.4] text-ink-muted">{item.summary[loc]}</p>
-          <dl className="mt-6 grid gap-2 text-body-sm">
+          {item.isTeamExperience ? (
+            <p className="mt-3 text-body-sm leading-relaxed text-smoke">{t("teamExperienceIntro")}</p>
+          ) : null}
+          <dl className="mt-6 grid gap-4 text-body-sm sm:grid-cols-2">
             <div>
               <dt className="font-mono text-caption uppercase text-smoke">{t("client")}</dt>
               <dd className="mt-1">{item.client[loc]}</dd>
+              {item.engagementContext ? (
+                <dd className="mt-0.5 text-caption text-smoke">{item.engagementContext[loc]}</dd>
+              ) : null}
             </div>
+            {item.role ? (
+              <div>
+                <dt className="font-mono text-caption uppercase text-smoke">{t("role")}</dt>
+                <dd className="mt-1">{item.role[loc]}</dd>
+              </div>
+            ) : null}
           </dl>
         </FadeIn>
         <FadeIn className="mt-12">

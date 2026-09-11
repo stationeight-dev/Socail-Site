@@ -30,7 +30,6 @@ export type HeaderCopy = {
   services: string;
   industries: string;
   solutions: string;
-  technologies: string;
   products: string;
   company: string;
   work: string;
@@ -46,7 +45,7 @@ export type HeaderCopy = {
   themeLabel: string;
 };
 
-const hubKeys = ["services", "industries", "solutions", "technologies"] as const;
+const hubKeys = ["services", "industries", "solutions"] as const;
 type HubKey = (typeof hubKeys)[number];
 type MenuKey = HubKey | "company";
 type OpenState = MenuKey | "mobile" | null;
@@ -91,7 +90,6 @@ export function HeaderBar({ copy, mega, company }: Props) {
     services: { label: copy.services, items: mega.services, href: "/services" },
     industries: { label: copy.industries, items: mega.industries, href: "/industries" },
     solutions: { label: copy.solutions, items: mega.solutions, href: "/solutions" },
-    technologies: { label: copy.technologies, items: mega.technologies, href: "/technologies" },
     company: { label: copy.company, items: company },
   };
   const panel = active ? menus[active] : null;

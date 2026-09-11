@@ -1,13 +1,12 @@
 {
   "Meta": {
-    "homeTitle": "Station Eight Labs — software, products, a focused station",
-    "homeDescription": "Station Eight Labs designs and ships web, mobile, AI, and operational software for companies worldwide. English and French. Services and products from a modern lab."
+    "homeTitle": "Station Eight Labs — Software Development Company | Web, Mobile, AI & Custom Software",
+    "homeDescription": "Station Eight Labs is a software development company specializing in custom software, web applications, mobile apps, SaaS platforms, and AI solutions for companies across Europe and worldwide. English and French, services and products from one focused lab."
   },
   "Nav": {
     "services": "Services",
     "industries": "Industries",
     "solutions": "Solutions",
-    "technologies": "Technologies",
     "products": "Products",
     "work": "Work",
     "about": "About",
@@ -59,7 +58,7 @@
   "Home": {
     "eyebrow": "Available for new projects",
     "title": "A station for software that has to hold.",
-    "lead": "From web platforms and mobile apps to AI systems and products you can buy later — we architect and ship work for Europe and the rest of the world.",
+    "lead": "Station Eight Labs is a software development company: from web platforms and mobile apps to custom software, SaaS, and AI systems — we architect and ship work for Europe and the rest of the world.",
     "ctaPrimary": "Book a free call",
     "ctaSecondary": "View our work",
     "bitsLabel": "Station · Eight bits · One byte",
@@ -96,13 +95,11 @@
   },
   "Hub": {
     "servicesTitle": "Services",
-    "servicesLead": "Custom software across web, mobile, AI, cloud, and the unglamorous systems that keep a company running.",
+    "servicesLead": "Software development services across web, mobile, AI, cloud, and the unglamorous systems that keep a company running.",
     "industriesTitle": "Industries",
     "industriesLead": "We do not collect sectors for the nav. These are places where the workflow is specific enough to deserve its own page.",
     "solutionsTitle": "Solutions for local businesses",
     "solutionsLead": "Product-shaped software for clinics, schools, gyms, salons, restaurants, shops, property, and field crews.",
-    "technologiesTitle": "Technologies",
-    "technologiesLead": "The tools we actually ship with — not a logo wall of everything on earth.",
     "cta": "Talk to the station"
   },
   "Landing": {
@@ -129,12 +126,15 @@
     "outcome": "Outcome",
     "client": "Client",
     "sector": "Sector",
-    "cta": "Start a project"
+    "cta": "Start a project",
+    "role": "Role",
+    "teamExperienceBadge": "Team experience",
+    "teamExperienceIntro": "Some entries below are Station Eight Labs client engagements. Others — marked “Team experience” — are projects our founding engineers delivered at previous companies or as independent consultants, shown here as real background, not as Station Eight Labs client relationships."
   },
   "About": {
     "eyebrow": "Who we are",
     "title": "A modern station with an old idea of work.",
-    "p1": "Station Eight Labs started from a simple conviction: ambitious companies deserve a technical partner that can sit still with a hard problem.",
+    "p1": "Station Eight Labs — also written Station Eight or Station 8 — started from a simple conviction: ambitious companies deserve a technical partner that can sit still with a hard problem.",
     "p2": "The name looks back at Hut 8 — the Bletchley Park section that worked German naval Enigma, for a time under Alan Turing. Intercepts in, decisions out. Paper, probability, machines. We take the discipline, not the uniform.",
     "p3": "The contemporary reading is plainer. Station: a powerful workspace. Eight: the bits that become a byte. We design, build, and hold systems for clients worldwide, with English and French as first-class languages.",
     "valuesTitle": "How the room runs",
@@ -150,7 +150,8 @@
   "Blog": {
     "title": "Log",
     "lead": "Notes from the station — naming, method, and the occasional technical essay.",
-    "read": "Read"
+    "read": "Read",
+    "keyTakeaways": "Key takeaways"
   },
   "Contact": {
     "title": "Book a call or send a message",
@@ -201,5 +202,27 @@
   "Common": {
     "learnMore": "Learn more",
     "viewProject": "View project"
+  },
+  "Chat": {
+    "openLabel": "Chat with us",
+    "closeLabel": "Close chat",
+    "title": "Station Eight",
+    "subtitle": "Usually replies in a minute",
+    "greeting": "Hey — I'm here to help with anything about Station Eight Labs: services, past work, pricing shape, whatever you're trying to figure out. What's on your mind?",
+    "placeholder": "Type a message…",
+    "send": "Send",
+    "thinking": "Typing…",
+    "errorMessage": "Something went wrong on my end — mind trying again, or leaving your email below so a real person can follow up?",
+    "leadToggle": "Prefer a human to follow up?",
+    "leadPrompt": "Mind sharing your name and email? I will keep this personal, and the team can jump in directly if you would like.",
+    "leadIntro": "Leave your name and email and someone from the team will get back to you — with this conversation attached, so you don't have to repeat yourself.",
+    "leadName": "Name",
+    "leadEmail": "Email",
+    "leadPhone": "Phone (optional)",
+    "leadNote": "Anything else? (optional)",
+    "leadSubmit": "Send to the team",
+    "leadSending": "Sending…",
+    "leadSuccess": "Got it — someone from the team will reply by email shortly.",
+    "leadError": "Please enter a valid name and email."
   }
 }

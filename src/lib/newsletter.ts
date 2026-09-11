@@ -77,7 +77,11 @@ export function readNewsletterToken(token: string): { action: NewsletterAction; 
 }
 
 export async function getSubscribersCollection(): Promise<Collection<SubscriberDocument>> {
-  const collection = (await getDb()).collection<SubscriberDocument>("subscribers");
+  const db = await getDb();
+  if (!db) {
+    throw new Error("MONGODB_URI is not set");
+  }
+  const collection = db.collection<SubscriberDocument>("subscribers");
   if (!globalForNewsletter.subscriberIndexes) {
     globalForNewsletter.subscriberIndexes = collection
       .createIndexes([{ key: { email: 1 }, unique: true }])

@@ -1,13 +1,12 @@
 {
   "Meta": {
-    "homeTitle": "Station Eight Labs — logiciels, produits, une station concentrée",
-    "homeDescription": "Station Eight Labs conçoit et livre des logiciels web, mobile, IA et métier pour des entreprises partout dans le monde. Anglais et français. Services et produits depuis un laboratoire moderne."
+    "homeTitle": "Station Eight Labs — Entreprise de développement logiciel | Web, Mobile, IA et sur mesure",
+    "homeDescription": "Station Eight Labs est une entreprise de développement logiciel spécialisée dans les logiciels sur mesure, les applications web et mobiles, les plateformes SaaS et les solutions d’IA, pour des entreprises en Europe et dans le monde entier. Anglais et français, services et produits depuis un seul laboratoire."
   },
   "Nav": {
     "services": "Services",
     "industries": "Secteurs",
     "solutions": "Solutions",
-    "technologies": "Technologies",
     "products": "Produits",
     "work": "Projets",
     "about": "À propos",
@@ -59,7 +58,7 @@
   "Home": {
     "eyebrow": "Ouverts aux nouveaux projets",
     "title": "Un laboratoire pour les logiciels qui tiennent.",
-    "lead": "Des plateformes web et applications mobiles jusqu’aux systèmes d’IA et aux produits que vous pourrez acheter — nous concevons et livrons pour l’Europe et le reste du monde.",
+    "lead": "Station Eight Labs est une entreprise de développement logiciel : des plateformes web et applications mobiles jusqu’au logiciel sur mesure, au SaaS et aux systèmes d’IA — nous concevons et livrons pour l’Europe et le reste du monde.",
     "ctaPrimary": "Réserver un appel",
     "ctaSecondary": "Voir les réalisations",
     "bitsLabel": "Station · Huit bits · Un octet",
@@ -96,13 +95,11 @@
   },
   "Hub": {
     "servicesTitle": "Services",
-    "servicesLead": "Logiciels sur mesure : web, mobile, IA, cloud, et les systèmes sans gloire qui font tourner une entreprise.",
+    "servicesLead": "Développement logiciel : web, mobile, IA, cloud, et les systèmes sans gloire qui font tourner une entreprise.",
     "industriesTitle": "Secteurs",
     "industriesLead": "Nous ne collectionnons pas les secteurs pour la navigation. Voici les endroits où le flux de travail est assez spécifique pour mériter sa page.",
     "solutionsTitle": "Solutions pour entreprises locales",
     "solutionsLead": "Des logiciels en forme de produit pour cliniques, écoles, salles, salons, restaurants, commerces, immobilier et interventions.",
-    "technologiesTitle": "Technologies",
-    "technologiesLead": "Les outils avec lesquels nous livrons vraiment — pas un mur de logos.",
     "cta": "Parler à la station"
   },
   "Landing": {
@@ -129,12 +126,15 @@
     "outcome": "Résultat",
     "client": "Client",
     "sector": "Secteur",
-    "cta": "Démarrer un projet"
+    "cta": "Démarrer un projet",
+    "role": "Rôle",
+    "teamExperienceBadge": "Expérience de l'équipe",
+    "teamExperienceIntro": "Certaines réalisations ci-dessous sont des missions clients de Station Eight Labs. D'autres — marquées « Expérience de l'équipe » — sont des projets livrés par nos ingénieurs fondateurs chez de précédents employeurs ou en tant qu'indépendants : un vrai parcours, pas des missions clients de Station Eight Labs."
   },
   "About": {
     "eyebrow": "Qui nous sommes",
     "title": "Une station moderne, une vieille idée du travail.",
-    "p1": "Station Eight Labs part d’une conviction simple : les entreprises ambitieuses méritent un partenaire technique capable de rester avec un problème difficile.",
+    "p1": "Station Eight Labs — aussi écrit Station Eight ou Station 8 — part d’une conviction simple : les entreprises ambitieuses méritent un partenaire technique capable de rester avec un problème difficile.",
     "p2": "Le nom regarde Hut 8 — la section de Bletchley Park qui travaillait Enigma navale, un temps sous Alan Turing. Des intercepts en entrée, des décisions en sortie. Papier, probabilités, machines. Nous prenons la discipline, pas l’uniforme.",
     "p3": "La lecture contemporaine est plus simple. Station : un espace de travail puissant. Huit : les bits qui deviennent un octet. Nous concevons, construisons et tenons des systèmes pour des clients partout, avec l’anglais et le français comme langues de premier rang.",
     "valuesTitle": "Comment la salle fonctionne",
@@ -150,7 +150,8 @@
   "Blog": {
     "title": "Journal",
     "lead": "Notes de la station — nommage, méthode, et parfois un essai technique.",
-    "read": "Lire"
+    "read": "Lire",
+    "keyTakeaways": "À retenir"
   },
   "Contact": {
     "title": "Réserver un appel ou écrire",
@@ -201,5 +202,27 @@
   "Common": {
     "learnMore": "En savoir plus",
     "viewProject": "Voir le projet"
+  },
+  "Chat": {
+    "openLabel": "Discuter avec nous",
+    "closeLabel": "Fermer le chat",
+    "title": "Station Eight",
+    "subtitle": "Réponse généralement en une minute",
+    "greeting": "Bonjour — je suis là pour répondre à vos questions sur Station Eight Labs : services, réalisations passées, ordre de grandeur des prix, ce que vous cherchez à savoir. Que puis-je faire pour vous ?",
+    "placeholder": "Écrivez un message…",
+    "send": "Envoyer",
+    "thinking": "En train d'écrire…",
+    "errorMessage": "Quelque chose s'est mal passé de mon côté — voulez-vous réessayer, ou laisser votre e-mail ci-dessous pour qu'une vraie personne vous recontacte ?",
+    "leadToggle": "Vous préférez qu'un humain vous recontacte ?",
+    "leadPrompt": "Cela vous dérange-t-il de partager votre nom et votre e-mail ? Je garderai cela personnel, et l'équipe pourra intervenir directement si vous le souhaitez.",
+    "leadIntro": "Laissez votre nom et votre e-mail, quelqu'un de l'équipe vous recontactera — avec cette conversation jointe, pour ne pas vous répéter.",
+    "leadName": "Nom",
+    "leadEmail": "E-mail",
+    "leadPhone": "Téléphone (facultatif)",
+    "leadNote": "Autre chose ? (facultatif)",
+    "leadSubmit": "Envoyer à l'équipe",
+    "leadSending": "Envoi…",
+    "leadSuccess": "C'est noté — quelqu'un de l'équipe vous répondra par e-mail sous peu.",
+    "leadError": "Merci de saisir un nom et un e-mail valides."
   }
 }
