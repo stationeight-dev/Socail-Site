@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 import { services } from "@/content/services";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
+import { socialLinks } from "@/lib/social";
 import { getTranslations } from "next-intl/server";
 
 // The band is black in both themes, so colours here are fixed, not tokens.
@@ -30,6 +31,7 @@ export async function Footer({ locale }: { locale: Locale }) {
           >
             {siteConfig.email}
           </a>
+          <SocialRow label={t("follow")} />
         </div>
 
         <FooterColumn title={t("navigate")}>
@@ -105,5 +107,25 @@ function FooterColumn({ title, children }: { title: string; children: React.Reac
       <p className="font-mono text-caption uppercase text-smoke">{title}</p>
       <ul className="mt-4 space-y-2.5">{children}</ul>
     </div>
+  );
+}
+
+function SocialRow({ label }: { label: string }) {
+  const links = socialLinks();
+  if (!links.length) return null;
+  return (
+    <nav className="mt-6 flex flex-wrap gap-x-4 gap-y-2" aria-label={label}>
+      {links.map((item) => (
+        <a
+          key={item.label}
+          href={item.href}
+          className={footerLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
   );
 }

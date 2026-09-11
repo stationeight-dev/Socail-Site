@@ -38,6 +38,7 @@
     "terms": "Terms",
     "cookies": "Cookies",
     "rights": "Station Eight Labs. All rights reserved.",
+    "follow": "Follow",
     "placeholderNote": "Logo and colours are a working system until the official brand files arrive."
   },
   "Theme": {
@@ -165,7 +166,7 @@
     "message": "Message",
     "submit": "Send",
     "sending": "Sending…",
-    "success": "Received. We will write back from the station.",
+    "success": "Thank you.",
     "error": "Something did not hold. Try again, or email us directly.",
     "direct": "Or write directly"
   },
@@ -177,6 +178,20 @@
     "termsTitle": "Terms of service",
     "cookiesTitle": "Cookie policy",
     "updated": "Working draft — replace with counsel before launch."
+  },
+  "Newsletter": {
+    "subscribeTitle": "Station notes",
+    "subscribeLead": "Short notes on software that has to hold. Confirm below to join the list. You can leave whenever you want.",
+    "subscribeConfirm": "Subscribe",
+    "subscribeDone": "You are on the list. We will write when there is something worth holding.",
+    "unsubscribeTitle": "Leave the list",
+    "unsubscribeLead": "Confirm below to stop station notes. You can still write to us any time.",
+    "unsubscribeConfirm": "Unsubscribe",
+    "unsubscribeDone": "You are off the list. No more notes from this address.",
+    "pending": "One moment…",
+    "invalid": "This link is not valid. Write to us if you need a new one.",
+    "error": "Something did not hold. Try again, or email us directly.",
+    "home": "Back to the station"
   },
   "NotFound": {
     "title": "This frequency is empty.",

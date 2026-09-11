@@ -32,7 +32,9 @@ export default async function Page({
           </p>
           <p>
             Nous ne revendons pas ces données. Elles sont conservées le temps de la
-            relation plus une durée d’archivage raisonnable. Pour exercer vos
+            relation plus une durée d’archivage raisonnable. Les notes de la station
+            ne partent que si vous confirmez le lien d’inscription dans notre e-mail ;
+            vous pouvez vous désinscrire à tout moment. Pour exercer vos
             droits (accès, rectification, effacement, opposition), écrivez à{" "}
             {siteConfig.email}.
           </p>
@@ -51,8 +53,10 @@ export default async function Page({
           </p>
           <p>
             We do not sell this data. We keep it for the length of the conversation
-            plus a reasonable archive period. To exercise access, correction,
-            erasure, or objection rights, write to {siteConfig.email}.
+            plus a reasonable archive period. Newsletter notes are sent only if you
+            confirm the subscribe link in our email; you can unsubscribe at any time.
+            To exercise access, correction, erasure, or objection rights, write to{" "}
+            {siteConfig.email}.
           </p>
           <p>
             The site may be hosted in the EU or with a processor (for example

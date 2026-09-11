@@ -17,8 +17,11 @@ export const siteConfig = {
     country: process.env.NEXT_PUBLIC_HQ_COUNTRY ?? "",
   },
   social: {
+    x: process.env.NEXT_PUBLIC_X_URL || "https://x.com/StationEight_",
+    instagram: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/stationeight_/",
+    facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || "https://www.facebook.com/61594318558615/",
+    /** Set when the company page exists. Empty string hides the link. */
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL ?? "",
     github: process.env.NEXT_PUBLIC_GITHUB_URL ?? "",
-    x: process.env.NEXT_PUBLIC_X_URL ?? "",
   },
 } as const;

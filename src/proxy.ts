@@ -11,5 +11,11 @@ export default function proxy(request: NextRequest) {
 export const config = {
   // Skip i18n on Next internals, dotted files, and PWA/icon endpoints
   // (`/icon`, `/apple-icon`, `/icons/192`) so locale detection cannot redirect them.
-  matcher: "/((?!api|trpc|_next|_vercel|(?:icon|icons|apple-icon)(?:/|$)|.*\\..*).*)",
+  // The `.*\\..*` skip also matches query strings that contain a dot (newsletter
+  // tokens). Keep an explicit newsletter matcher so those links still get a locale.
+  matcher: [
+    "/newsletter/:path*",
+    "/(en|fr)/newsletter/:path*",
+    "/((?!api|trpc|_next|_vercel|(?:icon|icons|apple-icon)(?:/|$)|.*\\..*).*)",
+  ],
 };

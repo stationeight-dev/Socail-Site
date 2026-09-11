@@ -38,6 +38,7 @@
     "terms": "Conditions",
     "cookies": "Cookies",
     "rights": "Station Eight Labs. Tous droits réservés.",
+    "follow": "Suivre",
     "placeholderNote": "Le logo et les couleurs sont un système de travail jusqu’à l’arrivée de la charte officielle."
   },
   "Theme": {
@@ -165,7 +166,7 @@
     "message": "Message",
     "submit": "Envoyer",
     "sending": "Envoi…",
-    "success": "Reçu. Nous écrirons depuis la station.",
+    "success": "Merci.",
     "error": "Quelque chose n’a pas tenu. Réessayez, ou écrivez-nous directement.",
     "direct": "Ou écrivez directement"
   },
@@ -177,6 +178,20 @@
     "termsTitle": "Conditions d’utilisation",
     "cookiesTitle": "Politique cookies",
     "updated": "Brouillon de travail — à faire relire par un conseil avant mise en ligne."
+  },
+  "Newsletter": {
+    "subscribeTitle": "Notes de la station",
+    "subscribeLead": "De courtes notes sur les logiciels qui tiennent. Confirmez ci-dessous pour rejoindre la liste. Vous pourrez partir quand vous voulez.",
+    "subscribeConfirm": "S’inscrire",
+    "subscribeDone": "Vous êtes sur la liste. Nous écrirons quand il y aura quelque chose à tenir.",
+    "unsubscribeTitle": "Quitter la liste",
+    "unsubscribeLead": "Confirmez ci-dessous pour arrêter les notes de la station. Vous pourrez toujours nous écrire.",
+    "unsubscribeConfirm": "Se désinscrire",
+    "unsubscribeDone": "Vous n’êtes plus sur la liste. Plus de notes à cette adresse.",
+    "pending": "Un instant…",
+    "invalid": "Ce lien n’est pas valable. Écrivez-nous si vous avez besoin d’un nouveau.",
+    "error": "Quelque chose n’a pas tenu. Réessayez, ou écrivez-nous directement.",
+    "home": "Retour à la station"
   },
   "NotFound": {
     "title": "Cette fréquence est vide.",

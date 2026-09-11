@@ -153,8 +153,24 @@ p {
 
   .marquee-track,
   .byte-float,
-  .byte-scene {
+  .byte-scene,
+  .letter-sheet,
+  .letter-flap-open,
+  .letter-flap-shut {
     animation: none !important;
+  }
+
+  .letter-sheet {
+    transform: translateX(-50%) translateY(92px);
+    z-index: 1;
+  }
+
+  .letter-flap-open {
+    transform: scaleY(0);
+  }
+
+  .letter-flap-shut {
+    transform: scaleY(1);
   }
 }
 
@@ -281,6 +297,139 @@ p {
   display: flex;
   width: max-content;
   animation: marquee 28s linear infinite;
+}
+
+/* ---------------------------------------------------------------------------
+ * Enquiry success — letter tucks into an open envelope, then the flap shuts.
+ * Flat fills only; mint is the open (inner) flap, same role as a tag.
+ * ------------------------------------------------------------------------- */
+.letter-scene {
+  --env-w: 152px;
+  --env-h: 90px;
+  --flap-h: 48px;
+  --rise: 92px;
+  position: relative;
+  width: var(--env-w);
+  height: var(--env-h);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.letter-envelope {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--env-h);
+}
+
+.letter-back {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 0 0 6px 6px;
+  background: var(--graphite);
+}
+
+.letter-sheet {
+  position: absolute;
+  bottom: calc(100% + 18px);
+  left: 50%;
+  z-index: 4;
+  display: flex;
+  width: 100px;
+  height: 64px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 2px;
+  background: var(--field);
+  transform: translateX(-50%);
+  animation: letter-tuck 1s cubic-bezier(0.33, 1, 0.32, 1) 0.1s forwards;
+}
+
+.letter-sheet-line {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--line);
+}
+
+.letter-pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--ink);
+  clip-path: polygon(0 0, 50% 53%, 100% 0, 100% 100%, 0 100%);
+}
+
+.letter-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--flap-h);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+}
+
+.letter-flap-open {
+  z-index: 0;
+  background: var(--accent);
+  transform: scaleY(-1);
+  animation: letter-flap-fold 0.28s linear 0.92s forwards;
+}
+
+.letter-flap-shut {
+  z-index: 4;
+  background: var(--ink);
+  transform: scaleY(0);
+  animation: letter-flap-shut 0.4s cubic-bezier(0.16, 1, 0.3, 1) 1.12s forwards;
+}
+
+.letter-lip {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  height: 10px;
+  border-radius: 0 0 6px 6px;
+  background: var(--ink);
+}
+
+@keyframes letter-tuck {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    z-index: 4;
+  }
+  14% {
+    transform: translateX(-50%) translateY(10px);
+    z-index: 4;
+  }
+  15% {
+    z-index: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(92px);
+    z-index: 1;
+  }
+}
+
+@keyframes letter-flap-fold {
+  to {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes letter-flap-shut {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
 }
 
 /* ---------------------------------------------------------------------------
