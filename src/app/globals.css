@@ -151,9 +151,14 @@ p {
     scroll-behavior: auto;
   }
 
-  .marquee-track,
-  .byte-float,
-  .byte-scene,
+  .stack-float,
+  .stack-scene,
+  .stack-block,
+  .climb-lift,
+  .climb-orbit,
+  .face,
+  .course-name,
+  .plinth-mark,
   .letter-sheet,
   .letter-flap-open,
   .letter-flap-shut {
@@ -284,26 +289,15 @@ p {
 /* ---------------------------------------------------------------------------
  * Motion
  * ------------------------------------------------------------------------- */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 28s linear infinite;
-}
-
 /* ---------------------------------------------------------------------------
  * Enquiry success — letter tucks into an open envelope, then the flap shuts.
  * Flat fills only; mint is the open (inner) flap, same role as a tag.
  * ------------------------------------------------------------------------- */
 .letter-scene {
+  /* Light: soft slate paper, not a black void on the white card.
+     Dark keeps a high-contrast face (ink) which already reads well. */
+  --env-face: #3a3a3a;
+  --env-back: #5a5a5a;
   --env-w: 152px;
   --env-h: 90px;
   --flap-h: 48px;
@@ -313,6 +307,11 @@ p {
   height: var(--env-h);
   overflow: visible;
   pointer-events: none;
+}
+
+.dark .letter-scene {
+  --env-face: var(--ink);
+  --env-back: var(--graphite);
 }
 
 .letter-envelope {
@@ -328,7 +327,7 @@ p {
   inset: 0;
   z-index: 0;
   border-radius: 0 0 6px 6px;
-  background: var(--graphite);
+  background: var(--env-back);
 }
 
 .letter-sheet {
@@ -360,7 +359,7 @@ p {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: var(--ink);
+  background: var(--env-face);
   clip-path: polygon(0 0, 50% 53%, 100% 0, 100% 100%, 0 100%);
 }
 
@@ -383,7 +382,7 @@ p {
 
 .letter-flap-shut {
   z-index: 4;
-  background: var(--ink);
+  background: var(--env-face);
   transform: scaleY(0);
   animation: letter-flap-shut 0.4s cubic-bezier(0.16, 1, 0.3, 1) 1.12s forwards;
 }
@@ -396,7 +395,7 @@ p {
   z-index: 3;
   height: 10px;
   border-radius: 0 0 6px 6px;
-  background: var(--ink);
+  background: var(--env-face);
 }
 
 @keyframes letter-tuck {
@@ -433,121 +432,366 @@ p {
 }
 
 /* ---------------------------------------------------------------------------
- * Hero object — eight isometric cubes (one byte) in flat-shaded CSS 3D.
- * Faces are pure fills from the palette; the "3D" comes from the three-tone
- * top / front / right treatment, not from gradients or shadows.
+ * Hero object — a software stack, built like a building.
+ *
+ * This file owns how the object LOOKS. The whole schedule — every keyframe and
+ * every percentage — is generated from the constants in hero-figure.tsx and
+ * injected there, so the timing can never drift out of sync with the geometry.
+ *
+ * One block's move is split across three nested elements so a single shared
+ * orbit can drive all twelve:
+ *
+ *   .stack-slot     the slot. Static — never animated.
+ *     .climb-lift   vertical only: starts `--drop` below the slot, ends on it.
+ *       .climb-orbit  horizontal only: the shared circle, ends on the axis.
+ *         .stack-block  scale only — this is what hides a block until its turn
+ *                       and clears the whole tower at once.
+ *
+ * Scale rather than opacity does the hiding: opacity on a preserve-3d element
+ * flattens its faces into a single plane.
+ *
+ * Five faces per block, because the tower turns all the way round and would
+ * otherwise be hollow from behind. Faces are pure fills from the palette with
+ * softened corners; the "3D" is the three-tone top / front / right treatment,
+ * not gradients or shadows.
  * ------------------------------------------------------------------------- */
-.byte-float {
-  animation: byte-float 7s ease-in-out infinite;
+.stack-float {
+  animation: stack-float 7s ease-in-out infinite;
 }
 
-@keyframes byte-float {
+@keyframes stack-float {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-10px);
   }
 }
 
-.byte-scene {
-  --cube: 72px;
-  --gap: 10px;
-  --step: calc(var(--cube) + var(--gap));
+.stack-scene {
+  --cube: 43px;
+  /* How far out a block rides. Big enough that a block at 45deg on the orbit
+     still clears the tower's corner: sqrt(2) * (1.02 + 0.5). */
+  --orbit: 2.3;
+  /* How high a block floats above its slot before it drops in. */
+  --hover: -0.85;
+  /* Screen-space drop that keeps the tower centred in the figure; roughly the
+     projected midpoint of plinth-to-top. */
+  --lift: calc(var(--cube) * 0.92);
   position: relative;
-  width: var(--cube);
-  height: var(--cube);
+  width: 0;
+  height: 0;
   transform-style: preserve-3d;
-  transform: rotateX(-35.264deg) rotateY(-45deg);
-  animation: byte-turn 14s ease-in-out infinite;
+  transform: translateY(var(--lift)) rotateX(-35.264deg) rotateY(-45deg);
+  animation: stack-turn var(--cycle, 24s) linear infinite both;
 }
 
 @media (min-width: 640px) {
-  .byte-scene {
-    --cube: 88px;
-    --gap: 12px;
+  .stack-scene {
+    --cube: 56px;
   }
 }
 
 @media (min-width: 1280px) {
-  .byte-scene {
-    --cube: 96px;
-    --gap: 14px;
+  .stack-scene {
+    --cube: 62px;
   }
 }
 
-@keyframes byte-turn {
-  0%,
-  100% {
-    transform: rotateX(-35.264deg) rotateY(-40deg);
-  }
-  50% {
-    transform: rotateX(-35.264deg) rotateY(-50deg);
-  }
-}
-
-.cube {
+/* A slot is the seat a block occupies once it lands. Coordinates are in block
+   widths, negative `--y` up. */
+.stack-slot {
   position: absolute;
-  inset: 0;
+  left: 0;
+  top: 0;
   transform-style: preserve-3d;
   transform: translate3d(
-    calc((var(--x) - 0.5) * var(--step)),
-    calc((0.5 - var(--y)) * var(--step)),
-    calc((var(--z) - 0.5) * var(--step))
+    calc(var(--x, 0) * var(--cube)),
+    calc(var(--y, 0) * var(--cube)),
+    calc(var(--z, 0) * var(--cube))
   );
 }
 
-/* Bit = 0: light "concrete". */
-.cube-zero {
+/* A cuboid centred on its slot origin. `animation-name` is set per block — a
+   generated `pop-n` for climbers, `base-lay` for the plinth. */
+.stack-block {
+  --w: var(--cube);
+  --h: var(--cube);
+  --d: var(--cube);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  animation-duration: var(--cycle, 30s);
+  animation-timing-function: cubic-bezier(0.2, 0.9, 0.3, 1.04);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+/* One step of the plinth. Width and height come from the part definition in
+   hero-figure.tsx, so the three steps stay described in one place. */
+.plinth-part {
+  --w: calc(var(--pw) * var(--cube));
+  --d: calc(var(--pw) * var(--cube));
+  --h: calc(var(--ph) * var(--cube));
+}
+
+/* The plinth is laid once, at load, and then stays for good — it is the only
+   part of the object that never clears, so it sits outside the master cycle. */
+.base-lay {
+  animation-name: base-lay;
+  animation-duration: 0.8s;
+  animation-delay: var(--delay, 0s);
+  animation-timing-function: cubic-bezier(0.16, 0.86, 0.3, 1.05);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+/* Position: shared keyframes, offset per block by `--delay`. A block's position
+   animation restarts at `delay + n * cycle`, which is exactly when its `pop`
+   keyframe scales it back up — that is what keeps build and clear in step. */
+.climb-lift,
+.climb-orbit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+  animation-duration: var(--cycle, 30s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.climb-lift {
+  animation-name: climb-lift;
+}
+
+.climb-orbit {
+  animation-name: climb-orbit;
+}
+
+/* --- tones ---------------------------------------------------------------- */
+
+/* Light "concrete" course. */
+.block-light {
   --face-top: #ffffff;
   --face-front: #c6c6c6;
   --face-right: #979797;
+  --label: #2f2f2f;
+  --label-dim: #6f6f6f;
 }
 
-/* Bit = 1: carbon block. */
-.cube-one {
+/* Carbon course. */
+.block-carbon {
   --face-top: #2f2f2f;
   --face-front: #000000;
   --face-right: #161616;
+  --label: #d4d4d4;
+  --label-dim: #8a8a8a;
 }
 
-/* The single mint mark on the object. */
-.cube-mint {
+/* The plinth seat — a step lighter than carbon so the rim around it reads. */
+.block-graphite {
+  --face-top: #5c5c5c;
+  --face-front: #3d3d3d;
+  --face-right: #292929;
+  --label: #d4d4d4;
+  --label-dim: #8a8a8a;
+}
+
+.dark .block-graphite {
+  --face-top: #9a9a9a;
+  --face-front: #7d7d7d;
+  --face-right: #616161;
+}
+
+/* Mint keystones. */
+.block-mint {
   --face-top: #d1ffca;
   --face-front: color-mix(in oklab, #d1ffca, #000000 14%);
   --face-right: color-mix(in oklab, #d1ffca, #000000 28%);
+  --label: #2f2f2f;
+  --label-dim: #6f6f6f;
 }
 
-.dark .cube-zero {
+/* Voltage keystones. */
+.block-voltage {
+  --face-top: #fff100;
+  --face-front: color-mix(in oklab, #fff100, #000000 16%);
+  --face-right: color-mix(in oklab, #fff100, #000000 32%);
+  --label: #2f2f2f;
+  --label-dim: #6f6f6f;
+}
+
+.dark .block-light {
   --face-top: #444444;
   --face-front: #2f2f2f;
   --face-right: #1c1c1c;
+  --label: #d4d4d4;
+  --label-dim: #8a8a8a;
 }
 
-.dark .cube-one {
+.dark .block-carbon {
   --face-top: #ffffff;
   --face-front: #e5e5e5;
   --face-right: #c6c6c6;
+  --label: #2f2f2f;
+  --label-dim: #6f6f6f;
 }
 
+/* --- faces ---------------------------------------------------------------- */
+
+/* Faces are centred on the block origin, then rotated out to their plane, so a
+   block can be any width / height / depth without shifting off its seat. The
+   small radius knocks the hard corners off without opening a visible gap. */
 .face {
   position: absolute;
-  inset: 0;
+  left: 0;
+  top: 0;
   backface-visibility: hidden;
+  border-radius: calc(var(--cube) * 0.055);
+  opacity: 1;
 }
 
 .face-top {
+  width: var(--w);
+  height: var(--d);
+  margin-left: calc(var(--w) / -2);
+  margin-top: calc(var(--d) / -2);
   background: var(--face-top);
-  transform: rotateX(90deg) translateZ(calc(var(--cube) / 2));
+  transform: rotateX(90deg) translateZ(calc(var(--h) / 2));
+}
+
+.face-front,
+.face-back {
+  width: var(--w);
+  height: var(--h);
+  margin-left: calc(var(--w) / -2);
+  margin-top: calc(var(--h) / -2);
+  background: var(--face-front);
 }
 
 .face-front {
-  background: var(--face-front);
-  transform: translateZ(calc(var(--cube) / 2));
+  transform: translateZ(calc(var(--d) / 2));
+}
+
+.face-back {
+  transform: rotateY(180deg) translateZ(calc(var(--d) / 2));
+}
+
+.face-right,
+.face-left {
+  width: var(--d);
+  height: var(--h);
+  margin-left: calc(var(--d) / -2);
+  margin-top: calc(var(--h) / -2);
+  background: var(--face-right);
 }
 
 .face-right {
-  background: var(--face-right);
-  transform: rotateY(90deg) translateZ(calc(var(--cube) / 2));
+  transform: rotateY(90deg) translateZ(calc(var(--w) / 2));
+}
+
+.face-left {
+  transform: rotateY(-90deg) translateZ(calc(var(--w) / 2));
+}
+
+/* --- course names --------------------------------------------------------- */
+
+/* The name belongs to the course, not to any one block, so it sits on its own
+   plane a hair proud of the course face and spans the full width. It goes on
+   all four sides because the tower turns right round. Opacity lives on the
+   spans, never on the preserve-3d slot above them. */
+.course-name {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--name-half) * 2 * var(--cube));
+  height: var(--cube);
+  margin-left: calc(var(--name-half) * -1 * var(--cube));
+  margin-top: calc(var(--cube) / -2);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5em;
+  backface-visibility: hidden;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: calc(var(--cube) * 0.26);
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 1;
+  animation-name: var(--name-anim, none);
+  animation-duration: var(--cycle, 30s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  animation-delay: var(--name-delay, 0s);
+}
+
+/* The wordmark plate: the same four planes as a course name, but carrying the
+   mark rather than type, and held with the plinth instead of cycled with the
+   tower. The plinth tone inverts with the theme — carbon on a light page,
+   near-white on a dark one — so the logo variant swaps the opposite way round
+   to the rest of the site. */
+.plinth-mark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--name-half) * 2 * var(--cube));
+  height: var(--cube);
+  margin-left: calc(var(--name-half) * -1 * var(--cube));
+  margin-top: calc(var(--cube) / -2);
+  backface-visibility: hidden;
+  background-image: url("/brand/wordmark-braces-dark.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 78% auto;
+  opacity: 1;
+  animation-name: var(--name-anim, none);
+  animation-duration: 0.6s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  animation-delay: var(--name-delay, 0s);
+}
+
+.dark .plinth-mark {
+  background-image: url("/brand/wordmark-braces.png");
+}
+
+/* The index, held back in size and tone so the word carries the line. */
+.course-name b {
+  font-size: 0.88em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--label-dim);
+}
+
+.course-name em {
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-indent: 0.08em;
+  color: var(--label);
+}
+
+.name-front {
+  transform: translateZ(calc(var(--name-half) * var(--cube) + 1px));
+}
+
+.name-back {
+  transform: rotateY(180deg) translateZ(calc(var(--name-half) * var(--cube) + 1px));
+}
+
+.name-right {
+  transform: rotateY(90deg) translateZ(calc(var(--name-half) * var(--cube) + 1px));
+}
+
+.name-left {
+  transform: rotateY(-90deg) translateZ(calc(var(--name-half) * var(--cube) + 1px));
 }

@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/** Form success: letter tucks into an envelope, flap closes, then the thank-you. */
+/** Form success: letter tucks into an envelope, flap closes, then the status line. */
 export function LetterSent({ children }: { children: ReactNode }) {
   const reduce = useReducedMotion();
 
@@ -30,7 +30,7 @@ export function LetterSent({ children }: { children: ReactNode }) {
         </div>
       </div>
       <motion.p
-        className="text-heading font-book tracking-[-0.02em] text-ink"
+        className="font-mono text-caption uppercase text-smoke"
         initial={reduce ? false : { opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: EASE, delay: reduce ? 0 : 1.4 }}

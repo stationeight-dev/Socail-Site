@@ -167,7 +167,7 @@
     "message": "Message",
     "submit": "Envoyer",
     "sending": "Envoi…",
-    "success": "Merci.",
+    "success": "Message envoyé à la station.",
     "error": "Quelque chose n’a pas tenu. Réessayez, ou écrivez-nous directement.",
     "direct": "Ou écrivez directement"
   },

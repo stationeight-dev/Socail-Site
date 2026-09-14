@@ -3,7 +3,6 @@
 import type { EnquiryInput } from "@/lib/enquiry";
 import { sendEnquiryMail } from "@/lib/mail";
 import { getEnquiriesCollection } from "@/lib/mongodb";
-import { rememberPendingSubscriber } from "@/lib/newsletter";
 import { ObjectId } from "mongodb";
 
 export type EnquiryState = { ok: boolean; error?: string };
@@ -84,17 +83,6 @@ export async function submitEnquiry(
   } catch (error) {
     logError("enquiry save failed", error);
     return { ok: false, error: "save" };
-  }
-
-  try {
-    await rememberPendingSubscriber({
-      email: enquiry.email,
-      name: enquiry.name,
-      locale: enquiry.locale,
-      source: enquiry.source,
-    });
-  } catch (error) {
-    logError("subscriber remember failed", error);
   }
 
   // Lead is already stored. Mail is best-effort and must not fail the submit.

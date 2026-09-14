@@ -27,7 +27,6 @@ export async function HomePage({ locale }: { locale: Locale }) {
     .map((slug) => services.find((item) => item.slug === slug))
     .filter((item): item is (typeof services)[number] => Boolean(item));
   const featuredSolutions = solutions.slice(0, 4);
-  const marquee = `${t("marquee")} `;
   const figures = [
     ["8", t("figBits")],
     ["2", t("figLocales")],
@@ -106,11 +105,12 @@ export async function HomePage({ locale }: { locale: Locale }) {
 
       {/* Inverted block — full-width carbon with an 80px display headline. */}
       <section className="overflow-hidden bg-black text-white">
-        <div className="border-b border-white/10 py-4" aria-hidden>
-          <div className="marquee-track display text-heading-lg text-white md:text-display">
-            <span className="px-6">{marquee.repeat(8)}</span>
-            <span className="px-6">{marquee.repeat(8)}</span>
-          </div>
+        {/* Statement band: the line is set once and sits still, centred against
+            the left-aligned headline below it. */}
+        <div className="border-b border-white/10 py-14 md:py-20">
+          <p className="page display text-center text-heading-lg text-white md:text-display">
+            {t("marquee")}
+          </p>
         </div>
         <div className="page py-20">
           <FadeIn>

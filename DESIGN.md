@@ -14,8 +14,8 @@ Light (default):
 - Secondary `--ink-muted` `#444444` — body copy, nav labels
 - Meta `--smoke` `#979797`
 - Hairline `--line` `#C6C6C6` — list dividers only, never card borders
-- Mint accent `--accent` `#D1FFCA` — tags, "view all" links, one mark on the hero object
-- Voltage `--voltage` `#FFF100` — email highlight only
+- Mint accent `--accent` `#D1FFCA` — tags, "view all" links, two blocks on the hero object
+- Voltage `--voltage` `#FFF100` — email highlight, and two blocks on the hero object
 - Primary CTA is **black fill, white type**, not mint
 
 Dark: canvas `#111111`, cards `#1C1C1C`, white ink. Mint and yellow stay as accents. The footer band is black in both themes and uses fixed colours, not tokens.
@@ -57,17 +57,17 @@ Tokens live in `globals.css` (`@theme`) and generate utilities:
 
 ## Hero object
 
-Eight isometric cubes (2×2×2 = one byte) in flat-shaded CSS 3D — three palette tones per cube, no gradients or shadows. Carbon cubes are the `1` bits of `0x38` (ASCII "8"), the front corner is the single mint mark. Decorative and `aria-hidden`.
+A software stack built like a building, in flat-shaded CSS 3D — three palette tones per block, softened corners, no gradients or shadows. The base is a three-step carbon plinth — a wide footing, a body carrying the wordmark on all four sides, and a graphite seat the tower stands down into — laid once and never cleared. On it stand three courses of four blocks. Each course carries **two** words, alternating around its four sides — the quality front and back, the layer left and right — so whichever way the tower is turned, the two faces you can see read as a pair: **01 robust architecture**, **02 scalable api**, **03 responsive interface**. The index is set once, on the quality face only, so the pair reads as one line rather than repeating the number. That pairing is the claim the object makes, and it is the reason the word split exists. Courses alternate carbon and concrete, with two mint and two voltage blocks spread through them as the only colour. Five faces per block, because the tower turns right round. The wordmark is the only bitmap on the object, and its light/dark variants swap the *opposite* way to the page, because the plinth tone inverts with the theme. Decorative and `aria-hidden`.
 
 ## Motion
 
-Quiet decode-in (opacity + rise). Hero object floats and turns slowly. One inverted marquee (`aria-hidden`). Mega panel fades 180ms. Everything honours `prefers-reduced-motion`.
+Quiet decode-in (opacity + rise). The plinth is laid once, at load, and never leaves. Everything above it runs one 30s cycle: twelve blocks climb one after another — each appears below the base, rides a rising orbit around the *outside* of the tower, spirals in over the top and drops into its slot, filling course by course; the finished tower then holds completely still, turns a full 360 on its own axis at a constant 20°/s, and the blocks clear together, leaving the plinth to be built on again. Timing is generated from the constants in `hero-figure.tsx` so it cannot drift from the geometry. The inverted band below it is a statement, not a marquee: the line is set once, centred, and does not move. Mega panel fades 180ms. Everything honours `prefers-reduced-motion` — the tower stands fully built.
 
 ## Accessibility
 
 - Visible focus: 2px ink outline, 2px offset, everywhere (`:focus-visible`). White outline on black surfaces.
 - Skip link to `#main`.
-- Icons are `aria-hidden`; decorative marks and the marquee are hidden from AT.
+- Icons are `aria-hidden`; decorative marks are hidden from AT. The inverted statement band is real copy and is read normally.
 
 ## Do not
 

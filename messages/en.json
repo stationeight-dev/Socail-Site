@@ -167,7 +167,7 @@
     "message": "Message",
     "submit": "Send",
     "sending": "Sending…",
-    "success": "Thank you.",
+    "success": "Message sent to the station.",
     "error": "Something did not hold. Try again, or email us directly.",
     "direct": "Or write directly"
   },
