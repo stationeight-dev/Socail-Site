@@ -27,7 +27,7 @@ export function ThemeToggle({
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cx(
-        "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-paper-elevated text-ink transition-colors hover:bg-mist xl:h-10 xl:w-10",
+        "elev-control inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-paper-elevated text-ink transition-colors hover:bg-mist xl:h-10 xl:w-10",
         className,
       )}
       aria-label={label}

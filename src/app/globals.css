@@ -8,7 +8,8 @@
  * canvas so the mint / voltage marks read identically in both.
  * ------------------------------------------------------------------------- */
 :root {
-  --paper: #e5e5e5; /* warm canvas */
+  --paper: #f4f6ec; /* off-white canvas — the green cast is what separates it
+                       from the white cards, which carry no border or shadow */
   --paper-elevated: #ffffff; /* card */
   --mist: #f3f3f3; /* secondary surface */
   --ink: #000000; /* carbon black */
@@ -17,12 +18,13 @@
   --line: #c6c6c6; /* ash — hairlines only, never card borders */
   --field: #f3f3f3; /* form control surface (mist) */
   --graphite: #2f2f2f;
-  --accent: #d1ffca; /* mint chip */
-  --accent-hover: #c0f5b8;
-  --accent-soft: #d1ffca;
+  --accent: #9eeb9e; /* chip surface — a softer shade of --leaf */
+  --accent-hover: #8ce28c;
+  --accent-soft: #9eeb9e;
+  --leaf: #80ef80; /* the green as a MARK — hero blocks, solution icons */
   --voltage: #fff100; /* voltage yellow */
-  --signal: #d1ffca;
-  --signal-soft: #d1ffca;
+  --signal: #9eeb9e;
+  --signal-soft: #9eeb9e;
   --danger: #9b2c2c;
 }
 
@@ -37,12 +39,13 @@
   /* Lifted well above the card (#1c1c1c) so borderless fields stay visible. */
   --field: #2a2a2a;
   --graphite: #444444;
-  --accent: #d1ffca;
-  --accent-hover: #c0f5b8;
-  --accent-soft: #1a2a18;
+  --accent: #9eeb9e;
+  --accent-hover: #8ce28c;
+  --accent-soft: #1d2b18;
+  --leaf: #80ef80;
   --voltage: #fff100;
-  --signal: #d1ffca;
-  --signal-soft: #1a2a18;
+  --signal: #9eeb9e;
+  --signal-soft: #1d2b18;
   --danger: #f0a0a0;
 }
 
@@ -59,6 +62,7 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-soft: var(--accent-soft);
+  --color-leaf: var(--leaf);
   --color-voltage: var(--voltage);
   --color-signal: var(--signal);
   --color-signal-soft: var(--signal-soft);
@@ -231,7 +235,7 @@ p {
  * Components
  * ------------------------------------------------------------------------- */
 
-/* Mint tag — the one chromatic accent, for taxonomy only. */
+/* Leaf tag — the one chromatic accent in running content, for taxonomy only. */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -247,10 +251,56 @@ p {
   white-space: nowrap;
 }
 
+/* ---------------------------------------------------------------------------
+ * Elevation
+ *
+ * The canvas is an off-white, so a white card no longer separates from it by
+ * surface contrast alone (1.09:1). These two shadows do that job instead. Both
+ * are keyed to the ink colour rather than pure black, and both are two-layer:
+ * a tight 1px seat that draws the edge, and a wide soft pool that lifts it.
+ * Nothing else in the system gets a shadow — depth is still canvas / white /
+ * black everywhere below the header and outside cards.
+ * ------------------------------------------------------------------------- */
+.elev-card {
+  box-shadow:
+    0 1px 2px rgba(17, 17, 17, 0.04),
+    0 10px 28px -6px rgba(17, 17, 17, 0.09);
+}
+
+/* Tighter, for pills and buttons that sit in the header. */
+.elev-control {
+  box-shadow:
+    0 1px 2px rgba(17, 17, 17, 0.05),
+    0 6px 16px -4px rgba(17, 17, 17, 0.12);
+}
+
+/* On a near-black canvas a soft grey pool reads as haze, so dark mode leans on
+   a deeper, tighter shadow instead. */
+.dark .elev-card {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 10px 28px -8px rgba(0, 0, 0, 0.6);
+}
+
+.dark .elev-control {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 6px 16px -6px rgba(0, 0, 0, 0.55);
+}
+
 .card-flat {
   background: var(--paper-elevated);
   border-radius: 32px;
   padding: 24px;
+  box-shadow:
+    0 1px 2px rgba(17, 17, 17, 0.04),
+    0 10px 28px -6px rgba(17, 17, 17, 0.09);
+}
+
+.dark .card-flat {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 10px 28px -8px rgba(0, 0, 0, 0.6);
 }
 
 .card-invert {
@@ -269,6 +319,14 @@ p {
 .dark .btn-fill {
   background: #ffffff;
   color: #000000;
+}
+
+/* Voltage CTA — the header's "book a call". Black type, both themes, because
+   yellow only ever carries black. */
+.btn-voltage {
+  background: var(--voltage);
+  color: #000000;
+  border-radius: 8px;
 }
 
 /* Flat form controls: mist surface, no border, ink focus ring. */
@@ -609,11 +667,11 @@ p {
   --face-right: #616161;
 }
 
-/* Mint keystones. */
+/* Leaf keystones. */
 .block-mint {
-  --face-top: #d1ffca;
-  --face-front: color-mix(in oklab, #d1ffca, #000000 14%);
-  --face-right: color-mix(in oklab, #d1ffca, #000000 28%);
+  --face-top: #80ef80;
+  --face-front: color-mix(in oklab, #80ef80, #000000 14%);
+  --face-right: color-mix(in oklab, #80ef80, #000000 28%);
   --label: #2f2f2f;
   --label-dim: #6f6f6f;
 }

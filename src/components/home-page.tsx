@@ -61,11 +61,15 @@ export async function HomePage({ locale }: { locale: Locale }) {
         </FadeIn>
       </section>
 
-      {/* Mono meta strip. */}
-      <section className="page grid gap-3 py-8 sm:grid-cols-2 sm:gap-6 md:grid-cols-4">
+      {/* Mono meta strip — two up on phones, four across from `md`, so it never
+          stacks into a single tall column under the hero. */}
+      <section className="page grid grid-cols-2 gap-x-6 gap-y-4 py-8 sm:gap-6 md:grid-cols-4">
         {[stats("stations"), stats("locales"), stats("model"), stats("theatre")].map(
           (label) => (
-            <p key={label} className="font-mono text-caption uppercase text-smoke">
+            <p
+              key={label}
+              className="font-mono text-caption uppercase leading-snug text-smoke"
+            >
               {label}
             </p>
           ),
@@ -128,7 +132,9 @@ export async function HomePage({ locale }: { locale: Locale }) {
                 href={`/solutions/${item.slug}`}
                 className="rounded-[32px] bg-white/5 p-6 transition-colors hover:bg-white/10 focus-visible:outline-white"
               >
-                <CatalogIcon name={item.icon} className="h-5 w-5 text-accent" />
+                {/* `--leaf`, not `--accent`: this is the green as a mark, and it stays the
+                    same saturated green as the hero blocks. The chip surface is softer. */}
+                <CatalogIcon name={item.icon} className="h-5 w-5 text-leaf" />
                 <p className="heading mt-4 text-subheading text-white">{item.title[locale]}</p>
                 <p className="mt-2 text-body-sm text-smoke">{item.tagline[locale]}</p>
               </Link>

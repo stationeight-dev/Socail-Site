@@ -146,18 +146,48 @@ const tags = COURSES.map((course, c) => ({
 }));
 
 /**
- * Per-block visibility. Scaled to nothing until the block's turn, full size
- * from then until the tower clears — the clear percentage is identical for
- * every block, which is what makes the tower go all at once.
+ * How long after the block above it a block begins to go. Top course first, so
+ * nothing is ever left standing on a course that has already cleared.
+ */
+const CLEAR_STAGGER = 0.05;
+/** What is left of the clear window for one block's own dissolve. */
+const DISSOLVE = CLEAR_END - CLEAR_START - (COURSES.length * CELLS.length - 1) * CLEAR_STAGGER;
+
+/**
+ * Per-block visibility, and the way a block leaves.
+ *
+ * Scaled to nothing until the block's turn, full size from then until the
+ * tower clears. The clear is a collapse rather than a shrink: the block
+ * squashes onto its own horizontal plane — widening slightly as it flattens,
+ * the way a volume does when it is pressed into a sheet — and that sheet then
+ * lifts and snaps out. Sequenced from the top down over `CLEAR_STAGGER`, so it
+ * reads as a controlled power-down rather than twelve things vanishing at once.
+ *
+ * Scale, not opacity, throughout: opacity on a preserve-3d element flattens the
+ * block's five faces into a single plane.
  */
 const popKeyframes = blocks
   .map(({ n, start }) => {
     const on = pct(start);
-    return `@keyframes pop-${n}{0%,${on}%{transform:scale3d(0,0,0)}${pct(
-      start + 0.3,
-    )}%,${pct(CLEAR_START)}%{transform:scale3d(1,1,1)}${pct(
-      CLEAR_END,
-    )}%,100%{transform:scale3d(0,0,0)}}`;
+    // Highest index is the top course, and goes first.
+    const from = CLEAR_START + (blocks.length - 1 - n) * CLEAR_STAGGER;
+    const at = (f: number) => pct(from + DISSOLVE * f);
+    const T = (y: number, x: number, sy: number, z = x) =>
+      `translate3d(0,calc(${y}*var(--cube)),0) scale3d(${x},${sy},${z})`;
+    return (
+      `@keyframes pop-${n}{` +
+      `0%,${on}%{transform:${T(0, 0, 0)}}` +
+      // in, and held
+      `${pct(start + 0.3)}%,${pct(from)}%{transform:${T(0, 1, 1)}}` +
+      // the squash begins
+      `${at(0.3)}%{transform:${T(0, 1.06, 0.72)}}` +
+      // pressed flat into a sheet
+      `${at(0.62)}%{animation-timing-function:cubic-bezier(0.6,0,0.85,0);transform:${T(-0.06, 1.1, 0.05)}}` +
+      // the sheet lifts away and is gone
+      `${at(1)}%{transform:${T(-0.7, 0, 0)}}` +
+      // back to parked; both ends are scale 0, so the return is invisible
+      `100%{transform:${T(0, 0, 0)}}}`
+    );
   })
   .join("");
 

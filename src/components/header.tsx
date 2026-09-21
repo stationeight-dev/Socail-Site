@@ -1,5 +1,5 @@
 import { HeaderBar } from "@/components/header-bar";
-import { hubs } from "@/content";
+import { hubs, menuServices } from "@/content";
 import type { Locale } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 
@@ -36,7 +36,8 @@ export async function Header({ locale }: { locale: Locale }) {
           themeLabel: theme("toggle"),
         }}
         mega={{
-          services: hubs.services.map((item) => ({
+          // Curated twelve, not the full catalogue — see `menuServiceSlugs`.
+          services: menuServices.map((item) => ({
             href: `/services/${item.slug}`,
             title: item.title[locale],
             tagline: item.tagline[locale],

@@ -1,5 +1,35 @@
 import type { CatalogItem } from "./types";
 
+/**
+ * The twelve the nav menu shows, in grid order.
+ *
+ * The catalogue below carries every service we sell and each one keeps its own
+ * page — this list only decides what the header's mega panel offers. Twenty
+ * entries made that panel taller than a laptop viewport, which both buried the
+ * lead and meant the pointer could never leave it to close it.
+ *
+ * The twelve are the ones global buyers actually shop for: web and mobile lead
+ * outsourcing demand, custom software is the fastest-growing segment, and the
+ * rest are the delivery stages an agency is expected to cover end to end —
+ * design, back end, API, cloud, QA and support. Anything narrower (MVPs, admin
+ * panels, fintech integrations, staffing) stays on /services, one click away
+ * through "view all".
+ */
+export const menuServiceSlugs = [
+  "web-development",
+  "mobile-app-development",
+  "custom-software-development",
+  "ai-development",
+  "cloud-development",
+  "saas-development",
+  "ecommerce-development",
+  "api-development",
+  "ui-ux-design",
+  "devops-cloud-infrastructure",
+  "qa-test-automation",
+  "maintenance",
+] as const;
+
 const defaultFaqs = {
   en: [
     {
@@ -866,3 +896,8 @@ export const services: CatalogItem[] = [
     seoDescription: { en: "Station Eight Labs provides embedded full-stack, AI, and DevOps engineers who join your team and process, not a separate outsourced project.", fr: "Station Eight Labs fournit des ingénieurs full stack, IA et DevOps intégrés à votre équipe et votre process, pas un projet externalisé séparé." },
   },
 ];
+
+/** The catalogue filtered and ordered for the header menu. */
+export const menuServices: CatalogItem[] = menuServiceSlugs
+  .map((slug) => services.find((item) => item.slug === slug))
+  .filter((item): item is CatalogItem => Boolean(item));

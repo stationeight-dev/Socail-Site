@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "standalone",
     lang: "en",
     dir: "ltr",
-    background_color: "#e5e5e5",
+    background_color: "#d3d3d3",
     theme_color: "#000000",
     categories: ["business", "developer"],
     icons: [

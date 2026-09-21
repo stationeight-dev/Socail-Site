@@ -3,12 +3,15 @@ import { siteConfig } from "@/config/site";
 import { services } from "@/content/services";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
+import { socialIcons } from "@/components/social-icons";
 import { socialLinks } from "@/lib/social";
 import { getTranslations } from "next-intl/server";
 
 // The band is black in both themes, so colours here are fixed, not tokens.
+// Everything is white; hierarchy comes from size and weight, not from greying
+// text down, and hover dims rather than brightening.
 const footerLink =
-  "text-body-sm text-[#c6c6c6] transition-colors hover:text-white focus-visible:outline-white";
+  "text-body-sm text-white transition-opacity hover:opacity-70 focus-visible:outline-white";
 
 export async function Footer({ locale }: { locale: Locale }) {
   const t = await getTranslations("Footer");
@@ -24,7 +27,7 @@ export async function Footer({ locale }: { locale: Locale }) {
           <Link href="/" className="dark inline-flex rounded-sm focus-visible:outline-white">
             <Logo variant="wordmark" />
           </Link>
-          <p className="mt-6 max-w-sm text-body leading-[1.4] text-smoke">{t("blurb")}</p>
+          <p className="mt-6 max-w-sm text-body leading-[1.4] text-white">{t("blurb")}</p>
           <a
             href={`mailto:${siteConfig.email}`}
             className="mt-5 inline-block bg-voltage px-2 py-0.5 font-mono text-caption text-black focus-visible:outline-white"
@@ -91,7 +94,7 @@ export async function Footer({ locale }: { locale: Locale }) {
         </FooterColumn>
       </div>
 
-      <div className="page flex flex-col gap-2 border-t border-white/10 py-5 font-mono text-caption text-smoke md:flex-row md:items-center md:justify-between">
+      <div className="page flex flex-col gap-2 border-t border-white/10 py-5 font-mono text-caption text-white md:flex-row md:items-center md:justify-between">
         <p>
           © {year} {t("rights")}
         </p>
@@ -104,7 +107,7 @@ export async function Footer({ locale }: { locale: Locale }) {
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="font-mono text-caption uppercase text-smoke">{title}</p>
+      <p className="font-mono text-caption uppercase text-white">{title}</p>
       <ul className="mt-4 space-y-2.5">{children}</ul>
     </div>
   );
@@ -114,18 +117,23 @@ function SocialRow({ label }: { label: string }) {
   const links = socialLinks();
   if (!links.length) return null;
   return (
-    <nav className="mt-6 flex flex-wrap gap-x-4 gap-y-2" aria-label={label}>
-      {links.map((item) => (
-        <a
-          key={item.label}
-          href={item.href}
-          className={footerLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {item.label}
-        </a>
-      ))}
+    <nav className="mt-6 flex flex-wrap items-center gap-3" aria-label={label}>
+      {links.map((item) => {
+        const Icon = socialIcons[item.label];
+        return (
+          <a
+            key={item.label}
+            href={item.href}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-white ring-1 ring-white/20 transition-colors hover:bg-white hover:text-black focus-visible:outline-white"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={item.label}
+            title={item.label}
+          >
+            {Icon ? <Icon className="h-4 w-4" /> : item.label}
+          </a>
+        );
+      })}
     </nav>
   );
 }

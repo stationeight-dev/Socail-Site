@@ -67,7 +67,7 @@ const isMenu = (state: OpenState): state is MenuKey =>
  * Display is left out so `hidden xl:inline-flex` variants can win.
  */
 const pillLink =
-  "items-center gap-1 whitespace-nowrap rounded-[48px] px-2 py-2 text-[13px] font-medium leading-[1.3] tracking-[-0.011em] text-ink-muted transition-colors hover:text-ink xl:text-body-sm";
+  "items-center gap-1 whitespace-nowrap rounded-[48px] px-3 py-2 text-[13px] font-medium leading-[1.3] tracking-[-0.011em] text-ink-muted transition-colors hover:text-ink xl:px-4 xl:text-body-sm";
 
 /**
  * Site header.
@@ -138,8 +138,11 @@ export function HeaderBar({ copy, mega, company }: Props) {
     <header
         className="sticky top-0 z-50 bg-paper/85 pt-[env(safe-area-inset-top)] backdrop-blur-md"
       onKeyDown={onHeaderKeyDown}
+      // Backstop for the panel: the nav's own `onMouseLeave` cannot fire while
+      // the pointer is still inside the panel, which is a descendant of it.
+      onMouseLeave={close}
     >
-      <div className="page grid h-20 grid-cols-[1fr_auto] items-center gap-4 lg:h-32 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">
+      <div className="page grid h-20 grid-cols-[1fr_auto_auto] items-center gap-3 md:h-22 lg:h-24 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">
         {/* `[&_img]:shrink-0` guarantees the wordmark is never squeezed by the
             grid — if space ever runs out it overflows rather than distorts. */}
         <Link
@@ -152,7 +155,7 @@ export function HeaderBar({ copy, mega, company }: Props) {
         </Link>
 
         <nav
-          className="relative hidden items-center justify-self-center rounded-[48px] bg-paper-elevated px-2 py-1.5 lg:flex"
+          className="elev-control relative hidden items-center justify-self-center rounded-[48px] bg-paper-elevated px-3 py-1.5 lg:flex xl:px-4"
           aria-label="Primary"
           onMouseLeave={close}
           onBlur={onNavBlur}
@@ -201,7 +204,10 @@ export function HeaderBar({ copy, mega, company }: Props) {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="card-flat p-3">
+                {/* Capped and scrollable. A panel taller than the viewport is
+                    a trap: the pointer can never leave it, so `onMouseLeave`
+                    never fires and it stays open over the whole page. */}
+                <div className="card-flat max-h-[min(72vh,30rem)] overflow-y-auto p-3">
                   <div className={cx("grid gap-1", wide ? "grid-cols-3" : "grid-cols-2")}>
                     {panel.items.map((item) => (
                       <Link
@@ -245,14 +251,21 @@ export function HeaderBar({ copy, mega, company }: Props) {
         <div className="hidden items-center justify-self-end gap-2 lg:flex">
           <LocaleSwitcher label={copy.localeLabel} switchTo={copy.localeSwitchTo} />
           <ThemeToggle label={copy.themeLabel} />
-          <BookLink className="btn-fill whitespace-nowrap px-4 py-2.5 text-body-sm font-medium transition-opacity hover:opacity-90 xl:py-3 xl:text-[15px]">
+          <BookLink className="btn-voltage elev-control inline-flex h-9 items-center whitespace-nowrap px-4 text-body-sm font-medium transition-shadow hover:shadow-none xl:h-10 xl:text-[15px]">
             {copy.bookCall}
           </BookLink>
         </div>
 
+        {/* Below `lg` the theme toggle sits in the bar itself, between the
+            wordmark and the menu button, rather than inside the sheet. */}
+        <ThemeToggle
+          label={copy.themeLabel}
+          className="h-11 w-11 justify-self-end lg:hidden"
+        />
+
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center justify-self-end rounded-full bg-paper-elevated text-ink lg:hidden"
+          className="elev-control inline-flex h-11 w-11 items-center justify-center justify-self-end rounded-full bg-paper-elevated text-ink lg:hidden"
           aria-label={open === "mobile" ? copy.closeMenu : copy.openMenu}
           aria-expanded={open === "mobile"}
           aria-controls={mobileId}
@@ -332,9 +345,8 @@ export function HeaderBar({ copy, mega, company }: Props) {
                 switchTo={copy.localeSwitchTo}
                 variant="full"
               />
-              <ThemeToggle label={copy.themeLabel} />
               <BookLink
-                className="btn-fill ml-auto whitespace-nowrap px-4 py-2.5 text-body-sm font-medium"
+                className="btn-voltage elev-control ml-auto whitespace-nowrap px-4 py-2.5 text-body-sm font-medium"
                 onClick={close}
               >
                 {copy.bookCall}
