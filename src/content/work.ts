@@ -66,9 +66,8 @@ export const work: WorkItem[] = [
   {
     slug: "financial-crm",
     title: { en: "Financial services — loan processing platform", fr: "Services financiers — plateforme de traitement de prêts" },
-    client: { en: "Financial services", fr: "Services financiers" },
+    client: { en: "Confidential", fr: "Confidentiel" },
     sector: { en: "Fintech / CRM", fr: "Fintech / CRM" },
-    role: { en: "Full Stack Developer · team of 14 · Oct 2022 – Present", fr: "Développeur full stack · équipe de 14 · oct. 2022 – présent" },
     isTeamExperience: true,
     summary: { en: "Scalable CRM and loan-processing microservices for a lending operations platform.", fr: "Microservices CRM et de traitement de prêts, scalables, pour une plateforme d'opérations de crédit." },
     challenge: { en: "Multi-database persistence across MySQL and PostgreSQL needed access-control lists and role-based authorization to keep loan operations secure, on infrastructure the team managed directly.", fr: "La persistance multi-base entre MySQL et PostgreSQL exigeait des listes de contrôle d'accès et une autorisation par rôles pour sécuriser les opérations de prêt, sur une infrastructure gérée directement par l'équipe." },
