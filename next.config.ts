@@ -12,6 +12,10 @@ const serviceSlugRedirects: Array<[string, string]> = [
   ["backend-cloud", "cloud-development"],
 ];
 
+const workSlugRedirects: Array<[string, string]> = [
+  ["ruloans-crm", "financial-crm"],
+];
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
   serverExternalPackages: ["mongodb", "nodemailer"],
@@ -28,7 +32,7 @@ const nextConfig: NextConfig = {
     };
   },
   async redirects() {
-    return serviceSlugRedirects.flatMap(([from, to]) => [
+    const service = serviceSlugRedirects.flatMap(([from, to]) => [
       {
         source: `/services/${from}`,
         destination: `/services/${to}`,
@@ -40,6 +44,19 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ]);
+    const work = workSlugRedirects.flatMap(([from, to]) => [
+      {
+        source: `/work/${from}`,
+        destination: `/work/${to}`,
+        permanent: true,
+      },
+      {
+        source: `/fr/work/${from}`,
+        destination: `/fr/work/${to}`,
+        permanent: true,
+      },
+    ]);
+    return [...service, ...work];
   },
 };
 

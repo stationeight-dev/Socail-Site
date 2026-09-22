@@ -64,9 +64,9 @@ export const work: WorkItem[] = [
     seoDescription: { en: "Financial-management backend services handling payments, credit-data, and banking workflows. Delivered by our founding engineers before Station Eight Labs.", fr: "Services backend de gestion financière pour les paiements, les données de crédit et les flux bancaires. Livré par nos ingénieurs fondateurs avant Station Eight Labs." },
   },
   {
-    slug: "ruloans-crm",
-    title: { en: "RuLoans CRM — loan processing platform", fr: "RuLoans CRM — plateforme de traitement de prêts" },
-    client: { en: "RuLoans CRM", fr: "RuLoans CRM" },
+    slug: "financial-crm",
+    title: { en: "Financial services — loan processing platform", fr: "Services financiers — plateforme de traitement de prêts" },
+    client: { en: "Financial services", fr: "Services financiers" },
     sector: { en: "Fintech / CRM", fr: "Fintech / CRM" },
     role: { en: "Full Stack Developer · team of 14 · Oct 2022 – Present", fr: "Développeur full stack · équipe de 14 · oct. 2022 – présent" },
     isTeamExperience: true,
@@ -74,7 +74,7 @@ export const work: WorkItem[] = [
     challenge: { en: "Multi-database persistence across MySQL and PostgreSQL needed access-control lists and role-based authorization to keep loan operations secure, on infrastructure the team managed directly.", fr: "La persistance multi-base entre MySQL et PostgreSQL exigeait des listes de contrôle d'accès et une autorisation par rôles pour sécuriser les opérations de prêt, sur une infrastructure gérée directement par l'équipe." },
     outcome: { en: "Node.js and Python microservices in production, backed by CI/CD and Selenium/Page-Object-Model automation for continuous validation.", fr: "Microservices Node.js et Python en production, avec CI/CD et automatisation Selenium/Page Object Model pour une validation continue." },
     stack: ["Node.js", "Python", "MySQL", "PostgreSQL", "Redis", "Docker", "Nginx", "AWS"],
-    seoTitle: { en: "RuLoans CRM — loan processing platform — Station Eight Labs team experience", fr: "RuLoans CRM — plateforme de traitement de prêts — expérience de l'équipe Station Eight Labs" },
+    seoTitle: { en: "Financial services — loan processing platform — Station Eight Labs team experience", fr: "Services financiers — plateforme de traitement de prêts — expérience de l'équipe Station Eight Labs" },
     seoDescription: { en: "Scalable CRM and loan-processing microservices for a lending operations platform. Delivered by our founding engineers before Station Eight Labs.", fr: "Microservices CRM et de traitement de prêts, scalables, pour une plateforme d'opérations de crédit. Livré par nos ingénieurs fondateurs avant Station Eight Labs." },
   },
   {
