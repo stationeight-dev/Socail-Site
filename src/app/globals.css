@@ -142,6 +142,15 @@ body {
   outline-offset: 2px;
 }
 
+/* The chat launcher is the TARS mascot's own <button>, which resets everything
+   inline (`all: unset`) and so defeats the ring above. Restore it; `!important`
+   is the only thing that outranks that inline reset. */
+.chat-launcher:focus-visible {
+  outline: 2px solid var(--ink) !important;
+  outline-offset: 2px !important;
+  border-radius: 12px;
+}
+
 :focus:not(:focus-visible) {
   outline: none;
 }

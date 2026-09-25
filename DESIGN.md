@@ -50,6 +50,7 @@ Tokens live in `globals.css` (`@theme`) and generate utilities:
 - Buttons: filled 8px, ghost-border 4px (1.5px slate border), text link 4px.
 - Depth is canvas / white / black, plus **two** shadows and no others: `.elev-card` for white cards and `.elev-control` for the header's pills and buttons. They exist because the canvas is an off-white — a white card only clears it by 1.09:1, so surface contrast alone no longer separates them. Do not invent a third.
 - Hover is a surface change (`hover:bg-mist`) or underline, never elevation.
+- Section CTAs — buttons and trailing arrow links alike — sit flush with the content edge at every width, so each one lands directly under the left edge of the card grid it follows. Centring them on phones was tried and removed: a lone centred control among left-aligned headings, body copy and cards reads as misaligned even when it is mathematically dead centre.
 
 ## Header
 
@@ -84,6 +85,12 @@ interchangeable:
 | `any` | browser tab, manifest 192/512 | **transparent** |
 | `apple` | iOS home screen | white — iOS flattens transparency onto black |
 | `maskable` | Android launcher | white, wide margin — the launcher crops it |
+
+## Chat launcher
+
+The live launcher is the yellow chat bubble. TARS, the block-robot mascot, is in the project but **dormant**: `LAUNCHER` in `chatbot.tsx` picks `"bubble"` or `"mascot"`, and flipping that one value is the whole switch. While it is off the mascot component is never rendered, so three.js (`0.160.0`, kept installed) is never fetched — it costs nothing.
+
+The mascot itself is `src/components/mascot-launcher.tsx` over `src/lib/tars-mascot.js` (a verbatim copy of the author's file — change the source and re-copy, never edit it here). When on, it mounts **into the launcher's slot inside the chatbot's corner column**, not floated over the page: a floating 132px figure would sit across the bottom ~68px of the open panel, whereas in the column the panel stacks above it with the column's own 12px gap. It is the library's own `<button>`, wired to the same toggle, with `aria-expanded`/`aria-label` kept in step and the greeting bubble hidden while the panel is open. Without WebGL the library draws a flat block grid and the click still works. `.chat-launcher:focus-visible` restores the site focus ring with `!important`, since the library resets its button's styles inline. The `.glb` in the mascot folder is unused by the JS and was not copied.
 
 ## Accessibility
 

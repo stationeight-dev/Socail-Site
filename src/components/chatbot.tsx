@@ -3,7 +3,18 @@
 import { siteConfig } from "@/config/site";
 import { Link } from "@/i18n/navigation";
 import { cx } from "@/lib/utils";
+import { MascotLauncher } from "@/components/mascot-launcher";
 import { Fragment, useEffect, useId, useRef, useState } from "react";
+
+/**
+ * Which launcher stands in the corner.
+ *  - "bubble"  the yellow chat bubble — live.
+ *  - "mascot"  TARS, the block-robot (src/components/mascot-launcher.tsx). Kept
+ *              in the project, dormant, ready to switch on: while it is off the
+ *              component is never rendered and three.js is never fetched.
+ *              Flipping this one value is the whole change.
+ */
+const LAUNCHER: "bubble" | "mascot" = "bubble";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -332,23 +343,32 @@ export function Chatbot({ locale, copy }: { locale: string; copy: Copy }) {
         </div>
       ) : null}
 
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-label={open ? copy.closeLabel : copy.openLabel}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-voltage text-black shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-black/10 transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-      >
-        {open ? (
-          <span aria-hidden className="text-body-sm">
-            ✕
-          </span>
-        ) : (
-          <svg aria-hidden viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.75">
-            <path d="M4 4h16v12H8l-4 4V4Z" strokeLinejoin="round" />
-          </svg>
-        )}
-      </button>
+      {LAUNCHER === "mascot" ? (
+        <MascotLauncher
+          open={open}
+          onToggle={() => setOpen((v) => !v)}
+          openLabel={copy.openLabel}
+          closeLabel={copy.closeLabel}
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? copy.closeLabel : copy.openLabel}
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-voltage text-black shadow-[0_8px_24px_rgba(0,0,0,0.35)] ring-1 ring-black/10 transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        >
+          {open ? (
+            <span aria-hidden className="text-body-sm">
+              ✕
+            </span>
+          ) : (
+            <svg aria-hidden viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.75">
+              <path d="M4 4h16v12H8l-4 4V4Z" strokeLinejoin="round" />
+            </svg>
+          )}
+        </button>
+      )}
     </div>
   );
 }
